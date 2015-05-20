@@ -7,19 +7,26 @@
 
   <title>Login to GSD Marin Database</title>
   <link href="main/css/login.css" type="text/css" rel="stylesheet"/>
+  <script src="main/js/time.js"></script>
 <!--
     <script src="js/prefixfree.min.js"></script>
 -->
 </head>
 
 <body>
-    <script src="main/js/login.js"></script>
+
 <form method="post" action="/contents">
   <div class="body"></div>
 		<div class="grad"></div>
-		<div class="header">
-			<div>GSD<span>Marin</span></div>
+        <div class="datetime">
+          <div id="timeID"> </div>
+        </div>
+        
+        <div class="header">
+          <div>GSD<span>Marin</span></div>
 		</div>
+        
+        <script src="main/js/login.js"></script>
 		<br>
         
 		<div class="login">
@@ -32,7 +39,7 @@
    
   
  </form>
- <script src="templateJS.js"></script>
+ <script type="text/javascript">window.onload = displayTime('timeID');</script>
 </body>
 
 </html>

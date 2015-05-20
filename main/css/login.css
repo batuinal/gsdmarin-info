@@ -25,6 +25,21 @@ body{
 	z-index: 0;
 }
 
+.datetime{
+	position: absolute;
+	top: calc(15px);
+	left: calc(100% - 125px);
+	z-index: 2;
+}
+
+.datetime div{
+	float: right;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: 200;
+}
+
 .grad{
 	position: absolute;
 	top: -20px;
@@ -55,6 +70,21 @@ body{
 
 .header div span{
 	color: #5379fa !important;
+}
+
+.header2{
+	position: absolute;
+	top: calc(50% + 15px);
+	left: calc(50% - 255px);
+	z-index: 2;
+}
+
+.header2 div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: 200;
 }
 
 .login{
