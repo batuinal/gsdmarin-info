@@ -1,0 +1,9 @@
+body {
+          font-family: verdana;
+          background-image: url("images/index_BG.jpeg");
+          background-repeat: no-repeat;
+          background-position: center top;
+}
+h1 {
+          color: rgb(255, 23, 210);
+}
