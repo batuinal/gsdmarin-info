@@ -31,38 +31,6 @@ body{
 .sunset { background: url('http://www.naturewallpaper.eu/desktopwallpapers/sky/1366x768/after-sunset-sky-1366x768.jpg'); }
 .night { background: url('http://images2.layoutsparks.com/1/159946/moon-girl-night-sky.jpg'); }
 
-
-
-.datetime{
-	position: absolute;
-	top: calc(15px);
-	left: calc(100% - 125px);
-	z-index: 2;
-}
-
-.datetime div{
-	float: right;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 20px;
-	font-weight: 200;
-}
-
-.datetime2{
-	position: absolute;
-	top: calc(75px);
-	left: calc(100% - 125px);
-	z-index: 2;
-}
-
-.datetime2 div{
-	float: right;
-	color: #fff;
-	font-family: 'Exo', sans-serif;
-	font-size: 20px;
-	font-weight: 200;
-}
-
 .grad{
 	position: absolute;
 	top: -20px;
