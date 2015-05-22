@@ -25,14 +25,6 @@ body{
 	z-index: 0;
 }
 
-//http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg
-/* backgrounds */
-.day { background: url('http://imgs.mi9.com/uploads/photography/4480/white-clouds-and-blue-sky_1600x1200_78556.jpg'); }
-.sunset { background: url('http://www.naturewallpaper.eu/desktopwallpapers/sky/1366x768/after-sunset-sky-1366x768.jpg'); }
-.night { background: url('http://images2.layoutsparks.com/1/159946/moon-girl-night-sky.jpg'); }
-
-
-
 .datetime{
 	position: absolute;
 	top: calc(15px);

@@ -1,13 +1,18 @@
-$(document).ready(function(){
-                  var d = new Date();
-                  var n = d.getHours();
-                  if (n > 19 || n < 6)
-                  // If time is after 7PM or before 6AM, apply night theme to ‘body’
-                  document.body.className = "night";
-                  else if (n > 16 && n < 19)
-                  // If time is between 4PM – 7PM sunset theme to ‘body’
-                  document.body.className = "sunset";
-                  else
-                  // Else use ‘day’ theme
-                  document.body.className = "day";
-                  });
+$(function() {
+  var today = new Date();
+  var hourNow = today.getHours();
+  //document.write('<div class="header2"> \n <div>' + 'hellow' + '</div>\n</div>');
+
+  if (hourNow > 18) {
+
+  $('.body').css('background-image', 'url("' + http://imgs.mi9.com/uploads/photography/4480/white-clouds-and-blue-sky_1600x1200_78556.jpg + '")');
+  }
+  else if (hourNow > 12) {
+  $('.body').css('background-image', 'url("' + http://www.naturewallpaper.eu/desktopwallpapers/sky/1366x768/after-sunset-sky-1366x768.jpg + '")');
+  }
+  else{
+  $('.body').css('background-image', 'url(images/index_BG.jpeg)');
+  }
+   
+});
+//url(images/index_BG.jpeg)
