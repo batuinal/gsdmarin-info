@@ -10,7 +10,7 @@ $(function() {
         $('.body').css('background-image', 'url(main/css/images/lunch.jpg)');
   }
   else{
-        $('.body').css('background-image', 'url(main/css/images/morning.jpg');
+        $('.body').css('background-image', 'url(main/css/images/morning.jpg)');
   }
  });
 
