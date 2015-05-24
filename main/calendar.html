@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>GSD Marin - Calendar</title>
       <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-      <link href="css/index.css" rel="stylesheet" type="text/css" media="all" />
+      <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />	  
+      <link href="css/calendar.css" rel="stylesheet" type="text/css" media="all" />
       <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
-       <link href="css/calendar.css" rel="stylesheet" type="text/css" media="all" />
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <script src="js/modernizr.custom.js"></script>
       <script> $(function(){ $("#topbar").load("topbar/topbar.html"); });</script>
@@ -16,14 +16,12 @@
 <body>
   <div id="topbar"></div>
   
-  <div class="calwrapper">
-    <div class="calheader">
-        <h1>GSD Marin Calendar</h1>
+  <div id="wrapper">
+    <h1 id="calheader">GSD Marin Calendar</h1>
  
-      <div class="calendar">
-        <iframe src="https://www.google.com/calendar/embed?src=admin%40gsdmarin.net&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-       </div>
-     </div>
+	<div class="calendar">
+		<iframe src="https://www.google.com/calendar/embed?src=admin%40gsdmarin.net&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+	</div>
   </div>
   <div id="copyright">
         <p>&copy; GSDMarin. All rights reserved. | Designed For <a href="http://en.gsdmarin.com.tr">GSDMarin</a>

@@ -1,100 +1,33 @@
-	html, body
-	{
-		height: 100%;
-	}
-	
-	body
-	{
-		margin: 0px;
-		padding: 0px;
-		font-family: 'Source Sans Pro', sans-serif, 'Lato', Calibri, Arial;
-		font-size: 12pt;
-		font-weight: 400;
-		color: #60c0f0;
-		background: #2080a0;
-	}
-	
-	
-	h1, h2, h3
-	{
-		margin: 0;
-		padding: 0;
-	}
-	
-	p, ol, ul
-	{
-		margin-top: 0;
-	}
-	
-	ol, ul
-	{
-		padding: 0;
-		list-style: none;
-	}
-	
-	p
-	{
-		line-height: 180%;
-	}
-	
-	strong
-	{
-	}
-	
-	a
-	{
-		color: #0000FF;
-	}
-	
-	a:hover
-	{
-		text-decoration: none;
-	}
-	
-
-	.container
-	{
-		margin: 0px auto;
-		width: 1000px;
-	}
-
 /*********************************************************************************/
 /* Image Style                                                                   */
 /*********************************************************************************/
-
-	.image
-	{
+	.image{
 		display: inline-block;
 		border: 1px solid rgba(0,0,0,.1);
 	}
 	
-	.image img
-	{
+	.image img{
 		display: block;
 		width: 100%;
 	}
 	
-	.image-full
-	{
+	.image-full{
 		display: block;
 		width: 100%;
 		margin: 0 0 1em 0;
 	}
 	
-	.image-left
-	{
+	.image-left{
 		float: left;
 		margin: 0 2em 2em 0;
 	}
 	
-	.image-centered
-	{
+	.image-centered{
 		display: block;
 		margin: 0 0 2em 0;
 	}
 	
-	.image-centered img
-	{
+	.image-centered img{
 		margin: 0 auto;
 		width: auto;
 	}
@@ -103,8 +36,7 @@
 /* Button Style                                                                  */
 /*********************************************************************************/
 
-	.button
-	{
+	.button{
 		display: inline-block;
 		margin-top: 1em;
 		padding: 1em 2em 1em 2em;
@@ -118,8 +50,7 @@
 		color: #FFF;
 	}
 	
-	.button:before
-	{
+	.button:before{
 		display: inline-block;
 		background: #8DCB89;
 		margin-right: 1em;
@@ -131,8 +62,7 @@
 		color: #272925;
 	}
 	
-	.button-small
-	{
+	.button-small{
 		padding: 0.9em 2em;
 		line-height: 1.8em;
 		font-size: 1em;
@@ -142,19 +72,16 @@
 /* Heading Titles                                                                */
 /*********************************************************************************/
 
-	.title
-	{
+	.title{
 		margin-bottom: 3em;
 	}
 	
-	.title h2
-	{
+	.title h2{
 		font-size: 2.8em;
 		color: rgba(255,255,255,0.9);
 	}
 	
-	.title .byline
-	{
+	.title .byline{
 		letter-spacing: 0.15em;
 		text-transform: uppercase;
 		font-weight: 400;
@@ -163,63 +90,15 @@
 	}
 	
 /*********************************************************************************/
-/* Wrapper                                                                       */
-/*********************************************************************************/
-
-	#wrapper
-	{
-		overflow: hidden;
-		padding: 4.5em 0em;
-		background: #FFF;
-	}
-
-/*********************************************************************************/
-/* Copyright                                                                     */
-/*********************************************************************************/
-
-	#copyright
-	{
-		overflow: hidden;
-		padding: 4em 0em;
-		border-top: 1px solid rgba(255,255,255,0.08);
-	}
-	
-	#copyright p
-	{
-		letter-spacing: 0.20em;
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 0.80em;
-		color: rgba(255,255,255,0.3);
-	}
-	
-	#copyright a
-	{
-		text-decoration: none;
-		color: rgba(255,255,255,0.6);
-	}
-    
-    #copyright h5
-	{
-		letter-spacing: 0.20em;
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 0.55em;
-		color: rgba(255,255,255,0.45);
-	}
-	
-/*********************************************************************************/
 /* Portfolio                                                                     */
 /*********************************************************************************/
 	
-	#portfolio .box
-	{
+	#portfolio .box{
 		text-align: center;
 		color: rgba(0,0,0,0.5);
 	}
 	
-	#portfolio h3
-	{
+	#portfolio h3{
 		display: block;
 		padding-bottom: 1em;
 		text-transform: uppercase;
@@ -227,8 +106,7 @@
 		color: rgba(0,0,0,0.6);
 	}
 	
-	#portfolio p
-	{
+	#portfolio p{
 		display: block;
 		padding-top: 2em;
 		padding-bottom: 1em;
@@ -240,13 +118,11 @@
 		color: #606060;	
 	}
 
-	#portfolio .title
-	{
+	#portfolio .title{
 		text-align: center;
 	}
 
-	#portfolio .title h2
-	{
+	#portfolio .title h2{
         font-size: 4em;
 		color: rgba(0,0,0,0.8);
 	}
@@ -256,11 +132,9 @@
 	.column3,
 	.column4
 	{
-		width: 225px;
+		width: calc(22.5%);
 		float: left;
-		margin-right: 12.5px;
-		margin-left: 12.5px;
+		margin-right: calc(1.25%);
+		margin-left: calc(1.25%);
 	}
-	
-
     

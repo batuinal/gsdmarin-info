@@ -1,0 +1,89 @@
+	html, body{
+		height: 100%;
+	}
+	
+	body{
+		margin: 0px;
+		padding: 0px;
+		font-family: 'Source Sans Pro', sans-serif, 'Lato', Calibri, Arial;
+		font-size: 12pt;
+		font-weight: 400;
+		color: #60c0f0;
+		background: #2080a0;
+	}	
+	
+	h1, h2, h3{
+		margin: 0;
+		padding: 0;
+	}
+	
+	p, ol, ul{
+		margin-top: 0;
+	}
+	
+	ol, ul{
+		padding: 0;
+		list-style: none;
+	}
+	
+	p{
+		line-height: 180%;
+	}
+	
+	strong{
+	}
+	
+	a{
+		color: #0000FF;
+	}
+	
+	a:hover{
+		text-decoration: none;
+	}
+	
+
+	.container{
+		margin: 0px auto;
+		width: calc(100%);
+	}
+	
+	/*********************************************************************************/
+/* Copyright                                                                     */
+/*********************************************************************************/
+
+	#copyright{
+		overflow: hidden;
+		padding: 4em 0em;
+		border-top: 1px solid rgba(255,255,255,0.08);
+	}
+	
+	#copyright p{
+		letter-spacing: 0.20em;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 0.80em;
+		color: rgba(255,255,255,0.3);
+	}
+	
+	#copyright a{
+		text-decoration: none;
+		color: rgba(255,255,255,0.6);
+	}
+    
+    #copyright h5{
+		letter-spacing: 0.20em;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 0.55em;
+		color: rgba(255,255,255,0.45);
+	}
+	
+/*********************************************************************************/
+/* Wrapper                                                                       */
+/*********************************************************************************/
+
+	#wrapper{
+		overflow: hidden;
+		padding: 3em 0em;
+		background: #FFF;
+	}
