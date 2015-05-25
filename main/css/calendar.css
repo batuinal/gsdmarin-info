@@ -1,6 +1,7 @@
 #calheader{		
 	padding-left: calc(40% - 300px);
 	padding-right: calc(40% - 300px);
+	font-weight: 400;
 }
 
 .calendar{	
