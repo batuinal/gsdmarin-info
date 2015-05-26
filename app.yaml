@@ -13,7 +13,7 @@ handlers:
 
 - url: /main
   static_dir: main
-
+  
 - url: /.*
   script: main.app
 
