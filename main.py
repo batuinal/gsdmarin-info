@@ -5,17 +5,16 @@ import cgi
 from google.appengine.api import users
 import webapp2
 
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        self.redirect('/')
+        return self.redirect('/',permanent=True)
 
-class Contents(webapp2.RequestHandler):
+class LoggedIn(webapp2.RequestHandler):
     def post(self):
-        self.redirect('/main/index.html')
+		return self.redirect('/main/index.html',permanent=True)
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/contents', Contents),
+    ('/', MainPage),	
+    ('/loggedin', LoggedIn)
 ], debug=True)
 
