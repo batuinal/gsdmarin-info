@@ -5,9 +5,11 @@ $(function() {
 
   if (hourNow > 18) {
         $('.body').css('background-image', 'url(main/images/night.jpg)');
+  
   }
   else if (hourNow > 12) {
         $('.body').css('background-image', 'url(main/images/lunch.jpg)');
+
   }
   else{
         $('.body').css('background-image', 'url(main/images/morning.jpg)');
