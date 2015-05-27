@@ -6,14 +6,10 @@ threadsafe: true
 
 # [START handlers]
 handlers:
-
-- url: /
-  static_files: login.html
-  upload: login.html
-
-- url: /main
-  static_dir: main
-  
+ 
+- url: /pages
+  static_dir: pages
+ 
 - url: /.*
   script: main.app
 
