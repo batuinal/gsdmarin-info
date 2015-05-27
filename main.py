@@ -11,7 +11,7 @@ class LoginPage(webapp2.RequestHandler):
 
 class LoginChecker(webapp2.RequestHandler):
     def post(self):
-		return self.redirect('/main/win8/docs/index.html',permanent=True)
+		return self.redirect('/main/index.html',permanent=True)
 
 app = webapp2.WSGIApplication([
     ('/', LoginPage),	
