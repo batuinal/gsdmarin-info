@@ -11,10 +11,11 @@
     <link href="main/css/metro.css" rel="stylesheet">
     <link href="main/css/metro-icons.css" rel="stylesheet">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
     <script src="main/js/jquery-2.1.3.min.js"></script>
     <script src="main/js/metro.js"></script>
 	<script src="main/js/bg.js"></script>
- 
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
     <style>
         .login-form {
             width: 400px;
@@ -88,33 +89,36 @@
             <br />
             <br />
             <div class="form-actions">
-                <button type="submit" class="button primary" id="login_button">Login</button>
+                <a href="#" id="signInButton">Sign in with Google</a>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                                      $('#signInButton').click(function() {
+                                                               $(this).attr('href','https://accounts.google.com/o/oauth2/auth?scope=' +
+                                                                            'https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&' +
+                                                                            'state=72982527&' +
+                                                                            'redirect_uri=http://localhost:8080/main/index.html&'+
+                                                                            'response_type=code&' +
+                                                                            'client_id=44498269384-c4gcvi43bkq0m5i8kp9nf5i41voqq3jm.apps.googleusercontent.com&' +
+                                                                            'access_type=offline');
+                                                               return true; // Continue with the new href.
+                                                               });
+                                      });
+                    </script>
+                <!--
+                <span id="signinButton">
+                    <span
+                        class="g-signin"
+                        data-callback="signinCallback"
+                        data-clientid="44498269384-c4gcvi43bkq0m5i8kp9nf5i41voqq3jm.apps.googleusercontent.com"
+                        data-cookiepolicy="http://www.gsdmarin.net"
+                        data-requestvisibleactions="http://schema.org/AddAction"
+                        data-scope="https://www.googleapis.com/auth/plus.login">
+                    </span>
+                </span>
+                -->
             </div>
         </form>
     </div>
-
-    <!-- hit.ua -->
-    <a href='http://hit.ua/?x=136046' target='_blank'>
-        <script language="javascript" type="text/javascript"><!--
-        Cd=document;Cr="&"+Math.random();Cp="&s=1";
-        Cd.cookie="b=b";if(Cd.cookie)Cp+="&c=1";
-        Cp+="&t="+(new Date()).getTimezoneOffset();
-        if(self!=top)Cp+="&f=1";
-        //--></script>
-        <script language="javascript1.1" type="text/javascript"><!--
-        if(navigator.javaEnabled())Cp+="&j=1";
-        //--></script>
-        <script language="javascript1.2" type="text/javascript"><!--
-        if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
-        screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
-        //--></script>
-        <script language="javascript" type="text/javascript"><!--
-        Cd.write("<img src='http://c.hit.ua/hit?i=136046&g=0&x=2"+Cp+Cr+
-        "&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+
-        "' border='0' wi"+"dth='1' he"+"ight='1'/>");
-        //--></script></a>
-    <!-- / hit.ua -->
-
 
 </body>
 </html>
