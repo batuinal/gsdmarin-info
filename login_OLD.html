@@ -4,7 +4,13 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="text/html; charset=utf-8" />
   <title>Login to GSD Marin Database</title>
-  <link href="main/css/login.css" type="text/css" rel="stylesheet"/>
+  <!-- international support from https://github.com/sheetjs/js-codepage -->
+  <script src="parser/dist/cpexcel.js"></script>
+  <!-- ODS support -->
+  <script src="parser/dist/ods.js"></script>
+  <!-- https://github.com/SheetJS/js-xls/blob/master/xls.js -->
+  <script lang="javascript" src="parser/dist/xlsx.core.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +35,7 @@
   
  </form>
  
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
  <script src="main/js/bg.js"></script>
 </body>
 </html>

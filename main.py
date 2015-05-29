@@ -12,6 +12,11 @@ class LoginPage(webapp2.RequestHandler):
 class LoginChecker(webapp2.RequestHandler):
     def post(self):
 		return self.redirect('/pages/index.html')
+
+class UploadHandler(webapp2.RequestHandler):
+    def post(self):
+
+    print self.request.POST['file'].filename
 		
 class NotFoundHandler(webapp2.RequestHandler):
 	def get(self):
