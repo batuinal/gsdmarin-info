@@ -8,10 +8,6 @@ import webapp2
 class FileUpload(webapp2.RequestHandler):
 	def get(self):
 		return self.redirect('/pages/upload.html')
-	def post(self):
-		#Parsing
-		#Create the HTML Document
-		#document.write(data data data);
 	
 class LoginPage(webapp2.RequestHandler):
     def get(self):

@@ -231,42 +231,69 @@
 </head>
 <body>
 
-    <div class="charm right-side padding20 bg-grayDark" id="charmSettings">
-        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSettings()"><span class="mif-cross"></span></button>
-        <h1 class="text-light">Settings</h1>
+	<div class="charm right-side padding20 bg-grayDark" id="charmSearch">
+        <button class="square-button bg-transparent fg-white no-border place-right small-button" onclick="showSearch()"><span class="mif-cross"></span></button>
+        <h1 class="text-light">Navigation</h1>
         <hr class="thin"/>
         <br />
-        <div class="schemeButtons">
-            <div class="button square-button tile-area-scheme-dark" data-scheme="dark"></div>
-            <div class="button square-button tile-area-scheme-darkBrown" data-scheme="darkBrown"></div>
-            <div class="button square-button tile-area-scheme-darkCrimson" data-scheme="darkCrimson"></div>
-            <div class="button square-button tile-area-scheme-darkViolet" data-scheme="darkViolet"></div>
-            <div class="button square-button tile-area-scheme-darkMagenta" data-scheme="darkMagenta"></div>
-            <div class="button square-button tile-area-scheme-darkCyan" data-scheme="darkCyan"></div>
-            <div class="button square-button tile-area-scheme-darkCobalt" data-scheme="darkCobalt"></div>
-            <div class="button square-button tile-area-scheme-darkTeal" data-scheme="darkTeal"></div>
-            <div class="button square-button tile-area-scheme-darkEmerald" data-scheme="darkEmerald"></div>
-            <div class="button square-button tile-area-scheme-darkGreen" data-scheme="darkGreen"></div>
-            <div class="button square-button tile-area-scheme-darkOrange" data-scheme="darkOrange"></div>
-            <div class="button square-button tile-area-scheme-darkRed" data-scheme="darkRed"></div>
-            <div class="button square-button tile-area-scheme-darkPink" data-scheme="darkPink"></div>
-            <div class="button square-button tile-area-scheme-darkIndigo" data-scheme="darkIndigo"></div>
-            <div class="button square-button tile-area-scheme-darkBlue" data-scheme="darkBlue"></div>
-            <div class="button square-button tile-area-scheme-lightBlue" data-scheme="lightBlue"></div>
-            <div class="button square-button tile-area-scheme-lightTeal" data-scheme="lightTeal"></div>
-            <div class="button square-button tile-area-scheme-lightOlive" data-scheme="lightOlive"></div>
-            <div class="button square-button tile-area-scheme-lightOrange" data-scheme="lightOrange"></div>
-            <div class="button square-button tile-area-scheme-lightPink" data-scheme="lightPink"></div>
-            <div class="button square-button tile-area-scheme-grayed" data-scheme="grayed"></div>
-        </div>
+		<div class="accordion" data-role="accordion">
+			<div class="frame">
+				<div class="heading fg-darkBlue">General</div>
+				<div class="content fg-darkBlue">Calendar</div>
+				<div class="content fg-darkBlue">Reports</div>
+			</div>
+			<div class="frame">
+				<div class="heading fg-darkBlue">Ship Building</div>
+				<div class="content fg-darkBlue">New Ships</div>
+				<div class="content fg-darkBlue">Completed Ships</div>
+			</div>
+			<div class="frame">
+				<div class="heading fg-darkBlue">Management</div>
+				<div class="content fg-darkBlue">SHEQ</div>
+				<div class="content fg-darkBlue">Operation</div>
+				<div class="content fg-darkBlue">Chartering</div>
+				<div class="content fg-darkBlue">Crewing</div>
+				<div class="content fg-darkBlue">Purchasing</div>
+				<div class="content fg-darkBlue">Accounting</div>
+			</div>	
+			<div class="frame">
+				<div class="heading fg-darkBlue">Technical</div>
+				<div class="content fg-darkBlue">Events &amp; Followup</div>
+				<div class="content fg-darkBlue">Guarantee Claims</div>
+				<div class="content fg-darkBlue">Monthend Report</div>
+				<div class="content fg-darkBlue">Weekly Work Done Report</div>
+				<div class="content fg-darkBlue">Vessel Inspection Report</div>
+				<div class="content fg-darkBlue">Voyage Summary</div>
+				<div class="content fg-darkBlue">Regular Followup List</div>
+				<div class="content fg-darkBlue">Other Documents</div>
+			</div>
+			<div class="frame">
+				<div class="heading fg-darkBlue">External Links</div>
+				<div class="content fg-darkBlue">FML Paris Home</div>
+				<div class="content fg-darkBlue">ABS - My Eagle</div>
+				<div class="content fg-darkBlue">ClassNK Home</div>
+				<div class="content fg-darkBlue">DNV&amp;GL Home</div>
+				<div class="content fg-darkBlue">IMPA &amp; Space Marine</div>
+				<div class="content fg-darkBlue">Wilhelmsen Ship Service</div>
+				<div class="content fg-darkBlue">Marine Traffic</div>
+				<div class="content fg-darkBlue">(Add More Links)</div>
+			</div>
+			<div class="frame">
+				<div class="heading fg-darkBlue">(Development)</div>
+				<div class="content fg-darkBlue"><a href=upload.html>Sample File Upload</a></div>
+			</div>
+		</div>
+        
     </div>
 
     <div class="tile-area tile-area-scheme-dark fg-white">
         <h1 class="tile-area-title">GSD Marin Database</h1>
         <div class="tile-area-controls">
             <button class="image-button icon-right bg-transparent fg-white bg-hover-dark no-border"><span class="sub-header no-margin text-light">(Anonymous User)</span> <span class="icon mif-user"></span></button>
-            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSettings()"><span class="mif-cog"></span></button>
-            <a href="../tiles.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
+            <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSearch()"><span class="mif-search"></span></button>
+            <a href="http://www.gsdmarin.com.tr" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-arrow-up"></span></a>
+			<a href="admin.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-cog"></span></a>
+			<a href="login.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
         </div>
 
         <div class="tile-group double">
@@ -319,17 +346,11 @@
                     </div>
                     <div class="tile-label fg-black">Management</div>
                 </div>
-				<div class="tile" data-role="tile">
+				<div class="tile-wide" data-role="tile">
                     <div class="tile-content">
-                        <div class="live-slide"><img src="images/fmlicon.png" data-role="fitImage" data-format="fill"></div>
+                        <div class="live-slide"><img src="images/cogbp.png" data-role="fitImage" data-format="fill"></div>
                     </div>
-                    <div class="tile-label fg-black">FML Home</div>
-                </div>
-				<div class="tile" data-role="tile">
-                    <div class="tile-content">
-                        <div class="live-slide"><img src="images/fmlicon.png" data-role="fitImage" data-format="fill"></div>
-                    </div>
-                    <div class="tile-label fg-black">FML World Map</div>
+                    <div class="tile-label">Technical</div>
                 </div>
 
             </div>
@@ -338,30 +359,11 @@
         <div class="tile-group double">
             <span class="tile-group-title">External Links</span>
 
-            <div class="tile bg-blue" data-role="tile">
-                <div class="tile-content iconic">
-                    <img src="images/outlook.png" class="icon">
+			<div class="tile" data-role="tile">
+                <div class="tile-content">
+                    <div class="live-slide"><img src="images/fmltext.png" data-role="fitImage" data-format="fill"></div>
                 </div>
-            </div>
-            <div class="tile bg-darkBlue" data-role="tile">
-                <div class="tile-content iconic">
-                    <img src="images/word.png" class="icon">
-                </div>
-            </div>
-            <div class="tile bg-green" data-role="tile">
-                <div class="tile-content iconic">
-                    <img src="images/excel.png" class="icon">
-                </div>
-            </div>
-            <div class="tile bg-red" data-role="tile">
-                <div class="tile-content iconic">
-                    <img src="images/access.png" class="icon">
-                </div>
-            </div>
-            <div class="tile bg-orange" data-role="tile">
-                <div class="tile-content iconic">
-                    <img src="images/powerpoint.png" class="icon">
-                </div>
+                <div class="tile-label">FML Home</div>
             </div>
         </div>
 		
