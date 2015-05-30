@@ -1,7 +1,21 @@
 <div class="tile-area-controls">
 	<button class="image-button icon-right bg-transparent fg-white bg-hover-dark no-border"><span class="sub-header no-margin text-light">(Anonymous User)</span> <span class="icon mif-user"></span></button>
 	<button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showSearch()"><span class="mif-search"></span></button>
+	<a href="deadlink.html" id="back-button" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-arrow-up"></span></a>
 	<a href="index.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-home"></span></a>
 	<a href="admin.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-cog"></span></a>
 	<a href="login.html" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
 </div>
+
+<script>
+
+	$(function(){ 
+		var pathname = window.location.pathname;
+		if (/(ship_building|management|technical)/.test(pathname)) {
+			$("#back-button").attr("href", "index.html");
+		}
+		else {
+			$("#back-button").attr("href", "#");
+		}
+	})
+</script>

@@ -53,3 +53,25 @@
 		</div>
 	</div>   
 </div>
+
+<script>
+	function showSearch(){
+		var  charm = $("#charmSearch");
+
+		if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
+		
+		if (!charm.data('hidden')) {
+
+			charm.animate({
+				right: -300
+			});
+
+			charm.data('hidden', true);
+		} else {
+			charm.animate({
+				right: 0
+			});
+			charm.data('hidden', false);
+		}
+	}
+</script>

@@ -13,217 +13,10 @@
 
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/metro.js"></script>
-
-    <style>	
-        .tile-area-controls {
-            position: fixed;
-            right: 40px;
-            top: 40px;
-        }
-
-        .tile-group {
-            left: 100px;
-        }
-
-        .tile, .tile-small, .tile-sqaure, .tile-wide, .tile-large, .tile-big, .tile-super {
-            opacity: 0;
-            -webkit-transform: scale(.8);
-            transform: scale(.8);
-        }
-
-        .charm.right-side {
-            width: 300px;
-            right: -300px;
-        }
-
-        #charmSettings .button {
-            margin: 5px;
-        }
-
-        @media screen and (max-width: 640px) {
-            .tile-area {
-                overflow-y: scroll;
-            }
-            .tile-area-controls {
-                display: none;
-            }
-        }
-
-        @media screen and (max-width: 320px) {
-            .tile-area {
-                overflow-y: scroll;
-            }
-
-            .tile-area-controls {
-                display: none;
-            }
-
-        }
-    </style>
-
-    <script>
-        /*
-         * Do not use this is a google analytics fro Metro UI CSS
-         * */
-        if (window.location.hostname !== 'localhost') {
-
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-58849249-3', 'auto');
-            ga('send', 'pageview');
-
-        }
-
-    </script>
-
-    <script>
-        (function($) {
-            $.StartScreen = function(){
-                var plugin = this;
-                var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-                plugin.init = function(){
-                    setTilesAreaSize();
-                    if (width > 640) addMouseWheel();
-                };
-
-                var setTilesAreaSize = function(){
-                    var groups = $(".tile-group");
-                    var tileAreaWidth = 80;
-                    $.each(groups, function(i, t){
-                        if (width <= 640) {
-                            tileAreaWidth = width;
-                        } else {
-                            tileAreaWidth += $(t).outerWidth() + 80;
-                        }
-                    });
-                    $(".tile-area").css({
-                        width: tileAreaWidth
-                    });
-                };
-
-                var addMouseWheel = function (){
-                    $("body").mousewheel(function(event, delta, deltaX, deltaY){
-                        var page = $(document);
-                        var scroll_value = delta * 50;
-                        page.scrollLeft(page.scrollLeft() - scroll_value);
-                        return false;
-                    });
-                };
-
-                plugin.init();
-            }
-        })(jQuery);
-
-        $(function(){
-            $.StartScreen();
-
-            var tiles = $(".tile, .tile-small, .tile-sqaure, .tile-wide, .tile-large, .tile-big, .tile-super");
-
-            $.each(tiles, function(){
-                var tile = $(this);
-                setTimeout(function(){
-                    tile.css({
-                        opacity: 1,
-                        "-webkit-transform": "scale(1)",
-                        "transform": "scale(1)",
-                        "-webkit-transition": ".3s",
-                        "transition": ".3s"
-                    });
-                }, Math.floor(Math.random()*500));
-            });
-
-            $(".tile-group").animate({
-                left: 0
-            });
-        });
-        function showSearch(){
-            var  charm = $("#charmSearch");
-
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
-            } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
-            }
-        }
-
-        function showSettings(){
-            var  charm = $("#charmSettings");
-
-            if (charm.data('hidden') == undefined) {charm.data('hidden', true);}
-
-            if (!charm.data('hidden')) {
-
-                charm.animate({
-                    right: -300
-                });
-
-                charm.data('hidden', true);
-            } else {
-                charm.animate({
-                    right: 0
-                });
-                charm.data('hidden', false);
-            }
-        }
-
-        function setSearchPlace(el){
-            var a = $(el);
-            var text = a.text();
-            var toggle = a.parents('label').children('.dropdown-toggle');
-
-            toggle.text(text);
-        }
-
-        $(function(){
-            var current_tile_area_scheme = localStorage.getItem('tile-area-scheme') || "tile-area-scheme-dark";
-            $(".tile-area").removeClass (function (index, css) {
-                return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-            }).addClass(current_tile_area_scheme);
-
-            $(".schemeButtons .button").hover(
-                    function(){
-                        var b = $(this);
-                        var scheme = "tile-area-scheme-" +  b.data('scheme');
-                        $(".tile-area").removeClass (function (index, css) {
-                            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                        }).addClass(scheme);
-                    },
-                    function(){
-                        $(".tile-area").removeClass (function (index, css) {
-                            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                        }).addClass(current_tile_area_scheme);
-                    }
-            );
-
-            $(".schemeButtons .button").on("click", function(){
-                var b = $(this);
-                var scheme = "tile-area-scheme-" +  b.data('scheme');
-
-                $(".tile-area").removeClass (function (index, css) {
-                    return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                }).addClass(scheme);
-
-                current_tile_area_scheme = scheme;
-                localStorage.setItem('tile-area-scheme', scheme);
-
-                showSettings();
-            });
-        });
-    </script>
+	<script> $(function(){ $("#scaffolding").load("modules/scaffolding.html"); }) </script>
+	
+	<div id="scaffolding"></div>
+	
 
 </head>
 <body>
@@ -235,34 +28,39 @@
 
         <div class="tile-group double">
             <span class="tile-group-title">General</span>
-
             <div class="tile-container">
                 <a href="calendar.html" class="tile bg-darkBlue fg-white" data-role="tile">
-                    <div class="tile-content iconic">
-                        <span class="icon mif-calendar"></span>
-                    </div>
-                    <span class="tile-label">Calendar</span>
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-calendar"></span>
+						</div>
+						<span class="tile-label">Calendar</span>
+					</div>
                 </a>
 
                 <a href="reports.html" class="tile bg-darkBlue fg-white" data-role="tile">
-                    <div class="tile-content iconic">
-                        <span class="icon mif-file-text"></span>
-                    </div>
-                    <span class="tile-label">Reports</span>
-                </a>
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-file-text"></span>
+						</div>
+						<span class="tile-label">Reports</span>
+					</div>
+				</a>
 
                 <a href="time_weather.html" class="tile-large bg-steel fg-white" data-role="tile">
-                    <div class="tile-content" style="background: url(images/clouds2.png) top left no-repeat; background-size: cover">
-                        <div class="padding10">
-                            <h1>57°</h1>
-                            <h2>San Francisco</h2>
-                            <h5>Partly Cloudy</h5>
-                            <p class="tertiary-text fg-white no-margin">Today</p>
-                            <p class="tertiary-text fg-white no-margin">63°/55° Mostly Clear</p>
-                            <p class="tertiary-text fg-white no-margin">Tomorrow</p>
-                            <p class="tertiary-text fg-white no-margin">64°/54° Mostly Clear</p>
-                        </div>
-                    </div>
+					<div class="aspect_square">
+						<div class="tile-content" style="background: url(images/clouds2.png) top left no-repeat; background-size: cover">
+							<div class="padding10">
+								<h1>57°</h1>
+								<h2>San Francisco</h2>
+								<h5>Partly Cloudy</h5>
+								<p class="tertiary-text fg-white no-margin">Today</p>
+								<p class="tertiary-text fg-white no-margin">63°/55° Mostly Clear</p>
+								<p class="tertiary-text fg-white no-margin">Tomorrow</p>
+								<p class="tertiary-text fg-white no-margin">64°/54° Mostly Clear</p>
+							</div>
+						</div>
+					</div>
                     <span class="tile-label">Time and Weather</span>
                 </a>
             </div>
@@ -271,78 +69,100 @@
         <div class="tile-group double">
             <span class="tile-group-title">Database</span>
             <div class="tile-container">
-                <a href="ship_building.html" class="tile-wide" data-role="tile">
-                    <div class="tile-content">
-						<img src="images/cano.jpg" data-role="fitImage" data-format="fill">
-                    </div>
-                    <div class="tile-label fg-white">Ship Building</div>
-                </a>
+				<a href="ship_building.html" class="tile-wide" data-role="tile">
+					<div class="aspect_wide">
+						<div class="tile-content">
+							<img src="images/cano.jpg" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label fg-white">Ship Building</div>
+					</div>
+				</a>
                 <a href="management.html" class="tile-wide" data-role="tile">
-                    <div class="tile-content">
-                        <img src="images/management.png" data-role="fitImage" data-format="fill">
-                    </div>
-                    <div class="tile-label fg-black">Management</div>
+					<div class="aspect_wide">
+						<div class="tile-content">
+							<img src="images/management.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label fg-black">Management</div>
+					</div>
                 </a>
-				<a href="technical.html" class="tile-wide" data-role="tile">
-                    <div class="tile-content">
-                        <img src="images/cogbp.png" data-role="fitImage" data-format="fill">
-                    </div>
-                    <div class="tile-label fg-white">Technical</div>
+				<a href="technical.html" class="tile-wide bg-black" data-role="tile">
+					<div class="aspect_wide">
+						<div class="tile-content">
+							<img src="images/cogbp.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label fg-white">Technical</div>
+					</div>
                 </a>
 
             </div>
         </div>
 
-        <div class="tile-group triple">
+        <div class="tile-group double-extended">
             <span class="tile-group-title">External Links</span>
 			<div class="tile-container">
-				<a href="http://www.gsdmarin.com.tr" class="tile bg-indigo fg-white" data-role="tile">
-					<div class="tile-content">
+				<a href="http://www.gsdmarin.com.tr" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">GSD Marin</div>
 					</div>
-					<div class="tile-label bg-indigo fg-white">GSD Marin Home</div>
 				</a>
 			
-				<a href="http://www.fleetship.com" class="tile bg-indigo fg-white" data-role="tile">
-					<div class="tile-content">
-						<img src="images/fmltext.png" data-role="fitImage" data-format="fill">
+				<a href="http://www.fleetship.com" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/fmltext.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label fg-white">FML Paris</div>
 					</div>
-					<div class="tile-label fg-white">FML Paris Home</div>
 				</a>
 				
-				<a href="#" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">ABS - My Eagle (Broken)</span>
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label"> My Eagle (Broken)</span>
+					</div>
                 </a>
 				
-				<a href="http://www.classnk.or.jp" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">ClassNK Home</span>
+				<a href="http://www.classnk.or.jp" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label">ClassNK</span>
+					</div>
+				</a>
+				
+				<a href="http://www.dnvgl.com" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label">DNV&amp;GL</span>
+					</div>
                 </a>
 				
-				<a href="http://www.dnvgl.com" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">DNV&amp;GL Home</span>
+				<a href="http://www.space-marine.com/pricelist/index.cfm" class="tile-small bg-indigo fg-white" data-role="tile">
+                    <div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label">Space Marine</span>
+					</div>
                 </a>
 				
-				<a href="http://www.space-marine.com/pricelist/index.cfm" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">IMPA &amp; Space Marine</span>
+				<a href="http://www.wilhelmsen.com/services/maritime/companies/buss/Pages/buss.aspx" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label">Wilhelmsen Ship Service</span>
+					</div>
                 </a>
 				
-				<a href="http://www.wilhelmsen.com/services/maritime/companies/buss/Pages/buss.aspx" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">Wilhelmsen Ship Service</span>
-                </a>
-				
-				<a href="#" class="tile bg-indigo fg-white" data-role="tile">
-                    <div class="tile-content">
-                    </div>
-                    <span class="tile-label">Marine Traffic (Broken)</span>
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label">Marine Traffic (Broken)</span>
+					</div>
                 </a>
 				
 			</div>
@@ -373,7 +193,7 @@
     <!-- / hit.ua -->
 
 	<script> 
-		$(function(){ 
+		$(function(){ 		
 			$("#navtab").load("modules/navtab.html");
 			$("#topbar").load("modules/topbar.html");
 		})
