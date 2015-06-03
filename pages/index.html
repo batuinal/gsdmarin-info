@@ -11,12 +11,27 @@
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
 
-    <script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/metro.js"></script>
-	<script> $(function(){ $("#scaffolding").load("modules/scaffolding.html"); }) </script>
+	<script src="js/time.js"></script>
+	<script src="js/geolocate.js"></script>
 	
 	<div id="scaffolding"></div>
 	
+	<style>
+		#isttime,
+		#localtime {
+			font-family: Sans-Serif;
+		}
+	</style>
+	
+	<!--
+	<script>
+	$.get("http://ipinfo.io", function(response) {
+		console.log(response.city, response.country);
+	}, "jsonp");
+	</script>
+	-->
 
 </head>
 <body>
@@ -47,22 +62,43 @@
 					</div>
 				</a>
 
-                <a href="time_weather.html" class="tile-large bg-steel fg-white" data-role="tile">
+ 
+                <a href="http://www.timeanddate.com/worldclock/" class="tile bg-steel fg-white" data-role="tile">
 					<div class="aspect_square">
-						<div class="tile-content" style="background: url(images/clouds2.png) top left no-repeat; background-size: cover">
+						<div class="tile-content" style="background: url(#) top left no-repeat; background-size: cover">
 							<div class="padding10">
-								<h1>57°</h1>
-								<h2>San Francisco</h2>
-								<h5>Partly Cloudy</h5>
-								<p class="tertiary-text fg-white no-margin">Today</p>
-								<p class="tertiary-text fg-white no-margin">63°/55° Mostly Clear</p>
-								<p class="tertiary-text fg-white no-margin">Tomorrow</p>
-								<p class="tertiary-text fg-white no-margin">64°/54° Mostly Clear</p>
+								<h4> (Local Time) </h4>
+								<h1 id="localtime"></h1>
+								<h3 id="localdate"></h3>
 							</div>
 						</div>
 					</div>
-                    <span class="tile-label">Time and Weather</span>
                 </a>
+				
+				<a href="http://www.timeanddate.com/worldclock/turkey/istanbul" class="tile bg-steel fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content" style="background: url(#) top left no-repeat; background-size: cover">
+							<div class="padding10">
+								<h4> Istanbul </h4>
+								<h1 id="isttime"></h1>
+								<h3 id="istdate"></h3>
+							</div>
+						</div>
+					</div>
+                </a>
+				
+				<a href="http://www.passageweather.com/" class="tile-wide bg-steel fg-white" data-role="tile">
+					<div class="aspect_wide">				
+						<div class="tile-content" style="background: url(#) top left no-repeat; background-size: cover">
+							<div class="padding10">
+								<h1>Ann Arbor</h1>
+								<h2>San Francisco</h2>
+								<h5>Partly Cloudy</h5>
+							</div>
+						</div>
+					</div>
+					<span class="tile-label">Weather</span>
+				</a>
             </div>
         </div>
 
@@ -97,6 +133,8 @@
             </div>
         </div>
 
+		
+		
         <div class="tile-group double-extended">
             <span class="tile-group-title">External Links</span>
 			<div class="tile-container">
@@ -196,7 +234,9 @@
 		$(function(){ 		
 			$("#navtab").load("modules/navtab.html");
 			$("#topbar").load("modules/topbar.html");
-		})
-	;</script> 
+			$("#scaffolding").load("modules/scaffolding.html");
+		});
+	</script> 
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 </body>
 </html>
