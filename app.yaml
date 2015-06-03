@@ -19,4 +19,10 @@ handlers:
 libraries:
 - name: webapp2
   version: latest
+
+- name: MySQLdb
+  version: "latest"
+
+- name: jinja2
+  version: "latest"
 # [END libraries]
