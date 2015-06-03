@@ -13,16 +13,20 @@ import jinja2
 _INSTANCE_NAME = 'gsdmarin-info:database'
 
 class FileUpload(webapp2.RequestHandler):
-	def get(self):
+  def get(self):
 		 # Display existing guestbook entries and a form to add new entries.
-		if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
-			db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='gsdmarin', user='batu', charset='utf 8')
-		else:
-			db = MySQLdb.connect(host='127.0.0.1', port=3306, db='guestbook', user='root', charset='utf 8')
+    db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
             # Alternatively, connect to a Google Cloud SQL instance using:
             # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')
-  		cursor = db.cursor()
-  		db.close()
-  		return
+    cursor = db.cursor()
+    sql = """CREATE TABLE EMPLOYEE (
+         FIRST_NAME  CHAR(20) NOT NULL,
+         LAST_NAME  CHAR(20),
+         AGE INT,  
+         SEX CHAR(1),
+         INCOME FLOAT )"""
+    cursor.execute(sql)
+    db.close()
+    return
 
 		#return self.redirect('/pages/parser/upload.html')
