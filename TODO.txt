@@ -6,17 +6,18 @@
 * Adjust font-scaling.
 
 --> Aesthetic:
-* Find pictures for sub-menus.
+* Find pictures for menu tiles.
+  - Also for sub-menu tiles.
 * Find icons for external links.
 * Embed the GSD Marin Logo.
-* Rework the weather tile.
-  - Add date and time.
-  - Rearrange contents.
 
 --> Technical:
-* Integrate Batu's auto-login function.
+* Integrate Batu's auto-login function to external links.
+* Use geolocate library to locate current city.
 * Integrate the Google Calendar.
   - Solve the iframe issue.
+* Write an information fetcher for weather tile.
+  - Should send get request to weather website.
 
 --> Security
   * Rework login page to use Batu's custom API.
@@ -25,7 +26,5 @@
   * Discuss: How can we use the "User" button in topbar?
 
 ===== Batu =====
-
-===== Ayhun =====
 
 ===== Ruifu =====

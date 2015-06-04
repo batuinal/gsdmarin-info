@@ -10,10 +10,9 @@ import webapp2
 import scripts.upload
 import scripts.login
 import scripts.error404
-
 		
 app = webapp2.WSGIApplication([
-    ('/', scripts.login.LoginPage),	# ...and these too while you're at it.	
+    ('/', scripts.login.LoginPage),	
 	('/upload', scripts.upload.FileUpload),
 	('/*', scripts.error404.NotFoundHandler)
 ], debug=True)

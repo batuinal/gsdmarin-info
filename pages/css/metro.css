@@ -2668,12 +2668,12 @@ html {
 }
 @media screen and (min-width: 1401px) {
   html {
-    font-size: 120%;
+    font-size: 100%;
   }
 }
 @media screen and (max-width: 1400px) {
   html {
-    font-size: 110%;
+    font-size: 100%;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -10125,10 +10125,10 @@ input[type="submit"].link:active {
 }
 .accordion > .frame > .heading {
   display: block;
-  padding: 8px 16px 8px 20px;
+  padding: 12px 20px 12px 25px;
   background-color: #f6f6f6;
   cursor: pointer;
-  font-size: .6875rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   font-weight: bold;
   position: relative;
@@ -10144,14 +10144,14 @@ input[type="submit"].link:active {
 .accordion > .frame > .heading:before {
   position: absolute;
   display: block;
-  left: 4px;
-  top: 6px;
+  left: 5px;
+  top: 8px;
   content: '';
   width: 0;
   height: 0;
-  border-left: 6px solid transparent;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid black;
+  border-left: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid black;
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
   transition: all 0.3s ease;
@@ -10163,9 +10163,9 @@ input[type="submit"].link:active {
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 3rem;
-  width: 3rem;
-  max-height: 3rem;
+  font-size: 3.5rem;
+  width: 3.5rem;
+  max-height: 3.5rem;
   opacity: .6;
   color: #999999;
 }
@@ -10193,7 +10193,7 @@ input[type="submit"].link:active {
   display: block;
 }
 .accordion > .frame > .content {
-  padding: .625rem;
+  padding: .75rem;
   display: none;
   background-color: #ffffff;
   z-index: 1;
@@ -10201,20 +10201,20 @@ input[type="submit"].link:active {
 .accordion > .frame.disabled > .heading {
   cursor: default;
   background: #ffffff linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 40px 40px !important;
+  background-size: 50px 50px !important;
 }
 .accordion.large-heading > .frame > .heading {
   font-size: 2rem;
   line-height: 1.1;
   font-weight: 300;
-  padding-left: 32px;
+  padding-left: 40px;
   text-shadow: none;
 }
 .accordion.large-heading > .frame > .heading:before {
-  top: 10px;
-  border-left: 12px solid transparent;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid black;
+  top: 12.5px;
+  border-left: 15px solid transparent;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid black;
 }
 .accordion.large-heading > .frame.active > .heading:before {
   border-bottom-color: #ffffff;
@@ -10653,6 +10653,7 @@ input[type="submit"].link:active {
   top: 0px;
   left: 0px;
   padding: 120px 0 0 0;
+  z-index: 1300;
 
 }
 .tile-area:before,
@@ -10671,6 +10672,14 @@ input[type="submit"].link:active {
   font-weight: 300;
   font-size: 42px;
   line-height: 1.1;
+  z-index: 1300;
+}
+
+.tile-area-controls {
+	position: fixed;
+	right: 40px;
+	top: 40px;
+	z-index: 1300;
 }
 
 .tile-group {
@@ -10679,9 +10688,12 @@ input[type="submit"].link:active {
   width: auto;
   float: left;
   display: block;
-  padding-top: 40px;
+  padding-top: 80px;
   position: relative;
 }
+
+/* Tile Group Sizes */
+
 .tile-group.one {
   width: 14%;
 }
@@ -10692,12 +10704,12 @@ input[type="submit"].link:active {
 
 .tile-group.two-extended,
 .tile-group.double-extended{
-  width: 31.5%;
+  width: 35%;
 }
 
 .tile-group.three,
 .tile-group.triple {
-  width: 42%;
+  width:42%;
 }
 .tile-group.four,
 .tile-group.quadro {
@@ -10706,16 +10718,13 @@ input[type="submit"].link:active {
 .tile-group.five {
   width: 70%;
 }
-.tile-group.six {
-  width: 84%;
-}
 
 .tile-group .tile-group-title {
   color: #ffffff;
   font-size: 18px;
   line-height: 20px;
   position: absolute;
-  top: 10px;
+  top: 40px;
   left: 0;
 }
 .tile-container {
@@ -10868,6 +10877,7 @@ input[type="submit"].link:active {
   padding: .425rem .25rem;
   z-index: 999;
 }
+
 .tile-small {
   display: block;
   float: left;
@@ -11308,116 +11318,6 @@ input[type="submit"].link:active {
   padding: .425rem .25rem;
   z-index: 999;
 }
-.tile-super {
-  display: block;
-  float: left;
-  margin: 5px;
-  background-color: #eeeeee;
-  box-shadow: inset 0 0 1px #FFFFCC;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  overflow: visible;
-  width: 510px;
-}
-.tile-super:hover {
-  outline: #999999 solid 3px;
-}
-.tile-super:active {
-  outline: 0;
-}
-.tile-super.no-outline {
-  outline-color: transparent;
-}
-
-.tile-super .tile-content.flipVertical {
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
-  overflow: visible;
-}
-.tile-super:hover .tile-content.flipVertical,
-.tile-super.hover .tile-content.flipVertical,
-.tile-super.flip .tile-content.flipVertical {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-}
-.tile-super .tile-content.flipVertical {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: all 0.6s ease;
-}
-.tile-super .tile-content.flipVertical .slide,
-.tile-super .tile-content.flipVertical .slide-over {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.tile-super .tile-content.flipVertical .slide {
-  z-index: 2;
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-}
-.tile-super .tile-content.flipVertical .slide-over {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-}
-.tile-super .tile-content.flipHorizontal {
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
-  overflow: visible;
-}
-.tile-super:hover .tile-content.flipHorizontal,
-.tile-super.hover .tile-content.flipHorizontal,
-.tile-super.flip .tile-content.flipHorizontal {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
-}
-.tile-super .tile-content.flipHorizontal {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: all 0.6s ease;
-}
-.tile-super .tile-content.flipHorizontal .slide,
-.tile-super .tile-content.flipHorizontal .slide-over {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.tile-super .tile-content.flipHorizontal .slide {
-  z-index: 2;
-  -webkit-transform: rotateX(0deg);
-          transform: rotateX(0deg);
-}
-.tile-super .tile-content.flipHorizontal .slide-over {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
-}
-.tile-super .tile-badge {
-  position: absolute;
-  bottom: 0;
-  right: .625rem;
-  padding: .25rem .625rem;
-  z-index: 999;
-}
-.tile-super .tile-label {
-  position: absolute;
-  bottom: 0;
-  left: .625rem;
-  padding: .425rem .25rem;
-  z-index: 999;
-}
 
 .tile-group.one .tile-small {
   width: calc(66.67% - 10px);
@@ -11463,12 +11363,9 @@ input[type="submit"].link:active {
 }
 
 .tile-group.three .tile-wide,
-.tile-group.triple .tile-wide {
-  width: calc(66.67% - 10px);
-}
-
 .tile-group.three .tile-large,
-.tile-group.triple .tile-large {
+.tile-group.triple .tile-wide 
+.tile-group.three .tile-large, {
   width: calc(66.67% - 10px);
 }
 
@@ -11477,10 +11374,18 @@ input[type="submit"].link:active {
   width: calc(100% - 10px);
 }
 
-.tile-group.four,
-.tile-group.quadro {
-
+.tile-group.four .tile,
+.tile-group.quadro .tile {
+  width: calc(25% - 10px);
 }
+
+.tile-group.four .tile-wide,
+.tile-group.four .tile-large,
+.tile-group.quadro .tile-wide,
+.tile-group.quadro .tile-large {
+  width: calc(50% - 10px);
+}
+
 .tile-group.five {
 
 }
@@ -11506,6 +11411,14 @@ input[type="submit"].link:active {
   position: relative;
   width: 100%;
   padding: calc(25% - 2.5px);
+  z-index: 0;
+}
+
+.aspect_extended,
+.aspect_2_3 {
+  position: relative;
+  width: 100%;
+  padding: 33.33%;
   z-index: 0;
 }
 
