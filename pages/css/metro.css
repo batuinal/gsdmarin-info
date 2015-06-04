@@ -12,6 +12,7 @@ body,
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 article,
 aside,
 details,
@@ -2663,9 +2664,14 @@ span {
   font-weight: 700;
   src: local("Segoe UI Bold"), local("Open Sans Bold"), local("OpenSans-Bold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
 }
+
+/* Font Scaling */
+
 html {
   font-size: 100%;
 }
+
+/*
 @media screen and (min-width: 1401px) {
   html {
     font-size: 100%;
@@ -2680,7 +2686,7 @@ html {
   html {
     font-size: 100%;
   }
-}
+} */
 @media screen and (max-width: 768px) {
   html {
     font-size: 100%;
