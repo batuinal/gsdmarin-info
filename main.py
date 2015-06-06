@@ -14,6 +14,7 @@ import scripts.error404
 app = webapp2.WSGIApplication([
     ('/', scripts.login.LoginPage),	
 	('/upload', scripts.upload.FileUpload),
+	('/parse', scripts.upload.Parse),
 	('/*', scripts.error404.NotFoundHandler)
 ], debug=True)
 
