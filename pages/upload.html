@@ -38,20 +38,21 @@
                         <br>
                         <!-- uncomment the next line here and in xlsxworker.js for encoding support -->
                         <!--<script src="dist/cpexcel.js"></script>-->
-                        <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script src="shim.js"></script>
-                        <script src="jszip.js"></script>
-                        <script src="xlsx.js"></script>
+                        <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+			<script src="parser/shim.js"></script>
+                        <script src="parser/jszip.js"></script>
+                        <script src="parser/xlsx.js"></script>
                         <!-- uncomment the next line here and in xlsxworker.js for ODS support -->
-                        <script src="ods.js"></script>
+                        <script src="parser/ods.js"></script>
                         <script>
                             var X = XLSX;
                             var XW = {
                                 /* worker message */
                                 msg: 'xlsx',
                                 /* worker scripts */
-                                rABS: './xlsxworker2.js',
-                                norABS: './xlsxworker1.js',
-                                noxfer: './xlsxworker.js'
+                                rABS: './parser/xlsxworker2.js',
+                                norABS: './parser/xlsxworker1.js',
+                                noxfer: './parser/xlsxworker.js'
                             };
                         
                         var rABS = typeof FileReader !== "undefined" && typeof FileReader.prototype !== "undefined" && typeof FileReader.prototype.readAsBinaryString !== "undefined";

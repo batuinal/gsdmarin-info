@@ -37,6 +37,7 @@ class FileUpload(webapp2.RequestHandler):
     logging.info(FILE_NAME)
     logging.info('File content:')
     logging.info(FILE_CONTENT)
+    logging.info(FILE_CONTENT)
     # query the 'information_schema' to see if a table that has the 'file_name' as its name exists
     table_exists = False
     sql = "SELECT * FROM information_schema.tables WHERE table_name = '%s'" % FILE_NAME
