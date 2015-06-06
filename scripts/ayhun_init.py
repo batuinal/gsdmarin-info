@@ -14,7 +14,6 @@ _INSTANCE_NAME = 'gsdmarin-info:database'
 
 class FileUpload(webapp2.RequestHandler):
   def get(self):
-<<<<<<< Updated upstream
     logging.info('>>-----------------We have liftoff------------------------------------------------------------->>')
     logging.info(os.getenv('SERVER_SOFTWARE'))
     if (os.getenv('SERVER_SOFTWARE') and (os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/') or os.getenv('SERVER_SOFTWARE').startswith('Development/') )):
@@ -37,6 +36,7 @@ class FileUpload(webapp2.RequestHandler):
     logging.info('File name:')
     logging.info(FILE_NAME)
     logging.info('File content:')
+    logging.info(FILE_CONTENT)
     logging.info(FILE_CONTENT)
     # query the 'information_schema' to see if a table that has the 'file_name' as its name exists
     table_exists = False
@@ -91,39 +91,5 @@ class FileUpload(webapp2.RequestHandler):
     db.close()
     logging.info('<<------------------------Everything went well?------------------------------------------------<<')
     return
-=======
-    self.redirect('/pages/parser/upload.html')
 
-class Parse(webapp2.RequestHandler):
-  def post(self):
-    
-    #self.response.write(cgi.escape(self.request.get('xlfile')))
-    #content = 
-    self.response.out.write(cgi.escape(self.request.get('xlfile')))
-
-
-
-
-    #content = self.request.POST.get('file').file.read()
-     # logging.info(content)
-      #self.response.out.write(content)
-   # name = self.request.get('searchbox') # this will get the value from the field named username
-    #self.response.write(name)
-        
-
-    #form = cgi.FieldStorage()
-    #seachterm =  form.getvalue('searchbox')
-    #a = 2
-    #self.response.write('<html><body><h1> %s </h1></body></html>' % seachterm)
-    
-		 # Display existing guestbook entries and a form to add new entries.
-    #db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
-            # Alternatively, connect to a Google Cloud SQL instance using:
-            # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')
-    #cursor = db.cursor()
-    #cursor.execute(sql)
-    #db.close()
-
->>>>>>> Stashed changes
-
-		#return self.redirect('/pages/parser/upload.html')
+    #return self.redirect('/pages/parser/upload.html')
