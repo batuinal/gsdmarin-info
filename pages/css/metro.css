@@ -10710,7 +10710,7 @@ input[type="submit"].link:active {
 
 .tile-group.two-extended,
 .tile-group.double-extended{
-  width: 35%;
+  width: 31.5%;
 }
 
 .tile-group.three,
@@ -10994,116 +10994,7 @@ input[type="submit"].link:active {
   padding: .425rem .25rem;
   z-index: 999;
 }
-.tile-wide {
-  display: block;
-  float: left;
-  margin: 5px;
-  background-color: #eeeeee;
-  box-shadow: inset 0 0 1px #FFFFCC;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  overflow: visible;
-  width: 250px;
-}
-.tile-wide:hover {
-  outline: #999999 solid 3px;
-}
-.tile-wide:active {
-  outline: 0;
-}
-.tile-wide.no-outline {
-  outline-color: transparent;
-}
 
-.tile-wide .tile-content.flipVertical {
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
-  overflow: visible;
-}
-.tile-wide:hover .tile-content.flipVertical,
-.tile-wide.hover .tile-content.flipVertical,
-.tile-wide.flip .tile-content.flipVertical {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-}
-.tile-wide .tile-content.flipVertical {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: all 0.6s ease;
-}
-.tile-wide .tile-content.flipVertical .slide,
-.tile-wide .tile-content.flipVertical .slide-over {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.tile-wide .tile-content.flipVertical .slide {
-  z-index: 2;
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-}
-.tile-wide .tile-content.flipVertical .slide-over {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-}
-.tile-wide .tile-content.flipHorizontal {
-  -webkit-transform: perspective(1000px);
-          transform: perspective(1000px);
-  overflow: visible;
-}
-.tile-wide:hover .tile-content.flipHorizontal,
-.tile-wide.hover .tile-content.flipHorizontal,
-.tile-wide.flip .tile-content.flipHorizontal {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
-}
-.tile-wide .tile-content.flipHorizontal {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: all 0.6s ease;
-}
-.tile-wide .tile-content.flipHorizontal .slide,
-.tile-wide .tile-content.flipHorizontal .slide-over {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
-.tile-wide .tile-content.flipHorizontal .slide {
-  z-index: 2;
-  -webkit-transform: rotateX(0deg);
-          transform: rotateX(0deg);
-}
-.tile-wide .tile-content.flipHorizontal .slide-over {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
-}
-.tile-wide .tile-badge {
-  position: absolute;
-  bottom: 0;
-  right: .625rem;
-  padding: .25rem .625rem;
-  z-index: 999;
-}
-.tile-wide .tile-label {
-  position: absolute;
-  bottom: 0;
-  left: .625rem;
-  padding: .425rem .25rem;
-  z-index: 999;
-}
 .tile-large {
   display: block;
   float: left;
@@ -11343,11 +11234,6 @@ input[type="submit"].link:active {
   width: calc(50% - 10px);
 }
 
-.tile-group.two .tile-wide,
-.tile-group.double .tile-wide {
-  width: calc(100% - 10px);
-}
-
 .tile-group.two .tile-large,
 .tile-group.double .tile-large {
   width: calc(100% - 10px);
@@ -11368,10 +11254,8 @@ input[type="submit"].link:active {
   width: calc(33.33% - 10px);
 }
 
-.tile-group.three .tile-wide,
 .tile-group.three .tile-large,
-.tile-group.triple .tile-wide 
-.tile-group.three .tile-large, {
+.tile-group.triple .tile-large {
   width: calc(66.67% - 10px);
 }
 
@@ -11385,9 +11269,7 @@ input[type="submit"].link:active {
   width: calc(25% - 10px);
 }
 
-.tile-group.four .tile-wide,
 .tile-group.four .tile-large,
-.tile-group.quadro .tile-wide,
 .tile-group.quadro .tile-large {
   width: calc(50% - 10px);
 }
@@ -11677,7 +11559,6 @@ input[type="submit"].link:active {
 .tile-small,
 .tile,
 .tile-square,
-.tile-wide,
 .tile-large,
 .tile-big,
 .tile-super {
@@ -11686,7 +11567,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical,
 .tile .tile-content.flipVertical,
 .tile-square .tile-content.flipVertical,
-.tile-wide .tile-content.flipVertical,
 .tile-large .tile-content.flipVertical,
 .tile-big .tile-content.flipVertical,
 .tile-super .tile-content.flipVertical {
@@ -11697,21 +11577,18 @@ input[type="submit"].link:active {
 .tile-small:hover .tile-content.flipVertical,
 .tile:hover .tile-content.flipVertical,
 .tile-square:hover .tile-content.flipVertical,
-.tile-wide:hover .tile-content.flipVertical,
 .tile-large:hover .tile-content.flipVertical,
 .tile-big:hover .tile-content.flipVertical,
 .tile-super:hover .tile-content.flipVertical,
 .tile-small.hover .tile-content.flipVertical,
 .tile.hover .tile-content.flipVertical,
 .tile-square.hover .tile-content.flipVertical,
-.tile-wide.hover .tile-content.flipVertical,
 .tile-large.hover .tile-content.flipVertical,
 .tile-big.hover .tile-content.flipVertical,
 .tile-super.hover .tile-content.flipVertical,
 .tile-small.flip .tile-content.flipVertical,
 .tile.flip .tile-content.flipVertical,
 .tile-square.flip .tile-content.flipVertical,
-.tile-wide.flip .tile-content.flipVertical,
 .tile-large.flip .tile-content.flipVertical,
 .tile-big.flip .tile-content.flipVertical,
 .tile-super.flip .tile-content.flipVertical {
@@ -11721,7 +11598,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical,
 .tile .tile-content.flipVertical,
 .tile-square .tile-content.flipVertical,
-.tile-wide .tile-content.flipVertical,
 .tile-large .tile-content.flipVertical,
 .tile-big .tile-content.flipVertical,
 .tile-super .tile-content.flipVertical {
@@ -11732,14 +11608,12 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical .slide,
 .tile .tile-content.flipVertical .slide,
 .tile-square .tile-content.flipVertical .slide,
-.tile-wide .tile-content.flipVertical .slide,
 .tile-large .tile-content.flipVertical .slide,
 .tile-big .tile-content.flipVertical .slide,
 .tile-super .tile-content.flipVertical .slide,
 .tile-small .tile-content.flipVertical .slide-over,
 .tile .tile-content.flipVertical .slide-over,
 .tile-square .tile-content.flipVertical .slide-over,
-.tile-wide .tile-content.flipVertical .slide-over,
 .tile-large .tile-content.flipVertical .slide-over,
 .tile-big .tile-content.flipVertical .slide-over,
 .tile-super .tile-content.flipVertical .slide-over {
@@ -11754,7 +11628,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical .slide,
 .tile .tile-content.flipVertical .slide,
 .tile-square .tile-content.flipVertical .slide,
-.tile-wide .tile-content.flipVertical .slide,
 .tile-large .tile-content.flipVertical .slide,
 .tile-big .tile-content.flipVertical .slide,
 .tile-super .tile-content.flipVertical .slide {
@@ -11765,7 +11638,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipVertical .slide-over,
 .tile .tile-content.flipVertical .slide-over,
 .tile-square .tile-content.flipVertical .slide-over,
-.tile-wide .tile-content.flipVertical .slide-over,
 .tile-large .tile-content.flipVertical .slide-over,
 .tile-big .tile-content.flipVertical .slide-over,
 .tile-super .tile-content.flipVertical .slide-over {
@@ -11775,7 +11647,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal,
 .tile .tile-content.flipHorizontal,
 .tile-square .tile-content.flipHorizontal,
-.tile-wide .tile-content.flipHorizontal,
 .tile-large .tile-content.flipHorizontal,
 .tile-big .tile-content.flipHorizontal,
 .tile-super .tile-content.flipHorizontal {
@@ -11786,21 +11657,18 @@ input[type="submit"].link:active {
 .tile-small:hover .tile-content.flipHorizontal,
 .tile:hover .tile-content.flipHorizontal,
 .tile-square:hover .tile-content.flipHorizontal,
-.tile-wide:hover .tile-content.flipHorizontal,
 .tile-large:hover .tile-content.flipHorizontal,
 .tile-big:hover .tile-content.flipHorizontal,
 .tile-super:hover .tile-content.flipHorizontal,
 .tile-small.hover .tile-content.flipHorizontal,
 .tile.hover .tile-content.flipHorizontal,
 .tile-square.hover .tile-content.flipHorizontal,
-.tile-wide.hover .tile-content.flipHorizontal,
 .tile-large.hover .tile-content.flipHorizontal,
 .tile-big.hover .tile-content.flipHorizontal,
 .tile-super.hover .tile-content.flipHorizontal,
 .tile-small.flip .tile-content.flipHorizontal,
 .tile.flip .tile-content.flipHorizontal,
 .tile-square.flip .tile-content.flipHorizontal,
-.tile-wide.flip .tile-content.flipHorizontal,
 .tile-large.flip .tile-content.flipHorizontal,
 .tile-big.flip .tile-content.flipHorizontal,
 .tile-super.flip .tile-content.flipHorizontal {
@@ -11810,7 +11678,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal,
 .tile .tile-content.flipHorizontal,
 .tile-square .tile-content.flipHorizontal,
-.tile-wide .tile-content.flipHorizontal,
 .tile-large .tile-content.flipHorizontal,
 .tile-big .tile-content.flipHorizontal,
 .tile-super .tile-content.flipHorizontal {
@@ -11821,14 +11688,12 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal .slide,
 .tile .tile-content.flipHorizontal .slide,
 .tile-square .tile-content.flipHorizontal .slide,
-.tile-wide .tile-content.flipHorizontal .slide,
 .tile-large .tile-content.flipHorizontal .slide,
 .tile-big .tile-content.flipHorizontal .slide,
 .tile-super .tile-content.flipHorizontal .slide,
 .tile-small .tile-content.flipHorizontal .slide-over,
 .tile .tile-content.flipHorizontal .slide-over,
 .tile-square .tile-content.flipHorizontal .slide-over,
-.tile-wide .tile-content.flipHorizontal .slide-over,
 .tile-large .tile-content.flipHorizontal .slide-over,
 .tile-big .tile-content.flipHorizontal .slide-over,
 .tile-super .tile-content.flipHorizontal .slide-over {
@@ -11843,7 +11708,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal .slide,
 .tile .tile-content.flipHorizontal .slide,
 .tile-square .tile-content.flipHorizontal .slide,
-.tile-wide .tile-content.flipHorizontal .slide,
 .tile-large .tile-content.flipHorizontal .slide,
 .tile-big .tile-content.flipHorizontal .slide,
 .tile-super .tile-content.flipHorizontal .slide {
@@ -11854,7 +11718,6 @@ input[type="submit"].link:active {
 .tile-small .tile-content.flipHorizontal .slide-over,
 .tile .tile-content.flipHorizontal .slide-over,
 .tile-square .tile-content.flipHorizontal .slide-over,
-.tile-wide .tile-content.flipHorizontal .slide-over,
 .tile-large .tile-content.flipHorizontal .slide-over,
 .tile-big .tile-content.flipHorizontal .slide-over,
 .tile-super .tile-content.flipHorizontal .slide-over {
@@ -11892,10 +11755,6 @@ input[type="submit"].link:active {
   -webkit-transform: perspective(500px) rotateY(0.138372rad) !important;
           transform: perspective(500px) rotateY(0.138372rad) !important;
 }
-.tile-wide.tile-transform-right {
-  -webkit-transform: perspective(500px) rotateY(0.069186rad) !important;
-          transform: perspective(500px) rotateY(0.069186rad) !important;
-}
 .tile-large.tile-transform-right {
   -webkit-transform: perspective(500px) rotateY(0.069186rad) !important;
           transform: perspective(500px) rotateY(0.069186rad) !important;
@@ -11919,10 +11778,6 @@ input[type="submit"].link:active {
 .tile.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.138372rad) !important;
           transform: perspective(500px) rotateY(-0.138372rad) !important;
-}
-.tile-wide.tile-transform-left {
-  -webkit-transform: perspective(500px) rotateY(-0.069186rad) !important;
-          transform: perspective(500px) rotateY(-0.069186rad) !important;
 }
 .tile-large.tile-transform-left {
   -webkit-transform: perspective(500px) rotateY(-0.069186rad) !important;
@@ -11948,10 +11803,6 @@ input[type="submit"].link:active {
   -webkit-transform: perspective(500px) rotateX(0.138372rad) !important;
           transform: perspective(500px) rotateX(0.138372rad) !important;
 }
-.tile-wide.tile-transform-top {
-  -webkit-transform: perspective(500px) rotateX(0.069186rad) !important;
-          transform: perspective(500px) rotateX(0.069186rad) !important;
-}
 .tile-large.tile-transform-top {
   -webkit-transform: perspective(500px) rotateX(0.069186rad) !important;
           transform: perspective(500px) rotateX(0.069186rad) !important;
@@ -11975,10 +11826,6 @@ input[type="submit"].link:active {
 .tile.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.138372rad) !important;
           transform: perspective(500px) rotateX(-0.138372rad) !important;
-}
-.tile-wide.tile-transform-bottom {
-  -webkit-transform: perspective(500px) rotateX(-0.069186rad) !important;
-          transform: perspective(500px) rotateX(-0.069186rad) !important;
 }
 .tile-large.tile-transform-bottom {
   -webkit-transform: perspective(500px) rotateX(-0.069186rad) !important;
