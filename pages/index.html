@@ -29,30 +29,35 @@
 		}
 		
 		#index_tile_area {
-		    min-width: 1600px;
+		    min-width: 1500px;
+			min-height: 660px;
 		}
 		
 		#index_tile_area .tile-group {		
-		  margin-left: calc(3% - 24px);
+		  margin-left: 1%;
 		}
 		
 		#index_tile_area .tile-group.one {
-		  width: 8.5%;
+		  width: 10%;
 		}
 		
 		#index_tile_area .tile-group.two,
 		#index_tile_area .tile-group.double {
-		  width: 17%;
+		  width: 20%;
 		}
 
 		#index_tile_area .tile-group.two-extended,
 		#index_tile_area .tile-group.double-extended{
-		  width: 21%;
+		  width: 22.5%;
 		}
 
 		#index_tile_area .tile-group.three,
 		#index_tile_area .tile-group.triple {
-		  width: 25.5%;
+		  width: 30%;
+		}
+		
+		#index_tile_area .tile-group.four {
+		  width: 40%;
 		}
 		
 	</style>
@@ -73,38 +78,139 @@
         <h1 class="tile-area-title">GSD Marin Database</h1>
 		<div id="topbar"></div>
 
-        <div class="tile-group double">
-            <span class="tile-group-title">General</span>
+		<div class="tile-group double">
+            <span class="tile-group-title">Database</span>
             <div class="tile-container">
-				<a href="http://www.weather.com/" class="tile-large bg-indigo fg-white" data-role="tile">
+			
+			<a href="ship_building.html" class="tile fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/ship_building.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label">Ship Building</div>
+					</div>
+				</a>
+			
+				<a href="management.html" class="tile fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/management.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label">Management</div>
+					</div>
+                </a>
+			
+				<a href="reports.html" class="tile bg-darkBlue fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<img src="images/reports.png" data-role="fitImage" data-format="fill">					
+						</div>
+						<span class="tile-label">Reports</span>
+					</div>
+				</a>
+			
+			
+				<a href="calendar.html" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<img src="images/calendar.png" data-role="fitImage" data-format="fill">					
+						</div>
+						<span class="tile-label">Calendar</span>
+					</div>
+                </a>
+				
+				<a href="http://www.fleetship.com" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/fml_paris.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label fg-black">FML Paris</div>
+					</div>
+				</a>
+				
+				<a href="http://fmlnb.fleetship.com/" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/fml_world.png" data-role="fitImage" data-format="fill">
+						</div>
+						<div class="tile-label">FML User Page (Broken)</div>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+		
+        <div class="tile-group triple">
+            <span class="tile-group-title">Modules</span>
+            <div class="tile-container">			
+				<a href="/pages/image_gallery.html" class="tile-large bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+							<img src="images/angry_cat.png" data-role="fitImage" data-format="fill">						
+						</div>
+						<span class="tile-label">Image Gallery (Broken)</span>
+					</div>
+                </a>
+				
+				
+				<a href="http://mail.google.com/" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-mail"></span>					
+						</div>
+						<span class="tile-label">Google Mail (Broken)</span>
+					</div>
+                </a>
+        
+				<a href="http://docs.google.com/" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-file-text"></span>					
+						</div>
+						<span class="tile-label">Google Docs (Broken)</span>
+					</div>
+                </a>
+				
+				
+				<a href="http://www.weather.com/" class="tile bg-indigo fg-white" data-role="tile">
 					<div class="aspect_square">				
 						<div class="tile-content" style="background: url(images/clouds.jpg) top left no-repeat; background-size: cover">
 							<div class="padding10">
-								<h1>57°</h1>
-								<h2>San Francisco</h2>
-								<h5>Party Cloudy</h5>
-								<p class="tertiary-text fg-white no-margin">Today</p>
-								<p class="tertiary-text fg-white no-margin">63°/55° Mostly Clear</p>
-								<p class="tertiary-text fg-white no-margin">Tomorrow</p>
-								<p class="tertiary-text fg-white no-margin">64°/54° Mostly Clear</p>
-							</div>
+								<h4 id="localarea">(Local)</h2>
+								<h2 id="localweather">57°</h2>
+								<h4>Party Cloudy</h5>
+								</div>
 						</div>
 					</div>
-					<span class="tile-label">Weather (Broken)</span>
+					<span class="tile-label">(Broken)</span>
+				</a>
+				
+				<a href="http://www.weather.com/" class="tile bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">				
+						<div class="tile-content" style="background: url(images/clouds.jpg) top left no-repeat; background-size: cover">
+							<div class="padding10">
+								<h4>Istanbul</h2>
+								<h2 id="istweather">57°</h2>
+								<h4>Party Cloudy</h5>
+								</div>
+						</div>
+					</div>
+					<span class="tile-label">(Broken)</span>
 				</a>
 
- 
+				<!--
                 <a href="http://www.timeanddate.com/worldclock/" class="tile bg-indigo fg-white" data-role="tile">
 					<div class="aspect_square">
 						<div class="tile-content" style="background: url(images/time.png) top left no-repeat; background-size: cover">
 							<div class="padding10">
-								<h4> (Local Time) </h4>
+								<h4 id="localarea"> (Local Time) </h4>
 								<h1 id="localtime"></h1>
 								<h4 id="localdate"></h4>
 							</div>
 						</div>
 					</div>
                 </a>
+				-->
 				
 				<a href="http://www.timeanddate.com/worldclock/turkey/istanbul" class="tile bg-indigo fg-white" data-role="tile">
 					<div class="aspect_square">
@@ -118,117 +224,121 @@
 					</div>
                 </a>
 				
-            </div>
-        </div>
-		
-		<div class="tile-group double">
-            <span class="tile-group-title">Database</span>
-            <div class="tile-container">
-			
-				<a href="management.html" class="tile-wide" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content">
-							<img src="images/management-wide.png" data-role="fitImage" data-format="fill">
-						</div>
-						<div class="tile-label fg-black">Management</div>
-					</div>
-                </a>
-				
-				<a href="technical.html" class="tile-wide bg-black" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content">
-							<img src="images/technical-wide.png" data-role="fitImage" data-format="fill">
-						</div>
-						<div class="tile-label fg-white">Technical</div>
-					</div>
-                </a>
-				
-				<a href="http://www.fleetship.com" class="tile bg-indigo fg-white" data-role="tile">
-					<div class="aspect_square">
-						<div class="tile-content">
-							<img src="images/fmltext.png" data-role="fitImage" data-format="fill">
-						</div>
-						<div class="tile-label fg-white">FML Paris</div>
-					</div>
-				</a>
-				
-				<a href="http://fmlnb.fleetship.com/" class="tile bg-indigo fg-white" data-role="tile">
-					<div class="aspect_square">
-						<div class="tile-content">
-							<img src="images/fmltext.png" data-role="fitImage" data-format="fill">
-						</div>
-						<div class="tile-label fg-white">FML User Page (Broken)</div>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-		
-		<div class="tile-group double">
-            <span class="tile-group-title">Modules</span>
-            <div class="tile-container">
-				<a href="ship_building.html" class="tile-wide" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content">
-							<img src="images/ship_building-wide.png" data-role="fitImage" data-format="fill">
-						</div>
-						<div class="tile-label fg-white">Ship Building</div>
-					</div>
-				</a>
-				
-                <a href="reports.html" class="tile-wide bg-darkBlue fg-white" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content iconic">
-							<img src="images/reports-wide.png" data-role="fitImage" data-format="fill">					
-						</div>
-						<span class="tile-label">Reports</span>
-					</div>
-				</a>
-			
-			
-				<a href="calendar.html" class="tile-wide bg-indigo fg-white" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content iconic">
-							<span class="icon mif-calendar"></span>
-						</div>
-						<span class="tile-label">Calendar</span>
-					</div>
-                </a>
-            </div>
-        </div>
-		
-		<div class="tile-group double">
-            <span class="tile-group-title">File Manager</span>
-            <div class="tile-container">
-			
-				<a href="http://docs.google.com/" class="tile-wide bg-indigo fg-white" data-role="tile">
-					<div class="aspect_wide">
-						<div class="tile-content">
-							<img src="images/create_document-wide.png" data-role="fitImage" data-format="fill">						
-						</div>
-						<span class="tile-label">Create Document (Broken)</span>
-					</div>
-                </a>
-				
-				<a href="/upload" class="tile-wide bg-indigo fg-white" data-role="tile">
+				<!--
+				<a href="/upload" class="tile-large bg-indigo fg-white" data-role="tile">
 					<div class="aspect_wide">
 						<div class="tile-content">
 						</div>
 						<span class="tile-label">Upload Document (Broken)</span>
 					</div>
                 </a>
+				-->
 				
-				<a href="/pages/image_gallery.html" class="tile-wide bg-indigo fg-white" data-role="tile">
-					<div class="aspect_wide">
+			</div>
+		</div>
+		
+		<div class="tile-group double-extended">
+            <span class="tile-group-title">Documents</span>
+			<div class="tile-container">
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
 						<div class="tile-content">
-							<img src="images/angry_cat-wide.png" data-role="fitImage" data-format="fill">						
 						</div>
-						<span class="tile-label">Image Gallery (Broken)</span>
+						<div class="tile-label bg-indigo fg-white">Doc #1</div>
+					</div>
+				</a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Doc #2</span>
+					</div>
+                </a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">Doc #3</div>
+					</div>
+				</a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Doc #4</span>
+					</div>
+                </a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">Doc #5</div>
+					</div>
+				</a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Doc #6</span>
+					</div>
+                </a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">Doc #7</div>
+					</div>
+				</a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Doc #8</span>
+					</div>
+                </a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">Doc #9</div>
+					</div>
+				</a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Doc #10</span>
+					</div>
+                </a>
+				
+				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content">
+						</div>
+						<div class="tile-label bg-indigo fg-white">Doc #11</div>
+					</div>
+				</a>
+				
+				<a href="admin.html" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-more-horiz"></span>
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Manage Documents </span>
 					</div>
                 </a>
 				
 			</div>
-		</div>
+        </div>
 		
         <div class="tile-group double-extended">
             <span class="tile-group-title">External Links</span>
@@ -286,6 +396,15 @@
 						<div class="tile-content">
 						</div>
 						<span class="tile-label">Marine Traffic (Broken)</span>
+					</div>
+                </a>
+				
+				<a href="admin.html" class="tile-small bg-indigo fg-white" data-role="tile">
+					<div class="aspect_square">
+						<div class="tile-content iconic">
+							<span class="icon mif-more-horiz"></span>
+						</div>
+						<span class="tile-label bg-indigo fg-white"> Manage Links </span>
 					</div>
                 </a>
 				

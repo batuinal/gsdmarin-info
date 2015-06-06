@@ -1,9 +1,10 @@
 ===== Sinan =====
 
 --> Accessibility:
-* Create and adjust mobile scaling.
+* Enable and adjust font-scaling.
+* Enable and adjust mobile device scaling.
+* Change external links to open on new pages using window.open().
 * Add hover-text to topbar buttons.
-* Adjust font-scaling.
 
 --> Aesthetic:
 * Find pictures for menu tiles.
@@ -16,7 +17,7 @@
 * Use geolocate library to locate current city.
 * Integrate the Google Calendar.
   - Solve the iframe issue.
-* Write an information fetcher for weather tile.
+* Write an information fetcher for the weather tile.
   - Should send get request to weather website.
 
 --> Security
@@ -24,6 +25,12 @@
   * Ensure user info persists across pages.
     - Redirect user to front page if not logged in.
   * Discuss: How can we use the "User" button in topbar?
+
+--> Stretch Goals
+* Admin Panel Allows Managing Vertical Tabs / Contents
+* Database Tiles Open Subtopics Below Themselves
+* Google Mail / Docs auto-logs into GSDMarin account.
+* Allow changing tile icons from Admin Panel.
 
 ===== Batu =====
 
