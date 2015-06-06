@@ -25,42 +25,41 @@ _INSTANCE_NAME = 'gsdmarin-info:database'
 class BlobIterator:
     """Because the python csv module doesn't like strange newline chars and
     the google blob reader cannot be told to open in universal mode, then
-    we need to read blocks of the blob and 'fix' the newlines as we go"""
-
+    we need to read blocks of the blob and 'fix' the newlines as we go.
+    Fixed the problem with the corrupted lines when fetching new data into the buffer."""
+ 
     def __init__(self, blob_reader):
         self.blob_reader = blob_reader
         self.last_line = ""
         self.line_num = 0
         self.lines = []
         self.buffer = None
-
+ 
     def __iter__(self):
         return self
-
+ 
     def next(self):
         if not self.buffer or len(self.lines) == self.line_num + 1:
-            self.buffer = self.blob_reader.read(1048576)  # 1MB buffer
+            if self.lines:
+                self.last_line = self.lines[self.line_num]
+            self.buffer = self.blob_reader.read(1048576) # 1MB buffer
             self.lines = self.buffer.splitlines()
             self.line_num = 0
-
+ 
             # Handle special case where our block just happens to end on a new line
             if self.buffer[-1:] == "\n" or self.buffer[-1:] == "\r":
                 self.lines.append("")
-
+ 
         if not self.buffer:
             raise StopIteration
-
+ 
         if self.line_num == 0 and len(self.last_line) > 0:
             result = self.last_line + self.lines[self.line_num] + "\n"
         else:
             result = self.lines[self.line_num] + "\n"
-
-        self.last_line = self.lines[self.line_num + 1]
+ 
         self.line_num += 1
-
         return result
-
-
 
 class UserFile(ndb.Model):
   #user = ndb.StringProperty()
@@ -92,16 +91,35 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
         blob_reader = blobstore.BlobReader(blob_info.key())
         blob_iterator = BlobIterator(blob_reader)
         reader = csv.reader(blob_iterator, skipinitialspace=True, delimiter=',')
-##############
 #!!!!!AYHUN !!!!!
 # IMPLEMENT PARSER HERE
 #object to use: csv iterator called "reader"
 # Create/Stick into database
-
+        count = 1
+        big_dict = {}
+        num_cols = 0
+        titles = []
         for row in reader:
-          self.response.out.write(row)
-
-###############SQL CODE
+          #self.response.out.write(count)  
+          #self.response.out.write(row)  
+          if count == 1:
+            num_cols = 0
+            for elts in row:
+                catg_list = [elts]
+                big_dict[num_cols] = catg_list
+                num_cols += 1
+          else:
+            iter_num = 0  
+            for elts in row:
+              big_dict[iter_num].append(elts)
+              iter_num += 1
+          count += 1     
+        self.response.out.write(str(big_dict))   
+###############SQL CODE -----> use big_dict (dictionary object) to generate SQL code
+            #big_dict current format: dictionary object where key is 0-number of cols in csv file
+            #value is list of values in each row, where the first element of the list is the name of column
+            #use this value to create values for the attributes in database and remainder of list to fill the 
+            #the data corresponding to the attribute
 
 ####################
 
