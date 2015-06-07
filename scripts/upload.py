@@ -128,14 +128,14 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
       if (os.getenv('SERVER_SOFTWARE') and
             os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
         self.response.out.write("HERE1")
-        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='batu', passwd='123456')
+        # burdaki db calismiyor, siciyor NEDEN?
+        #db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='gsdmarin', user='ruifu', passwd='1234')
+        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
         self.response.out.write("HERE2")  
       else:
         self.response.out.write("HERE3")
-        #HEP buraya dusuyorum ben, acaba duzgun baglanamiyormuyuz? Database e biseyler ekledgmzi zanedp locale mi ekliyoruz acaba
-        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='batu', passwd='123456')
-        
-        #db = MySQLdb.connect(host='127.0.0.1', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+        #HEP buraya dusuyorum ben, ben duzgun baglanamiyorum ancak deploy edince birinci if e dusuyoruz
+        db = MySQLdb.connect(host='127.0.0.1', port=3300, db='gsdmarin', user='root', passwd='',charset='utf 8')
         self.response.out.write("HERE4")  
     
             # Alternatively, connect to a Google Cloud SQL instance using:
