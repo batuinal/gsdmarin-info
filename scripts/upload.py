@@ -121,12 +121,34 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
             #use this value to create values for the attributes in database and remainder of list to fill the 
             #the data corresponding to the attribute
 
+
+      logging.info('>>-----------------We have liftoff------------------------------------------------------------->>')
+      logging.info(os.getenv('SERVER_SOFTWARE'))
+      logging.info(os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/'))
+      if (os.getenv('SERVER_SOFTWARE') and
+            os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+        self.response.out.write("HERE1")
+        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='batu', passwd='123456')
+        self.response.out.write("HERE2")  
+      else:
+        self.response.out.write("HERE3")
+        #HEP buraya dusuyorum ben, acaba duzgun baglanamiyormuyuz? Database e biseyler ekledgmzi zanedp locale mi ekliyoruz acaba
+        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='batu', passwd='123456')
+        
+        #db = MySQLdb.connect(host='127.0.0.1', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+        self.response.out.write("HERE4")  
+    
+            # Alternatively, connect to a Google Cloud SQL instance using:
+            # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')
+      cursor = db.cursor()
+
+
 ####################
 
         #self.redirect('/parse/%s' % blob_info.key()) ### TO CALL DOWNLOAD
     except:
-        logging.error('Error in Uploading')
-        self.response.out.write('Error in prosessing the file')
+        logging.error('Error in Uploading/Parsing')
+        self.response.out.write('Error in processing the file')
 
 ###DOWNLOADING!!!! FOR FUTURE REF.
 class Parse(blobstore_handlers.BlobstoreDownloadHandler):
