@@ -17,9 +17,13 @@ class FileUpload(webapp2.RequestHandler):
     logging.info('>>-----------------We have liftoff------------------------------------------------------------->>')
     logging.info(os.getenv('SERVER_SOFTWARE'))
     if (os.getenv('SERVER_SOFTWARE') and (os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/') or os.getenv('SERVER_SOFTWARE').startswith('Development/') )):
+          self.response.out.write("HERE00")
           db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+          self.response.out.write("HERE11")
     else:
+          self.response.out.write("HERE0")
           db = MySQLdb.connect(host='127.0.0.1', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+          self.response.out.write("HERE1")
     
             # Alternatively, connect to a Google Cloud SQL instance using:
             # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')

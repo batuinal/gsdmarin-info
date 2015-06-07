@@ -17,6 +17,7 @@ from google.appengine.api import users
 import webapp2
 import logging
 
+#IMPORTNAT NOTE: DOUBLE SPACE WAS USED IN ORDER TO IMPLEMENT INDENTATION FOR PYTHON< PLEASE USE THIS CONVENTION!!!
 
 # Define your production Cloud SQL instance information.
 _INSTANCE_NAME = 'gsdmarin-info:database'
@@ -77,6 +78,7 @@ class FileUpload(webapp2.RequestHandler):
     self.response.out.write(html)
     #self.redirect('/pages/parser/upload1.html')
 
+
 class Upload(blobstore_handlers.BlobstoreUploadHandler):
   def post(self):
     try:
@@ -124,24 +126,27 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
 
       logging.info('>>-----------------We have liftoff------------------------------------------------------------->>')
       logging.info(os.getenv('SERVER_SOFTWARE'))
+      self.response.out.write(os.getenv('SERVER_SOFTWARE'))
       logging.info(os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/'))
-      if (os.getenv('SERVER_SOFTWARE') and
-            os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+      if (os.getenv('SERVER_SOFTWARE') and (os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/') or os.getenv('SERVER_SOFTWARE').startswith('Development/') )):
         self.response.out.write("HERE1")
-        # burdaki db calismiyor, siciyor NEDEN?
         #db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='gsdmarin', user='ruifu', passwd='1234')
         db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
         self.response.out.write("HERE2")  
       else:
         self.response.out.write("HERE3")
-        #HEP buraya dusuyorum ben, ben duzgun baglanamiyorum ancak deploy edince birinci if e dusuyoruz
-        db = MySQLdb.connect(host='127.0.0.1', port=3300, db='gsdmarin', user='root', passwd='',charset='utf 8')
+        #Cant connect to localhost + if we fall in here we need error handling! Unacceptable.
+        db = MySQLdb.connect(host='127.0.0.1', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
         self.response.out.write("HERE4")  
     
             # Alternatively, connect to a Google Cloud SQL instance using:
             # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')
       cursor = db.cursor()
 
+     ####### AYHUN!!!!!!!!
+     
+
+     ######################
 
 ####################
 
