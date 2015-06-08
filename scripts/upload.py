@@ -83,10 +83,10 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
   def post(self):
     try:
       upload_files = self.get_uploads('xlfile')
-      logging.info('File upload received.  File count=%d' % len(upload_files))
+      self.response.out.write('File upload received.  File count=%d' % len(upload_files))
       if len(upload_files) > 0:
         blob_info = upload_files[0]
-        logging.info('Blob stored key=%s' % (blob_info.key()))
+        self.response.out.write('Blob stored key=%s' % (blob_info.key()))
         user_file = UserFile(blob_key=blob_info.key())
         user_file.put()
 
@@ -104,19 +104,25 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
         for row in reader:
           #self.response.out.write(count)  
           #self.response.out.write(row)  
+          
           if count == 1:
+            self.response.out.write("Metadata:<br>")
             num_cols = 0
             for elts in row:
-                catg_list = [elts]
-                big_dict[num_cols] = catg_list
-                num_cols += 1
+              catg_list = [elts]
+              big_dict[num_cols] = catg_list
+              num_cols += 1
+              self.response.out.write(elts + ", ")
+            self.response.out.write("<br>Content:")
           else:
             iter_num = 0  
             for elts in row:
               big_dict[iter_num].append(elts)
               iter_num += 1
-          count += 1     
-        self.response.out.write(str(big_dict))   
+              self.response.out.write(elts + ", ")
+          self.response.out.write("<br>")
+          count += 1
+        self.response.out.write("Final dict:" + str(big_dict))   
 ###############SQL CODE -----> use big_dict (dictionary object) to generate SQL code
             #big_dict current format: dictionary object where key is 0-number of cols in csv file
             #value is list of values in each row, where the first element of the list is the name of column
@@ -124,27 +130,98 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
             #the data corresponding to the attribute
 
 
-      logging.info('>>-----------------We have liftoff------------------------------------------------------------->>')
-      logging.info(os.getenv('SERVER_SOFTWARE'))
-      self.response.out.write(os.getenv('SERVER_SOFTWARE'))
-      logging.info(os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/'))
-      if (os.getenv('SERVER_SOFTWARE') and (os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/') or os.getenv('SERVER_SOFTWARE').startswith('Development/') )):
-        self.response.out.write("HERE1")
+      self.response.out.write('Starting database part.............<br>')
+      self.response.out.write(os.getenv('SERVER_SOFTWARE') + "<br>")
+
+      if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+        self.response.out.write("I should be running on the cloud right now 1<br>")
         #db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='gsdmarin', user='ruifu', passwd='1234')
-        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
-        self.response.out.write("HERE2")  
-      else:
-        self.response.out.write("HERE3")
-        #Cant connect to localhost + if we fall in here we need error handling! Unacceptable.
         db = MySQLdb.connect(host='127.0.0.1', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
-        self.response.out.write("HERE4")  
+        self.response.out.write("I should be running on the cloud right now 2<br>")  
+      else:
+        self.response.out.write("I should be running on a normal computer right now 1<br>")
+        #Cant connect to localhost + if we fall in here we need error handling! Unacceptable.
+        db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+        self.response.out.write("I should be running on a normal computer right now 2<br>")  
     
             # Alternatively, connect to a Google Cloud SQL instance using:
             # db = MySQLdb.connect(host='ip-address-of-google-cloud-sql-instance', port=3306, user='root', charset='utf 8')
       cursor = db.cursor()
 
-     ####### AYHUN!!!!!!!!
+      # !!!! Code that decides the name of the table goes here
+      TABLE_NAME = "EMPLOYEE"
+      # -----------------------------------------------------------------------------------------------------
+
+
+
+      ####### AYHUN!!!!!!!!
+      # print file name and content to console, just for seeing it
+      self.response.out.write('File name:<br>')
+      self.response.out.write(TABLE_NAME+"<br>")
+      self.response.out.write('File content:<br>')
+      self.response.out.write(big_dict)
+      self.response.out.write('<br>')
+
+      # query the 'information_schema' to see if a table that has the 'TABLE_NAME' as its name exists
+      table_exists = False
+      sql = "SELECT * FROM information_schema.tables WHERE table_name = '%s'" % TABLE_NAME
+      self.response.out.write("query:" + sql + "<br>")
+      self.response.out.write("result:<br>")
+      cursor.execute(sql)
+      for row in cursor.fetchall():
+        table_exists = True
+        self.response.out.write( ' '.join(str(e) for e in row) + '<br>')
+
+      if table_exists:
+            self.response.out.write("Table %s already exists." % TABLE_NAME)
+            self.response.out.write("<br>**********Database before insertion:")    
+            sql = "SELECT * FROM gsdmarin.%s" % TABLE_NAME
+            cursor.execute(sql)
+            for row in cursor.fetchall():
+                  self.response.out.write('<br>' + ' '.join(str(e) for e in row) )
+            self.response.out.write('<br>************************************')
+            # TODO: insert to existing table here
+            sql = []
+            sql.append("INSERT INTO `gsdmarin`.`%s`" % TABLE_NAME)
+            sql.append("(`%s`," % big_dict[0][0])
+            for i in range(1,num_cols-1):
+                  sql.append("`%s`," % big_dict[i][0])
+            sql.append("`%s`)" % big_dict[num_cols - 1][0])
+            sql.append("VALUES")
+            
+            for r in range(1,len(big_dict[0])):
+              if r == 1:
+                sql.append("('"+big_dict[0][1]+"',")
+              else:
+                sql.append(",('"+big_dict[0][1]+"',")
+              for c in range(1,num_cols-1):
+                sql.append("'"+big_dict[c][r]+"',")
+              sql.append("'"+big_dict[num_cols-1][r]+"')")
+            sql.append(';')
+              
+            self.response.out.write("<br>insertion query:<br>" + ' '.join(sql))
+            
+            try:
+              cursor.execute(' '.join(sql))
+              db.commit()
+            except Exception, e:
+              db.rollback
+
+            self.response.out.write("<br>**********Database after insertion:")    
+            sql = "SELECT * FROM gsdmarin.%s" % TABLE_NAME
+            cursor.execute(sql)
+            for row in cursor.fetchall():
+                  self.response.out.write("<br>" + ' '.join(str(e) for e in row) )
+            self.response.out.write('<br>************************************')           
+      else:
+            self.response.out.write('Table %s does not exist. Create it' % TABLE_NAME)
+            # TODO: table creation code 
+
      
+
+      
+      db.close()
+      self.response.out.write('<br><<------------------------Everything went well?------------------------------------------------<<')
 
      ######################
 
