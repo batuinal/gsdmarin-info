@@ -73,16 +73,19 @@ class FileUpload(webapp2.RequestHandler):
     html = ''
     html += '<html><body>'
     html += '<form action="%s" method="POST" enctype="multipart/form-data">' % upload_url
-    html += """Upload File: <input type="file" name="xlfile"><br> <input type="submit"
-            name="submit" value="Parse"> </form></body></html>"""
+    html += """Table Name: <input type="text" name = "table_name"> <br>
+            Upload File: <input type="file" name="xlfile"><br> 
+            <input type="submit" name="submit" value="Parse"> </form></body></html>"""
     self.response.out.write(html)
     #self.redirect('/pages/parser/upload1.html')
 
 
-class Upload(blobstore_handlers.BlobstoreUploadHandler):
+class Upload(blobstore_handlers.BlobstoreUploadHandler, webapp2.RequestHandler):
   def post(self):
     try:
       upload_files = self.get_uploads('xlfile')
+      TABLE_NAME = self.request.get('table_name')
+      self.response.out.write('Table Name received.  Name=%s' % (TABLE_NAME))
       self.response.out.write('File upload received.  File count=%d' % len(upload_files))
       if len(upload_files) > 0:
         blob_info = upload_files[0]
@@ -149,7 +152,7 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler):
       cursor = db.cursor()
 
       # !!!! Code that decides the name of the table goes here
-      TABLE_NAME = "EMPLOYEE"
+      #TABLE_NAME = "EMPLOYEE"    ------> THIS HAS BEEN DONE IN LINE 87 e.g TABLE_NAME = self.request.get('table_name')
       # -----------------------------------------------------------------------------------------------------
 
 
