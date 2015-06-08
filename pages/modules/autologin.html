@@ -1,0 +1,20 @@
+<form id="signin" name="management.html" METHOD="POST">
+    <input id="uname" TYPE="hidden" name="#" value="#">
+    <input id="pwd" TYPE="hidden" name="#" value="#">
+</form>
+
+
+<script>
+function login(name, action, u_name, p_name, u_val, p_val) {
+	
+	$(function() {
+		$('#uname').attr("name",u_name);
+		$('#uname').attr("value",u_val);
+		$('#pwd').attr("name",p_name);
+		$('#pwd').attr("value",p_val);
+		$('#signin').attr("name",name);
+		$('#signin').attr("action",action);
+		$('#signin').submit();
+	});
+}
+</script>

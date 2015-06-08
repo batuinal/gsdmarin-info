@@ -16,7 +16,8 @@
 	<script src="js/time.js"></script>
 	<script src="js/geolocate.js"></script>
 	
-	<div id="scaffolding"></div>
+	<div id="scaffolding"></div>	
+	<div id="autologin"></div>
 	
 	<style>
 		#isttime,
@@ -128,14 +129,14 @@
 					</div>
 				</a>
 				
-				<a href="http://fmlnb.fleetship.com/" class="tile bg-indigo fg-white" data-role="tile">
+				<div onclick="login('','http://fmlnb.fleetship.com/LgAction_CheckLogin.action','user.vcUsername','user.vcPassword','gsd63k','ali')" class="tile bg-indigo fg-white" data-role="tile">
 					<div class="aspect_square">
 						<div class="tile-content">
 							<img src="images/fml_world.png" data-role="fitImage" data-format="fill">
 						</div>
-						<div class="tile-label">FML User Page (Broken)</div>
+						<div class="tile-label">FML User Page</div>
 					</div>
-				</a>
+				</div>
 				
 			</div>
 		</div>
@@ -148,7 +149,7 @@
 						<div class="tile-content">
 							<img src="images/angry_cat.png" data-role="fitImage" data-format="fill">						
 						</div>
-						<span class="tile-label">Image Gallery (Broken)</span>
+						<span class="tile-label">Image Gallery</span>
 					</div>
                 </a>
 				
@@ -351,11 +352,11 @@
 					</div>
 				</a>
 				
-				<a href="#" class="tile-small bg-indigo fg-white" data-role="tile">
+				<a onclick="login('signinForm','https://www.eagle.org/security/GatewayLogin','username','password','GSDMarin','sn183082')" class="tile-small bg-indigo fg-white" data-role="tile">
 					<div class="aspect_square">
 						<div class="tile-content">
 						</div>
-						<span class="tile-label"> My Eagle (Broken)</span>
+						<span class="tile-label"> My Eagle</span>
 					</div>
                 </a>
 				
@@ -440,6 +441,7 @@
 			$("#navtab").load("modules/navtab.html");
 			$("#topbar").load("modules/topbar.html");
 			$("#scaffolding").load("modules/scaffolding.html");
+			$("#autologin").load("modules/autologin.html");
 		});
 	</script> 
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
