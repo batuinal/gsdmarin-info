@@ -16,11 +16,14 @@ import logging
 import scripts.upload
 import scripts.login
 import scripts.error404
+import scripts.images
 		
 app = webapp2.WSGIApplication([
     ('/', scripts.login.LoginPage),	
 	('/upload', scripts.upload.FileUpload),
 	('/upload_file', scripts.upload.Upload),
+	('/images', scripts.images.ImageUpload),
+	('/images_upload', scripts.images.Upload),
 	('/parse/([^/]+)?', scripts.upload.Parse),
 	('/*', scripts.error404.NotFoundHandler)
 ], debug=True)
