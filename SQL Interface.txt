@@ -72,7 +72,7 @@
 // Remove an "attribute" from given "entity".
 // Return: 1 on success, 0 on failure.
 
---> ClearAttributes(table)
+--> ClearAttributes(table)                 //bunun ilk removeTable'ı çağırıp sonra createTable'ı çağırmaktan bi farkı olcak mı
 // Remove all attributes from given table.
 // Return: 1 on success, 0 on failure.
 
