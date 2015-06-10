@@ -1,4 +1,4 @@
-===== Assumptions =====
+﻿===== Assumptions =====
 
 --> One Table Per Excel File
 * We will have an independent table for each Excel File.
@@ -25,40 +25,65 @@
 
 ===== Functions =====
 
---> CreateTable(name)                 // neden sadece table ismi veriyoruz, table yaratılırken column isimlerini de vermek gerekmez mi ?
+*** Table Functions ***
+
+--> CreateTable(name) // Column'lari sonradan ekleriz.
 // Create table with given name.
 // Return: 1 on success, 0 on failure.
+
+--> PrintTable(name)
+// Generate a list of all entity IDs and their corresponding dictionaries.
+// Return: A dictionary of (ID) --> (Attribute --> Value)
 
 --> RemoveTable(name)               
 // Remove table with given name.
 // Return: 1 on success, 0 on failure.
 
---> ListEntities(table)               // bütün table'ı 2 boyutlu array olarak döncem dmi
-// Return: A list of all entities currently in "table".
+*** Entity Functions ***
 
---> AddEntity(table, dict)            // column name -> value olarak bir dictionary verebilirsiniz. yada 
-// Add "entity" to the given table.
-// Type is guaranteed to be "string".
+--> ListEntities(table)
+// Return: A list of all entity IDs in the "table".
+
+--> AddEntity(table)
+// Add new entity to the given table.
 // Return: ID of new entity on success, 0 on failure.
 
---> RemoveEntity(table, entity)
-// Remove "entity" from the given table.
+--> AddEntity(table, dict)
+// Add "entity" to the given table.
+// Immediately fill the columns based on the given "dict" dictionary.
+// Return: ID of new entity on success, 0 on failure. 
+
+--> RemoveEntity(table, id)
+// Remove entity with given ID from the given table.
 // Return: 1 on success, 0 on failure.
 
---> ListAttributes(table, entity)
-// List all attribute names under the given "table"s given "entity". // her entity (row) için farklı attribute(column) listesi olamaz ki. her table'ın columnları belli her row da columnlara denk gelen değerleri barındırır. bu fonksyona sadece table vermek yeterli yani.
+*** Attribute Functions ***
 
---> AddAttribute(entity, attribute, type)                  // böyle bi fonksiyon yazılamaz çünkü entity dediğimiz şey row'a denk geliyor. böyle bir fonksiyon olursa her row'un farklı sayıda attribute(column)'u olabilir. kare olma özelliği gider
-// Add an "attribute" of type "type" to given "entity". 
+--> ListAttributes(table)
+// List all attribute names under the given "table".
+
+--> AddAttribute(table, attribute, type)
+// Add an "attribute" of type "type" to given "table". 
 // Return: 1 on success, 0 on failure.
 
---> RemoveAttribute(entity, attribute)                     // bi üsttekiyle aynı sebep
+--> RemoveAttribute(table, attribute)
 // Remove an "attribute" from given "entity".
 // Return: 1 on success, 0 on failure.
 
---> GetValue(table, entity, attribute)                     // entity dediğimiz şey entity_id olacaksa okay
-// Return: the value of the "table"s "entity"s "attribute".
-
---> SetValue(table, entity, attribute)                     // bi üsttekiyle aynı
-// Set the value of "table"s, "entity"s "attribute".
+--> ClearAttributes(table)
+// Remove all attributes from given table.
 // Return: 1 on success, 0 on failure.
+
+*** Value Functions ***
+
+--> GetValue(table, id, attribute)
+// In the given "table", read the value of the "attribute" of the entity with given "ID".
+// Return: Value on success, the default invalid value on failure.
+
+--> SetValue(table, id, attribute, value)                     
+// In the given "table", set the "attribute" of the entity with given "ID" to "value".
+// Return: 1 on success, 0 on failure.
+
+--> SetAllEntities(table, attribute, value)
+// In the given table, set the "attribute" of all entities to "value".
+// Return 1 on success, 0 on failure.
