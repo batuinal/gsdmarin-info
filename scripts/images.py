@@ -36,7 +36,7 @@ class Upload(blobstore_handlers.BlobstoreUploadHandler, webapp2.RequestHandler):
         user_file = UserFile(blob_key=blob_info.key())
         user_file.put()
         self.response.headers['Content-Type'] = 'image/png'
-        self.response.out.write(user_file.picture)
+        self.response.out.write(user_file.avatar)
     except:
         logging.error('Error in Uploading/Parsing')
         self.response.out.write('Error in processing the file')
