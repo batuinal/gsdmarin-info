@@ -89,33 +89,7 @@
             <br />
             <br />
             <div class="form-actions">
-                <a href="#" id="signInButton">Sign in with Google</a>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                                      $('#signInButton').click(function() {
-                                                               $(this).attr('href','https://accounts.google.com/o/oauth2/auth?scope=' +
-                                                                            'https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login&' +
-                                                                            'state=72982527&' +
-                                                                            'redirect_uri=http://localhost:8080/pages/index.html&'+
-                                                                            'response_type=code&' +
-                                                                            'client_id=44498269384-c4gcvi43bkq0m5i8kp9nf5i41voqq3jm.apps.googleusercontent.com&' +
-                                                                            'access_type=offline');
-                                                               return true; // Continue with the new href.
-                                                               });
-                                      });
-                    </script>
-                <!--
-                <span id="signinButton">
-                    <span
-                        class="g-signin"
-                        data-callback="signinCallback"
-                        data-clientid="44498269384-c4gcvi43bkq0m5i8kp9nf5i41voqq3jm.apps.googleusercontent.com"
-                        data-cookiepolicy="http://www.gsdmarin.net"
-                        data-requestvisibleactions="http://schema.org/AddAction"
-                        data-scope="https://www.googleapis.com/auth/plus.login">
-                    </span>
-                </span>
-                -->
+                <a href="/pages/index.html" id="signInButton">Sign In</a>
             </div>
         </form>
     </div>
