@@ -12,6 +12,7 @@
 --> Each Table is a Perfect Rectangle 
 * Each entity has exactly the same attributes. 
 * There is a default "invalid" value to represent empty cells.
+  - WE NEED TO DECIDE ON A DEFAULT INVALID VALUE!!
 
 --> One Connection Per Function
 * Each function conects to the database before doing its task.
@@ -63,7 +64,8 @@
 // List all attribute names under the given "table".
 
 --> AddAttribute(table, attribute, type)
-// Add an "attribute" of type "type" to given "table". 
+// Add an "attribute" of type "type" to given "table".
+// Default value should be the "invalid" value. (We need to decide what that is)
 // Return: 1 on success, 0 on failure.
 
 --> RemoveAttribute(table, attribute)
