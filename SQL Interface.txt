@@ -1,0 +1,64 @@
+===== Assumptions =====
+
+--> One Table Per Excel File
+* We will have an independent table for each Excel File.
+* Makes it easier to create and add new Excel tables to database.
+
+--> Each Table is Exactly Two-Dimensional
+* Each table has an "entity" row.
+* Each "entity" has a bunch of "attribute" columns.
+* There will never be a 3rd Dimension.
+
+--> Each Table is a Perfect Rectangle
+* Each entity has exactly the same attributes.
+* There is a default "invalid" value to represent empty cells.
+
+--> One Connection Per Function
+* Each function conects to the database before doing its task.
+* Each function disconnects from the database once it's done.
+* Each function must be thread-safe (able to work in parallel).
+
+--> No Database Code Elsewhere
+* We only touch the database through the functions defined below.
+* There should be absolutely no SQL code anywhere else.
+* No additional database functionaliy is needed for this project.
+
+===== Functions =====
+
+--> CreateTable(name)
+// Create table with given name.
+// Return: 1 on success, 0 on failure.
+
+--> RemoveTable(name)
+// Remove table with given name.
+// Return: 1 on success, 0 on failure.
+
+--> ListEntities(table)
+// Return: A list of all entities currently in "table".
+
+--> AddEntity(table, entity)
+// Add "entity" to the given table.
+// Type is guaranteed to be "string".
+// Return: 1 on success, 0 on failure.
+
+--> RemoveEntity(table, entity)
+// Remove "entity" from the given table.
+// Return: 1 on success, 0 on failure.
+
+--> ListAttributes(table, entity)
+// List all attribute names under the given "table"s given "entity".
+
+--> AddAttribute(entity, attribute, type)
+// Add an "attribute" of type "type" to given "entity".
+// Return: 1 on success, 0 on failure.
+
+--> RemoveAttribute(entity, attribute)
+// Remove an "attribute" from given "entity".
+// Return: 1 on success, 0 on failure.
+
+--> GetValue(table, entity, attribute)
+// Return: the value of the "table"s "entity"s "attribute".
+
+--> SetValue(table, entity, attribute)
+// Set the value of "table"s, "entity"s "attribute".
+// Return: 1 on success, 0 on failure.

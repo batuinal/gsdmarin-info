@@ -1,30 +1,30 @@
-===== Sinan =====
+===== Front-End =====
 
---> Accessibility:
+--> Accessibility
 * Enable and adjust font-scaling.
 * Enable and adjust mobile device scaling.
 * Change external links to open on new pages using window.open().
+* Make all external links uniform.
 * Add hover-text to topbar buttons.
 
---> Aesthetic:
+--> Aesthetic
 * Find pictures for menu tiles.
   - Also for sub-menu tiles.
 * Find icons for external links.
 * Embed the GSD Marin Logo.
 
---> Technical:
-* Integrate Batu's auto-login function to external links.
+--> Technical
 * Use geolocate library to locate current city.
 * Integrate the Google Calendar.
   - Solve the iframe issue.
-* Write an information fetcher for the weather tile.
+* Write an info fetcher for the weather tile.
   - Should send get request to weather website.
 
 --> Security
-  * Rework login page to use Batu's custom API.
-  * Ensure user info persists across pages.
-    - Redirect user to front page if not logged in.
-  * Discuss: How can we use the "User" button in topbar?
+* Rework login page to use Batu's custom API.
+* Ensure user info persists across pages.
+  - Redirect user to front page if not logged in.
+* Discuss: How can we use the "User" button in topbar?
 
 --> Stretch Goals
 * Admin Panel Allows Managing Vertical Tabs / Contents
@@ -32,6 +32,16 @@
 * Google Mail / Docs auto-logs into GSDMarin account.
 * Allow changing tile icons from Admin Panel.
 
-===== Batu =====
+===== Database =====
 
-===== Ruifu =====
+--> File Management
+* Create a common file upload module.
+  - Module instance is linked to a specific table in database.
+
+--> Database Interfaces
+* Design a common "table" module.
+* Derive the database table for each big Excel file.
+* Design the "file_list" module.
+  - Will be used to hold all files linked to that cell.
+* Modularize the SQL code.
+  - Create functions for uploading / downloading files.
