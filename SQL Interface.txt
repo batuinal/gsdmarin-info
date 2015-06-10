@@ -5,12 +5,12 @@
 * Makes it easier to create and add new Excel tables to database.
 
 --> Each Table is Exactly Two-Dimensional
-* Each table has an "entity" row.
-* Each "entity" has a bunch of "attribute" columns.
-* There will never be a 3rd Dimension.
+* Each row in a table is an "entity" that has it's unique ID.
+* Each "entity" has one or more "attribute" (correspond to columns in actual database).
+* There will never be a 3rd Dimension. 
 
---> Each Table is a Perfect Rectangle
-* Each entity has exactly the same attributes.
+--> Each Table is a Perfect Rectangle 
+* Each entity has exactly the same attributes. 
 * There is a default "invalid" value to represent empty cells.
 
 --> One Connection Per Function
@@ -25,40 +25,40 @@
 
 ===== Functions =====
 
---> CreateTable(name)
+--> CreateTable(name)                 // neden sadece table ismi veriyoruz, table yaratılırken column isimlerini de vermek gerekmez mi ?
 // Create table with given name.
 // Return: 1 on success, 0 on failure.
 
---> RemoveTable(name)
+--> RemoveTable(name)               
 // Remove table with given name.
 // Return: 1 on success, 0 on failure.
 
---> ListEntities(table)
+--> ListEntities(table)               // bütün table'ı 2 boyutlu array olarak döncem dmi
 // Return: A list of all entities currently in "table".
 
---> AddEntity(table, entity)
+--> AddEntity(table, dict)            // column name -> value olarak bir dictionary verebilirsiniz. yada 
 // Add "entity" to the given table.
 // Type is guaranteed to be "string".
-// Return: 1 on success, 0 on failure.
+// Return: ID of new entity on success, 0 on failure.
 
 --> RemoveEntity(table, entity)
 // Remove "entity" from the given table.
 // Return: 1 on success, 0 on failure.
 
 --> ListAttributes(table, entity)
-// List all attribute names under the given "table"s given "entity".
+// List all attribute names under the given "table"s given "entity". // her entity (row) için farklı attribute(column) listesi olamaz ki. her table'ın columnları belli her row da columnlara denk gelen değerleri barındırır. bu fonksyona sadece table vermek yeterli yani.
 
---> AddAttribute(entity, attribute, type)
-// Add an "attribute" of type "type" to given "entity".
+--> AddAttribute(entity, attribute, type)                  // böyle bi fonksiyon yazılamaz çünkü entity dediğimiz şey row'a denk geliyor. böyle bir fonksiyon olursa her row'un farklı sayıda attribute(column)'u olabilir. kare olma özelliği gider
+// Add an "attribute" of type "type" to given "entity". 
 // Return: 1 on success, 0 on failure.
 
---> RemoveAttribute(entity, attribute)
+--> RemoveAttribute(entity, attribute)                     // bi üsttekiyle aynı sebep
 // Remove an "attribute" from given "entity".
 // Return: 1 on success, 0 on failure.
 
---> GetValue(table, entity, attribute)
+--> GetValue(table, entity, attribute)                     // entity dediğimiz şey entity_id olacaksa okay
 // Return: the value of the "table"s "entity"s "attribute".
 
---> SetValue(table, entity, attribute)
+--> SetValue(table, entity, attribute)                     // bi üsttekiyle aynı
 // Set the value of "table"s, "entity"s "attribute".
 // Return: 1 on success, 0 on failure.
