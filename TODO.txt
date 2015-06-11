@@ -45,3 +45,7 @@
   - Will be used to hold all files linked to that cell.
 * Modularize the SQL code.
   - Create functions for uploading / downloading files.
+
+--> Integrate DataTables Plugin
+* 
+* datatables.net

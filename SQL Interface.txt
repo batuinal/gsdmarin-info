@@ -72,10 +72,6 @@
 // Remove an "attribute" from given "entity".
 // Return: 1 on success, 0 on failure.
 
---> ClearAttributes(table)                 //bunun ilk removeTable'ı çağırıp sonra createTable'ı çağırmaktan bi farkı olcak mı
-// Remove all attributes from given table.
-// Return: 1 on success, 0 on failure.
-
 *** Value Functions ***
 
 --> GetValue(table, id, attribute)
@@ -85,6 +81,10 @@
 --> SetValue(table, id, attribute, value)                     
 // In the given "table", set the "attribute" of the entity with given "ID" to "value".
 // Return: 1 on success, 0 on failure.
+
+--> SetAllAttributes(table, entity, dict)
+// In the given table, set all attributes of given "entity" according to the dictionary.
+// Return 1 on success, 0 on failure.
 
 --> SetAllEntities(table, attribute, value)
 // In the given table, set the "attribute" of all entities to "value".

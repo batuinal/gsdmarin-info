@@ -1,0 +1,78 @@
+===== Static Page =====
+
+--> Select a Good Table Library
+
+--> Create a Static Table with full functionality.
+
+===== Table Creation =====
+
+--> Module HTML/CSS
+* Select table from drop down menu.
+  - There is a "(New Table)" option.
+* Create / Delete button.
+  - Create for "(New Table)", Delete for other options.
+
+--> Create Table
+* Connect to database's "Master Table".
+* Add new entity: {URL, Table Name}.
+* Refresh page (GET Request).
+
+--> Remove Table from Current Page
+* Connect to database's master table.
+* Remove entity: {URL, Table Name}.
+* Refresh page (GET Request).
+
+===== Table Read =====
+
+--> Create Simple Python SQL API [Ayhun]
+
+--> Read Data from Database (GET Handler)
+* Query "Master Table" for this page.
+### Do the following for each entry: 
+* Create an empty table.
+* Query the database for that table's contents.
+* Grab the response and turn it into a table format.
+* Create the table and fill it with data in HTML.
+
+===== Table Edit =====
+
+--> Create Attribute Classes
+* Boolean [Yes|No]	--> Coloration
+* Code [A|B|C]		--> Coloration
+* Ship			--> Random Colors
+* Coordinate		--> Link to Google Maps
+* Location		--> Link to Google Maps
+* Hyperlink		--> Link to Internet
+* File			--> Upload Interface, Link to BlobStore
+
+
+--> Manage File Upload
+* "File" Class places an "Upload File" button in the column.
+* Links to "File Upload" Interface.
+* Becomes a link to the file itself once upload is complete.
+* Internally stored as a file URL string.
+
+--> Add/Remove Row
+* Add new entity to database, or remove an existing one.
+* Refresh page (GET Request).
+
+--> Add/Remove Column
+* Add new attribute to database, or remove an existing one.
+* Defualt value is the defualt "invalid" value.
+* Refresh page (GET Request).
+
+--> Edit Row
+* Temporarily record the row's contents.
+* Replace row HTML with an editable form.
+* If discarded, restore everything.
+* If changed, update all attributes of modified entity.
+  - Refresh Page (GET Request).
+
+--> Edit Column
+* Temporarily record the column's contents.
+* Replace column HTML with an editable form.
+* If discarded, restore everything.
+* If changed, iterate through all entities and update the attribute.
+  - Can't change attribute name itself for now.
+  - Refresh Page (GET Request).
+
