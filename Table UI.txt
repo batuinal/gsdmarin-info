@@ -6,16 +6,23 @@
 
 ===== Table Creation =====
 
---> Module HTML/CSS
+--> Table Management Module
 * Select table from drop down menu.
-  - There is a "(New Table)" option.
-* Create / Delete button.
-  - Create for "(New Table)", Delete for other options.
+* Create / Delete buttons.
 
 --> Create Table
-* Connect to database's "Master Table".
-* Add new entity: {URL, Table Name}.
-* Refresh page (GET Request).
+* Send POST Request to Table Creation Page.
+  - Must include current URL.
+
+// -- Table Creation Page -- //
+* Input Table Name / Wanted Attributes
+* Back Button
+* Submit Button
+  - Connect to database's "Master Table".
+  - Add new entity: {URL, Table Name}.
+  - Create new table: TableName.
+  - Add all desired attributes.
+  - Refresh page (GET Request).
 
 --> Remove Table from Current Page
 * Connect to database's master table.
@@ -45,12 +52,13 @@
 * Hyperlink		--> Link to Internet
 * File			--> Upload Interface, Link to BlobStore
 
-
---> Manage File Upload
+--> File Uploads
 * "File" Class places an "Upload File" button in the column.
 * Links to "File Upload" Interface.
 * Becomes a link to the file itself once upload is complete.
 * Internally stored as a file URL string.
+
+// Buttons //
 
 --> Add/Remove Row
 * Add new entity to database, or remove an existing one.
