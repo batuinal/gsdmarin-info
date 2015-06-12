@@ -1,4 +1,4 @@
-﻿===== Assumptions =====
+===== Assumptions =====
 
 --> Each Table is Exactly Two-Dimensional
 * Each row in a table is an "entity" that has it's unique ID.
@@ -38,34 +38,34 @@
 
 *** Entity Functions ***
 
---> ListEntities(table)
-// Return: A list of all entity IDs in the "table".
+--> ListEntities(name)
+// Return: A list of all entity IDs in the table with the corresponding name.
 
---> AddEntity(table)
-// Add new entity to the given table.
+--> AddEntity(name)
+// Add new entity to a table with the given name.
 // Return: ID of new entity on success, 0 on failure.
 
---> AddEntity(table, dict)
-// Add "entity" to the given table.
+--> AddEntity(name, dict)
+// Add "entity" to the table with the given name.
 // Immediately fill the columns based on the given "dict" dictionary.
 // Return: ID of new entity on success, 0 on failure. 
 
---> RemoveEntity(table, id)
-// Remove entity with given ID from the given table.
+--> RemoveEntity(name, id)
+// Remove entity with given ID from the table with the given name.
 // Return: 1 on success, 0 on failure.
 
 *** Attribute Functions ***
 
---> ListAttributes(table)
-// List all attribute names under the given "table".
+--> ListAttributes(name)
+// List all attribute names under the table with the given “name”.
 
---> AddAttribute(table, attribute, type)
-// Add an "attribute" of type "type" to given "table".
+--> AddAttribute(name, attribute, type)
+// Add an "attribute" of type "type" to the table with the given “name”.
 // Default value should be the "invalid" value. (We need to decide what that is)
 // Return: 1 on success, 0 on failure.
 
---> RemoveAttribute(table, attribute)
-// Remove an "attribute" from the given "table".
+--> RemoveAttribute(name, attribute)
+// Remove an "attribute" from the table with the given “name”.
 // Return: 1 on success, 0 on failure.
 
 *** Value Functions ***

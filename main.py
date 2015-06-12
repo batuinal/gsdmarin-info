@@ -17,13 +17,15 @@ import scripts.upload
 import scripts.login
 import scripts.error404
 import scripts.images
+import scripts.SQL_API
 		
 app = webapp2.WSGIApplication([
     ('/', scripts.login.LoginPage),	
 	('/upload', scripts.upload.FileUpload),
 	('/upload_file', scripts.upload.Upload),
-	('/images', scripts.images.ImageUpload),
-	('/images_upload', scripts.images.Upload),
+	('/SQL_API', scripts.SQL_API.call_method),
+	#('/images', scripts.images.ImageUpload),
+	#('/images_upload', scripts.images.Upload),
 	('/parse/([^/]+)?', scripts.upload.Parse),
 	('/*', scripts.error404.NotFoundHandler)
 ], debug=True)
