@@ -1,9 +1,5 @@
 ﻿===== Assumptions =====
 
---> One Table Per Excel File
-* We will have an independent table for each Excel File.
-* Makes it easier to create and add new Excel tables to database.
-
 --> Each Table is Exactly Two-Dimensional
 * Each row in a table is an "entity" that has it's unique ID.
 * Each "entity" has one or more "attribute" (correspond to columns in actual database).
@@ -69,7 +65,7 @@
 // Return: 1 on success, 0 on failure.
 
 --> RemoveAttribute(table, attribute)
-// Remove an "attribute" from given "entity".
+// Remove an "attribute" from the given "table".
 // Return: 1 on success, 0 on failure.
 
 *** Value Functions ***

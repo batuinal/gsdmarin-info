@@ -27,6 +27,7 @@
 --> Remove Table from Current Page
 * Connect to database's master table.
 * Remove entity: {URL, Table Name}.
+* Delete the table itself.
 * Refresh page (GET Request).
 
 ===== Table Read =====
@@ -39,7 +40,7 @@
 * Create an empty table.
 * Query the database for that table's contents.
 * Grab the response and turn it into a table format.
-* Create the table and fill it with data in HTML.
+* Fill the table with data in HTML.
 
 ===== Table Edit =====
 
@@ -56,7 +57,9 @@
 * "File" Class places an "Upload File" button in the column.
 * Links to "File Upload" Interface.
 * Becomes a link to the file itself once upload is complete.
+  - How do we change what we uploaded?
 * Internally stored as a file URL string.
+
 
 // Buttons //
 
