@@ -24,15 +24,14 @@
 
 *** Table Functions ***
 
---> CreateTable(name) // Column'lari sonradan ekleriz.
+[done]--> CreateTable(name) // Column'lari sonradan ekleriz.
 // Create table with given name.
 // Return: 1 on success, 0 on failure.
 
---> PrintTable(name)
-// Generate a list of all entity IDs and their corresponding dictionaries.
-// Return: A dictionary of (ID) --> (Attribute --> Value)
+[done/read comment in the right]--> PrintTable(name) // Bu fonksiyon ListEntities ile birebir aynı işi yapıyor. o yüzden bunu table'ın string representationunu almak için, listEntities'i de bütün entitieleri basmak için kullanalım direk
+// Return: String representation of the table
 
---> RemoveTable(name)               
+[done]--> RemoveTable(name)               
 // Remove table with given name.
 // Return: 1 on success, 0 on failure.
 
