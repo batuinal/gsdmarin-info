@@ -44,7 +44,7 @@
 // Add new entity to a table with the given name.
 // Return: ID of new entity on success, 0 on failure.
 
---> AddEntity(name, dict)
+[done]--> AddEntityWithValues(name, dict) // now supports multiple additions in single function call
 // Add "entity" to the table with the given name.
 // Immediately fill the columns based on the given "dict" dictionary.
 // Return: ID of new entity on success, 0 on failure. 

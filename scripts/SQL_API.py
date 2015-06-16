@@ -42,9 +42,19 @@ class call_method(webapp2.RequestHandler):
       # self.response.out.write(method)
       if not method:
         self.response.out.write('Not a Valid Method Name')
-      elif func == 'baskaParametreliFonksyon':
-        self.response.out.write('Parameter of AddEntity is given by hand')
-        AddEntity("aaaaaa","bbbbbbbbb", "sdfsdfasd")
+      elif func == 'AddEntityWithValues':
+        self.response.out.write('Dictionary for AddEntityWithValues is given by hand')
+        dict = []
+        dict.append(['SHIP'])
+        dict[0].append('ship1')
+        dict[0].append('ship2')
+        dict.append(['DATE'])
+        dict[1].append('1991-12-21')
+        dict[1].append('1010-10-10')
+        dict.append(['REPORT'])
+        dict[2].append('report1')
+        dict[2].append('report2')
+        AddEntityWithValues(name, dict)
       else:
         self.response.out.write('method output:<br>' + string.replace(str(method(name)),'\n','<br>'))         
     except:
@@ -167,7 +177,32 @@ def AddEntity(name):
   return cursor.lastrowid
 
 def AddEntityWithValues(name, dict):
-  pass
+  db = ConnectToDB()
+  db.autocommit(False) # start transaction
+  cursor = db.cursor()
+  try:
+    for row in range(1,len(dict[0])):  
+      sql = []
+      sql.append("INSERT INTO `gsdmarin`.`%s` (" % name)
+      for col in range(0,len(dict)-1):
+        sql.append("`%s`," % dict[col][0])
+      sql.append("`%s`)" % dict[len(dict)-1][0])
+      sql.append("VALUES (")    
+      for col in range(0,len(dict) - 1):
+        sql.append("'%s'," % dict[col][row])
+      sql.append("'%s' );" % dict[len(dict) - 1][row])
+      print "----\n%s\n----" % ' '.join(sql)
+      cursor.execute(' '.join(sql))
+    db.commit()
+  except:
+    db.rollback()
+    print "make sure that the column names are exactly the same as the column names in the real table"
+    return 0
+
+  cursor.close()
+  db.close()
+  return cursor.lastrowid
+  
   
 def ConnectToDB():
   try:
