@@ -11,7 +11,7 @@
 * Create / Delete buttons.
 
 --> Create Table
-* Send POST Request to Table Creation Page.
+* Send GET Request to Table Creation Page.
   - Must include current URL.
 
 // -- Table Creation Page -- //
@@ -22,7 +22,7 @@
   - Add new entity: {URL, Table Name}.
   - Create new table: TableName.
   - Add all desired attributes.
-  - Refresh page (GET Request).
+  - Return to previous page (GET Request).
 
 --> Remove Table from Current Page
 * Connect to database's master table.

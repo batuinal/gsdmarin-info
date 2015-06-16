@@ -49,3 +49,9 @@
 --> Integrate DataTables Plugin
 * 
 * datatables.net
+
+===== Modules =====
+
+--> insert_option module
+* Modularize it to accept an arbitrary number of elements?
+  - Would push "selector population" to its own module.
