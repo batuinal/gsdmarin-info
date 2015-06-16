@@ -37,10 +37,10 @@
 
 *** Entity Functions ***
 
---> ListEntities(name)
-// Return: A list of all entity IDs in the table with the corresponding name.
+[done]--> ListEntities(name)
+// Return: A list of all entities in the table with the corresponding name.
 
---> AddEntity(name)
+[done]--> AddEntity(name)
 // Add new entity to a table with the given name.
 // Return: ID of new entity on success, 0 on failure.
 

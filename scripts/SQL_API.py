@@ -42,7 +42,7 @@ class call_method(webapp2.RequestHandler):
       # self.response.out.write(method)
       if not method:
         self.response.out.write('Not a Valid Method Name')
-      elif func == 'AddEntity':
+      elif func == 'baskaParametreliFonksyon':
         self.response.out.write('Parameter of AddEntity is given by hand')
         AddEntity("aaaaaa","bbbbbbbbb", "sdfsdfasd")
       else:
@@ -98,6 +98,32 @@ def PrintTable(name):
   db.close()
   return stringRepresentation
   
+def ListEntities(name):
+  sql = "SELECT * FROM `gsdmarin`.`%s`" % name
+  db = ConnectToDB()
+  cursor = db.cursor()
+  
+  try:
+    cursor.execute(sql)
+  except:
+    logging.info('sictik:' + sql)
+    return 0
+  
+  num_fields = len(cursor.description)
+  field_names = [i[0] for i in cursor.description]
+  entities = []
+  for f in field_names:
+    entities.append([f])
+  
+  for row in cursor.fetchall():
+    i=0
+    for ele in row:
+      entities[i].append(ele)
+      i += 1
+  
+  print entities
+  return entities
+      
 def RemoveTable(name):
   sql = "DROP TABLE `gsdmarin`.`%s`;" % name
   db = ConnectToDB()
@@ -112,16 +138,36 @@ def RemoveTable(name):
   db.close()
   return 1
 
-def AddEntity(name,  *args):
-  if len(args) > 0
-    dict = args[0]
-  else 
-    dict = None
-    
-  logging.info("oldu")
-  logging.info(name)
-  return "method is not written yet"
+def AddEntity(name):
+  sql = "SELECT * FROM `gsdmarin`.`%s` LIMIT 1" % name
+  db = ConnectToDB()
+  cursor = db.cursor()
+  try:
+    cursor.execute(sql)
+  except:
+    logging.info('sictik:' + sql)
+    return 0
   
+  nulls = "null"
+  num_fields = len(cursor.description)-1
+  while num_fields > 0:
+    num_fields-=1
+    nulls += ',null'
+  sql = "INSERT INTO `gsdmarin`.`%s` VALUES(%s);" % (name, nulls)
+  
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    logging.info('sictik:' + sql)
+    return 0
+  
+  cursor.close()
+  db.close()
+  return cursor.lastrowid
+
+def AddEntityWithValues(name, dict):
+  pass
   
 def ConnectToDB():
   try:
