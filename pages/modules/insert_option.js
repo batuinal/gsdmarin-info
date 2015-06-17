@@ -22,8 +22,8 @@ function insert_option(form_id, values, texts) {
 	selectname = 'select_' + option_counter;
 	textboxname = 'textbox_' + option_counter;
 	
-	html = '<div id="' + newid + '">\n';
-	html += '<select class="input-control select" name="' + selectname + '">\n';
+	html = '<div class="row cells9" id="' + newid + '">\n';
+	html += '<select class="cell colspan4 input-control select" name="' + selectname + '">\n';
 	
 	for (i = 0; i < values.length; i++){
 		html += '<option value="' + values[i] + '"> ' + texts[i] + ' </option>\n';
@@ -33,13 +33,13 @@ function insert_option(form_id, values, texts) {
 	removecmd = "$(function(){&#36;('#" + newid + "').remove();})";
 	
 	html += '</select>\n';
-	html += '<input class="input-control text" type="text" name=' + textboxname + '">\n';
+	html += '<input class="cell colspan4 input-control text" type="text" name=' + textboxname + '">\n';
 	
 	// First button is '+', next are '-'
 	if (option_counter++)
-		html += '<button class="button mif-minus" type="button" onclick=' + removecmd + '></button>\n';
+		html += '<button class="cell button mif-minus" type="button" onclick=' + removecmd + '></button>\n';
 	else
-		html += '<button class="button mif-plus" type="button" onclick=' + insertcmd + '></button>\n';
+		html += '<button class="cell button mif-plus" type="button" onclick=' + insertcmd + '></button>\n';
 	html += '</div>\n';
 	
 	$(function() {

@@ -20,30 +20,54 @@
 	<div id="scaffolding"></div>		
 	
 	<style>
-	
+		#create_table_interface{ 
+			width: 600px;
+		
+		}
+		
+		.form_title{
+			
+		}
 	</style>
 	
 </head>
 
 <body>
 
-	<h1>Create Table Interface</h1>
+	<div class="tile-area">
 	
-	<div id="create_table">
-		<input class="input-control text" type="text" name="table_name">
-		<br/>
+		<h1 class="tile-area-title">Create Table Interface</h1>
+		
+		<form class="grid margin40" id="create_table_interface">	
+			<div class="row cells3">
+				<h3 class="cell" id="form_title">Table Name:</label>
+			</div>
+			
+			<div class="row cells9">
+				<input class="cell colspan4 input-control text" type="text" name="table_name">
+			</div>
+			
+			<div class="row cells1">
+				<h3 class="cell" id="form_title"">Attributes List:</label>
+			</div>
+			
+			<div id="attributes_list"></div>
+			<script>
+				insert_option('attributes_list',['text', 'num', 'bool', 'char', 'date', 'link', 'loc', 'coord', 'file'],['Text (default)', 'Number', 'Yes/No', 'Letter', 'Date', 'Hyperlink', 'Location', 'Coordinate', 'File Upload'])
+			</script>
+			
+			<br/>
+			<div class="row cells9">
+				<button class="cell colspan4 button" type="button" onclick="">Create Table</button>
+			</div>
+		
+		</form>
+		
 		<script>
-			insert_option('create_table',['text', 'num', 'bool', 'char', 'date', 'link', 'loc', 'coord', 'file'],['Text (default)', 'Number', 'Yes/No', 'Letter', 'Date', 'Hyperlink', 'Location', 'Coordinate', 'File Upload'])
+			$(function(){		
+				$("#scaffolding").load("modules/scaffolding.html");
+			});
 		</script>
-	
+		
 	</div>
-	
-
-	<button class="button" type="button" onclick="">Create Table</button>
-	
-	<script>
-		$(function(){		
-			$("#scaffolding").load("modules/scaffolding.html");
-		});
-	</script>
 </body>
