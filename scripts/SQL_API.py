@@ -55,6 +55,8 @@ class call_method(webapp2.RequestHandler):
         dict[2].append('report1')
         dict[2].append('report2')
         AddEntityWithValues(name, dict)
+      elif func == "AddAttribute":
+        AddAttribute(name, attribute, "VARCHAR(100)")
       else:
         self.response.out.write('method output:<br>' + string.replace(str(method(name)),'\n','<br>'))         
     except:
@@ -202,7 +204,22 @@ def AddEntityWithValues(name, dict):
   cursor.close()
   db.close()
   return cursor.lastrowid
+
+def AddAttribute(name, attribute, type):
+  db = ConnectToDB()
+  cursor = db.cursor()
   
+  sql = "ALTER TABLE `gsdmarin`.`%s` ADD COLUMN `%s` %s NULL ;" % (name,attribute, type)
+  print sql
+  
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    print "sictik ki ne sictikkk"
+    return 0
+    
+  return 1
   
 def ConnectToDB():
   try:

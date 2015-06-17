@@ -58,7 +58,7 @@
 --> ListAttributes(name)
 // List all attribute names under the table with the given “name”.
 
---> AddAttribute(name, attribute, type)
+[done]--> AddAttribute(name, attribute, type)
 // Add an "attribute" of type "type" to the table with the given “name”.
 // Default value should be the "invalid" value. (We need to decide what that is)
 // Return: 1 on success, 0 on failure.
