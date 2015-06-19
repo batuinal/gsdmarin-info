@@ -49,7 +49,7 @@
 // Immediately fill the columns based on the given "dict" dictionary.
 // Return: ID of new entity on success, 0 on failure. 
 
---> RemoveEntity(name, id)
+[done]--> RemoveEntity(name, id)
 // Remove entity with given ID from the table with the given name.
 // Return: 1 on success, 0 on failure.
 
@@ -63,7 +63,7 @@
 // Default value should be the "invalid" value. (We need to decide what that is)
 // Return: 1 on success, 0 on failure.
 
---> RemoveAttribute(name, attribute)
+[done]--> RemoveAttribute(name, attribute)
 // Remove an "attribute" from the table with the given “name”.
 // Return: 1 on success, 0 on failure.
 

@@ -57,6 +57,10 @@ class call_method(webapp2.RequestHandler):
         AddEntityWithValues(name, dict)
       elif func == "AddAttribute":
         AddAttribute(name, attribute, "VARCHAR(100)")
+      elif func == "RemoveAttribute":
+        RemoveAttribute(name, attribute)
+      elif func == "RemoveEntity":
+        RemoveEntity(name, _id_)
       else:
         self.response.out.write('method output:<br>' + string.replace(str(method(name)),'\n','<br>'))         
     except:
@@ -220,6 +224,39 @@ def AddAttribute(name, attribute, type):
     return 0
     
   return 1
+
+def RemoveAttribute(name, attribute):
+  db = ConnectToDB()
+  cursor = db.cursor()
+  
+  sql = "ALTER TABLE `gsdmarin`.`%s` DROP COLUMN `%s`;" % (name, attribute)
+
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    print "sictik ki ne sictikkk"
+    print sql
+    return 0
+    
+  return 1
+
+def RemoveEntity(name, id):
+  db = ConnectToDB()
+  cursor = db.cursor()
+  
+  sql = "DELETE FROM `gsdmarin`.`%s` WHERE ID = %s;" % (name, id)
+  
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    print "sictik ki ne sictikkk"
+    print sql
+    return 0
+    
+  return 1  
+  
   
 def ConnectToDB():
   try:
