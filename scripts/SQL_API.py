@@ -25,7 +25,7 @@ class call_method(webapp2.RequestHandler):
       name = self.request.get('name')
       attribute = self.request.get('attribute')
       _id_ = self.request.get('_id_')
-      entity = self.request.get('entity')
+      value = self.request.get('entity')
 
       # AYHUN: Senin inputlarindan bir tek burada dict yok, onun icin farkli bir debugging dusuneblirsn.
       #       Input variable adlari yukarida tanimli, kulanman icin..
@@ -34,7 +34,7 @@ class call_method(webapp2.RequestHandler):
       self.response.out.write('Name of Table:  %s <br>' % (name))
       self.response.out.write('Attribute:      %s <br>' % (attribute))
       self.response.out.write('ID:             %s <br>' % (_id_))
-      self.response.out.write('Entity:         %s <br>' % (entity))
+      self.response.out.write('Value:         %s <br>' % (value))
       
       possibles = globals().copy()
       possibles.update(locals())
@@ -62,9 +62,18 @@ class call_method(webapp2.RequestHandler):
       elif func == "RemoveEntity":
         RemoveEntity(name, _id_)
       elif func == "SetValue":
-        SetValue(name, _id_, attribute, 31)
+        SetValue(name, _id_, attribute, value)
       elif func == "GetValue":
         GetValue(name,_id_,attribute)
+      elif func == "SetAllEntities":
+        SetAllEntities(name, attribute, value)
+      elif func == "SetAllAttributes":
+        dict = []
+        dict.append(['pay'])
+        dict[0].append('11')
+        dict.append(['day'])
+        dict[1].append('21')
+        SetAllAttributes(name, _id_, dict)
       else:
         self.response.out.write('method output:<br>' + string.replace(str(method(name)),'\n','<br>'))         
     except:
@@ -300,6 +309,48 @@ def SetValue(table, id, attribute, value):
   cursor.close()
   db.close()  
   return 1 
+
+def SetAllEntities(table, attribute, value):
+  db = ConnectToDB()
+  cursor = db.cursor()
+  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID` > '0';" % (table, attribute, value)
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    print "sictik ki ne sictikkk"
+    print sql
+    return 0
+  
+  cursor.close()
+  db.close()  
+  return 1 
+
+def SetAllAttributes(table, id, dict):
+  sql = "UPDATE `gsdmarin`.`%s`" % table
+  sql = [sql]
+  sql.append("SET")
+  middle = []
+  for i in range(0,len(dict)):
+    middle.append("`%s` = '%s'" % (dict[i][0],dict[i][1]))
+  sql.append(', '.join(middle))
+  sql.append("WHERE ID = %s;" % id)
+  
+  sql = ' '.join(sql)
+  print sql
+  db = ConnectToDB()
+  cursor = db.cursor()
+  try:
+    cursor.execute(sql)
+    db.commit()
+  except:
+    print "sictik ki ne sictikkk"
+    print sql
+    return 0
+  
+  cursor.close()
+  db.close()  
+  return 1
     
   
 def ConnectToDB():

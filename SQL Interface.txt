@@ -77,10 +77,10 @@
 // In the given "table", set the "attribute" of the entity with given "ID" to "value".
 // Return: 1 on success, 0 on failure.
 
---> SetAllAttributes(table, id, dict)
+[done]--> SetAllAttributes(table, id, dict)
 // In the given table, set all attributes of given "entity" according to the dictionary.
 // Return 1 on success, 0 on failure.
 
---> SetAllEntities(table, attribute, value) //use case'i olmayan bir fonksiyon bu, implement etmeye gerek yok. gerekirse söyleyin hallederz
+[done]--> SetAllEntities(table, attribute, value) //use case'i olmayan bir fonksiyon bu, implement etmeye gerek yok. gerekirse söyleyin hallederz
 // In the given table, set the "attribute" of all entities to "value".
 // Return 1 on success, 0 on failure.

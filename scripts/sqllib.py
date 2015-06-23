@@ -267,3 +267,45 @@ class sqllib:
 	  cursor.close()
 	  db.close()  
 	  return 1 
+
+	def SetAllEntities(table, attribute, value):
+	  db = ConnectToDB()
+	  cursor = db.cursor()
+	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID` > '0';" % (table, attribute, value)
+	  try:
+	    cursor.execute(sql)
+	    db.commit()
+	  except:
+	    print "sictik ki ne sictikkk"
+	    print sql
+	    return 0
+	  
+	  cursor.close()
+	  db.close()  
+	  return 1 
+
+	def SetAllAttributes(table, id, dict):
+	  sql = "UPDATE `gsdmarin`.`%s`" % table
+	  sql = [sql]
+	  sql.append("SET")
+	  middle = []
+	  for i in range(0,len(dict)):
+	    middle.append("`%s` = '%s'" % (dict[i][0],dict[i][1]))
+	  sql.append(', '.join(middle))
+	  sql.append("WHERE ID = %s;" % id)
+	  
+	  sql = ' '.join(sql)
+	  print sql
+	  db = ConnectToDB()
+	  cursor = db.cursor()
+	  try:
+	    cursor.execute(sql)
+	    db.commit()
+	  except:
+	    print "sictik ki ne sictikkk"
+	    print sql
+	    return 0
+	  
+	  cursor.close()
+	  db.close()  
+	  return 1
