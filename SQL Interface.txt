@@ -69,18 +69,18 @@
 
 *** Value Functions ***
 
---> GetValue(table, id, attribute)
+[done]--> GetValue(table, id, attribute)
 // In the given "table", read the value of the "attribute" of the entity with given "ID".
 // Return: Value on success, the default invalid value on failure.
 
---> SetValue(table, id, attribute, value)                     
+[done]--> SetValue(table, id, attribute, value)                     
 // In the given "table", set the "attribute" of the entity with given "ID" to "value".
 // Return: 1 on success, 0 on failure.
 
---> SetAllAttributes(table, entity, dict)
+--> SetAllAttributes(table, id, dict)
 // In the given table, set all attributes of given "entity" according to the dictionary.
 // Return 1 on success, 0 on failure.
 
---> SetAllEntities(table, attribute, value)
+--> SetAllEntities(table, attribute, value) //use case'i olmayan bir fonksiyon bu, implement etmeye gerek yok. gerekirse söyleyin hallederz
 // In the given table, set the "attribute" of all entities to "value".
 // Return 1 on success, 0 on failure.

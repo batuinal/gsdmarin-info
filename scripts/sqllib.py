@@ -233,3 +233,37 @@ class sqllib:
 	  return 1
 
     ### Value Functions ###
+    def GetValue(table, id, attribute):
+	  sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
+	  db = ConnectToDB()
+	  cursor = db.cursor()
+	  
+	  try:
+	    cursor.execute(sql)
+	  except:
+	    logging.info('sictik:' + sql)
+	    return 0  
+	  
+	  for row in cursor.fetchall():
+	    res = row[0]
+	  
+	  cursor.close()
+	  db.close()
+	  return res
+	  
+	def SetValue(table, id, attribute, value):
+	  db = ConnectToDB()
+	  cursor = db.cursor()
+	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID`='%s';" % (table,attribute,value,id)
+
+	  try:
+	    cursor.execute(sql)
+	    db.commit()
+	  except:
+	    print "sictik ki ne sictikkk"
+	    print sql
+	    return 0
+	  
+	  cursor.close()
+	  db.close()  
+	  return 1 
