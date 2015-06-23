@@ -11,7 +11,7 @@
 <body>
 	<h1>Events &amp; Followup Table</h1>
 		<h2>Ayhun Test Env. </h2>
-			<form action="/SQL_API" method="POST" enctype"text">
+			<form action="/SQL_API" method="POST" enctype="text">
 			Func to Call:<br>
 			<input type="text" name="func"><br>
 			Name of Table:<br>
@@ -19,14 +19,13 @@
 			Attribute:<br>
 			<input type="text" name="attribute"><br>
 			ID:<br>
-			<input type="text" name="_id_"><br>
+			<input type="text" name="id"><br>
 			Entity:<br>
 			<input type="text" name="entity"><br>
 			<input type="submit" value="Submit">
 			</form>
 		<h2> Sinan Test Env. </h2>
 			<button onclick="request(1,'GET','/pages/create_table.html',['url'],[window.location.pathname])">Manage Tables</button>
-			<!-- document.write(window.location.pathname) -->
 			
 			
 <script>
