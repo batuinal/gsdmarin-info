@@ -33,7 +33,7 @@ function insert_option(form_id, values, texts) {
 	removecmd = "$(function(){&#36;('#" + newid + "').remove();})";
 	
 	html += '</select>\n';
-	html += '<input class="cell colspan4 input-control text" type="text" name=' + textboxname + '">\n';
+	html += '<input class="cell colspan4 input-control text" type="text" name=' + textboxname + '>\n';
 	
 	// First button is '+', next are '-'
 	if (option_counter++)

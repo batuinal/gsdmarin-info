@@ -1,43 +1,22 @@
-<form id="rf1" method="#">
-    <input id="rf1-0" TYPE="hidden" name="#" value="#">
-</form>
-
-<form id="rf2" method="#">
-    <input id="rf2-0" TYPE="hidden" name="#" value="#">
-	<input id="rf2-1" TYPE="hidden" name="#" value="#">
-</form>
-
-<form id="rf3" method="#">
-    <input id="rf3-0" TYPE="hidden" name="#" value="#">
-	<input id="rf3-1" TYPE="hidden" name="#" value="#">
-	<input id="rf3-2" TYPE="hidden" name="#" value="#">
-</form>
-
-<form id="rf4" method="#">
-    <input id="rf4-0" TYPE="hidden" name="#" value="#">
-	<input id="rf4-1" TYPE="hidden" name="#" value="#">
-	<input id="rf4-2" TYPE="hidden" name="#" value="#">
-	<input id="rf4-3" TYPE="hidden" name="#" value="#">
+<form id="reqform" method="#">
 </form>
 
 <script>
-function request(num, method, action, names, vals) {
+function request(method, action, names, vals) {
+
+	if (names.length != vals.length)
+		console.warn('-- Error: One array is longer than the other!');
 	
-	if (num > 4)
-		console.warn('-- Error: "request" function can not handle more than 4 name-value pairs.');
-		
-	
-	reqid = '#rf' + num;
+	formid = '#reqform';
 	
 	$(function() {
-		for (i = 0; i < num; i++) {
-			inid = reqid + '-' + i;
-			$(inid).attr("name",names[i]);
-			$(inid).attr("value",vals[i]);
+		for (i = 0; i < names.length; i++) {
+			inid = 'in' + i;
+			$(formid).append('<input id="' + inid + '" TYPE="hidden" name="' + names[i] +'" value="' + vals[i] + '">');
 		}	
-		$(reqid).attr("method",method);
-		$(reqid).attr("action",action);
-		$(reqid).submit();
+		$(formid).attr("method",method);
+		$(formid).attr("action",action);
+		$(formid).submit();
 	});
 }
 </script>

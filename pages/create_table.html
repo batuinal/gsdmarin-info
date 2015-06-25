@@ -16,12 +16,14 @@
 	<script src="js/time.js"></script>
 	
 	<script src="modules/insert_option.js"></script>
+	<script src="modules/getParam.js"></script>
 	
 	<div id="scaffolding"></div>		
 	
 	<style>
 		#create_table_interface{ 
 			width: 600px;
+			
 		
 		}
 		
@@ -38,7 +40,9 @@
 	
 		<h1 class="tile-area-title">Create Table Interface</h1>
 		
-		<form class="grid margin40" id="create_table_interface" type="POST" action="create_table">	
+		<form class="grid margin40" id="create_table_interface" method="POST" action="/create_table">	
+			<input id="pageid" type="hidden" name="pageid" value="#">
+			
 			<div class="row cells3">
 				<h3 class="cell" id="form_title">Table Name:</label>
 			</div>
@@ -48,7 +52,7 @@
 			</div>
 			
 			<div class="row cells1">
-				<h3 class="cell" id="form_title"">Attributes List:</label>
+				<h3 class="cell" id="form_title">Attributes List:</label>
 			</div>
 			
 			<div id="attributes_list"></div>
@@ -58,14 +62,16 @@
 			
 			<br/>
 			<div class="row cells9">
-				<button class="cell colspan4 button" type="button" onclick="">Create Table</button>
+				<button class="cell colspan4 button" type="submit">Create Table</button>
 			</div>
 		
 		</form>
 		
 		<script>
+		
 			$(function(){		
 				$("#scaffolding").load("modules/scaffolding.html");
+				$("#pageid").attr("value",getParam("pageid"));
 			});
 		</script>
 		

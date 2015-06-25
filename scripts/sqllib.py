@@ -233,9 +233,9 @@ class sqllib:
 	  return 1
 
     ### Value Functions ###
-	def GetValue(table, id, attribute):
+	def GetValue(self, table, id, attribute):
 	  sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
-	  db = ConnectToDB()
+	  db = self.ConnectToDB()
 	  cursor = db.cursor()
 	  
 	  try:
@@ -251,8 +251,8 @@ class sqllib:
 	  db.close()
 	  return res
 	  
-	def SetValue(table, id, attribute, value):
-	  db = ConnectToDB()
+	def SetValue(self, table, id, attribute, value):
+	  db = self.ConnectToDB()
 	  cursor = db.cursor()
 	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID`='%s';" % (table,attribute,value,id)
 
@@ -268,8 +268,8 @@ class sqllib:
 	  db.close()  
 	  return 1 
 
-	def SetAllEntities(table, attribute, value):
-	  db = ConnectToDB()
+	def SetAllEntities(self, table, attribute, value):
+	  db = self.ConnectToDB()
 	  cursor = db.cursor()
 	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID` > '0';" % (table, attribute, value)
 	  try:
@@ -284,7 +284,7 @@ class sqllib:
 	  db.close()  
 	  return 1 
 
-	def SetAllAttributes(table, id, dict):
+	def SetAllAttributes(self, table, id, dict):
 	  sql = "UPDATE `gsdmarin`.`%s`" % table
 	  sql = [sql]
 	  sql.append("SET")
@@ -296,7 +296,7 @@ class sqllib:
 	  
 	  sql = ' '.join(sql)
 	  print sql
-	  db = ConnectToDB()
+	  db = self.ConnectToDB()
 	  cursor = db.cursor()
 	  try:
 	    cursor.execute(sql)

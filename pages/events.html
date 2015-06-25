@@ -1,6 +1,8 @@
 <head>
 
 	<title>Events &amp; Followup Page</title>
+	
+	<div id="pageid" value="Events"></div>
 
 	<script src="js/jquery-2.1.3.min.js"></script>
 
@@ -11,22 +13,9 @@
 <body>
 	<h1>Events &amp; Followup Table</h1>
 
-		<form action="/SQL_API" method="POST" enctype="text">
-		Func to Call:<br>
-		<input type="text" name="func"><br>
-		Name of Table:<br>
-		<input type="text" name="name"><br>
-		Attribute:<br>
-		<input type="text" name="attribute"><br>
-		ID:<br>
-		<input type="text" name="id"><br>
-		Value:<br>
-		<input type="text" name="value"><br>
-		<input type="submit" value="Submit">
-		</form>
 		
-		<h2> Sinan Test Env. </h2>
-			<button onclick="request(1,'GET','/pages/create_table.html',['url'],[window.location.pathname])">Manage Tables</button>
+		<h2> Table Management </h2>
+			<button type="button" onclick="request('GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])">Create New Table</button>
 			
 			
 		<script>

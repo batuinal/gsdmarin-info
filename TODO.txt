@@ -34,13 +34,17 @@
 
 ===== Database =====
 
---> File Management
-* Integrate the JavaScript CloudSQL file upload module. [Batu & Sinan]
+--> File Management [Batu & Sinan]
+* Integrate the JavaScript CloudSQL file upload module.
   - Module instance is linked to a specific table in database.
 
---> Database Interface
-* Write the backend for create_table.html [Sinan]
-  - Use the SQL database interface.
+--> Database Interface [Sinan]
+* Wait for the full attributes list.
+* Finalize the "create_table" backend functionality.
+* Add "remove_table" functionality.
+  - Write into same file, probably?
+* Customize CSS for create_table.html
+* Customize CSS for events.html
 
 --> Integrate DataTables Plugin
 * datatables.net

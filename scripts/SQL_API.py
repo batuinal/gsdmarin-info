@@ -19,9 +19,11 @@ import webapp2
 import logging
 from sqllib import sqllib
 
+# This Python file uses Spaces for Alignment
+
 class call_method(webapp2.RequestHandler):
   def post(self):
-    #try:
+    try:
       func = self.request.get('func')
       name = self.request.get('name')
       attribute = self.request.get('attribute')
@@ -85,7 +87,8 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.SetAllAttributes(name, id, dict))
       else:
         out = "-- Error: Method " + func + " not found." + "\n"        
-    #except:
-      #logging.error('-- Error: Exception thrown during execution.')
-      #self.response.out.write('-- Error: Exception thrown during execution.')
-      self.response.out.write(out) 
+      self.response.out.write(out)
+    except:
+      logging.error('-- Error: Exception thrown during execution.')
+      self.response.out.write('-- Error: Exception thrown during execution.')
+ 
