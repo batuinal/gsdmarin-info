@@ -233,7 +233,7 @@ class sqllib:
 	  return 1
 
     ### Value Functions ###
-    def GetValue(table, id, attribute):
+	def GetValue(table, id, attribute):
 	  sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
 	  db = ConnectToDB()
 	  cursor = db.cursor()
