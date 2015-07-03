@@ -56,9 +56,6 @@
 			</div>
 			
 			<div id="attributes_list"></div>
-			<script>
-				insert_option('attributes_list',['text', 'num', 'bool', 'char', 'date', 'link', 'loc', 'coord', 'file'],['Text (default)', 'Number', 'Yes/No', 'Letter', 'Date', 'Hyperlink', 'Location', 'Coordinate', 'File Upload'])
-			</script>
 			
 			<br/>
 			<div class="row cells9">
@@ -68,8 +65,8 @@
 		</form>
 		
 		<script>
-		
-			$(function(){		
+			insert_option('attributes_list',['text', 'num', 'bool', 'char', 'date', 'link', 'loc', 'coord', 'file'],['Text (default)', 'Number', 'Yes/No', 'Letter', 'Date', 'Hyperlink', 'Location', 'Coordinate', 'File Upload'])				
+			$(function(){	
 				$("#scaffolding").load("modules/scaffolding.html");
 				$("#pageid").attr("value",getParam("pageid"));
 			});
