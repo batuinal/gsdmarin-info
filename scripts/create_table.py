@@ -26,7 +26,6 @@ from tuplelib import pair
 
 class create_table(webapp2.RequestHandler):
 
-	
 	def post(self):
 		#try:
 

@@ -60,6 +60,5 @@ function insert_option(form_id, values, texts) {
 	
 	$(function() {
 		$('#' + form_id).append(html);	
-	})
-		
+	})		
 }

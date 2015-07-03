@@ -38,11 +38,13 @@
 * Integrate the JavaScript CloudSQL file upload module.
   - Module instance is linked to a specific table in database.
 
---> Database Interface [Sinan]
-* Wait for the full attributes list.
-* Finalize the "create_table" backend functionality.
+--> Create Table Interface [Sinan]
+* Write a database equivalent for each attribute class.
+  - Example: "Coordinate" --> "varchar(18)"
+* Add the SQL table creation functions.
 * Add "remove_table" functionality.
   - Write into same file, probably?
+* Convert create_table.html into a module.
 * Customize CSS for create_table.html
 * Customize CSS for events.html
 
