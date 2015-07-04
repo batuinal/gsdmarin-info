@@ -1,0 +1,58 @@
+===== Attribute Classes =====
+
+--> Text [default]
+* Type: VARCHAR(n)
+* Action: N/A
+* Customize: N/A
+
+--> Number
+* Type: SMALLINT
+* Action: N/A
+* Customize: N/A
+
+--> Yes/No
+* Type: BOOLEAN
+* Action: N/A
+* Customize: Green/Yellow background.
+
+--> Letter
+* Type: CHARACTER(1)
+* Action: N/A
+* Customize: Red/Orange/Yellow background for letters A/B/C.
+
+--> Ship
+* Type: VARCHAR(n)
+* Action: N/A
+* Customize: Assign random background color for each ship.
+  - Impl1: Hold a dictionary of ship names to colors.
+  - Impl2: Seed color randomizer with ship name.
+
+--> Date
+* Type: DATE
+* Action: Link to given date at Google Calendar
+* Customize: N/A
+
+--> Time
+* Type: TIME
+* Action: N/A
+* Customize: N/A
+
+--> Hyperlink
+* Type: VARCHAR(n)
+* Action: Link to given website
+* Customize: N/A
+
+--> Location
+* Type: VARCHAR(n)
+* Action: Link to location at Google Maps
+* Customize: N/A 
+
+--> Coordinate
+* Type: VARCHAR(n)
+* Action: Link to coordinate at Google Maps 
+* Customize: N/A
+
+--> File
+* Type: VARCHAR(n)
+* Action: Link to uploaded file at BlobStore.
+* Customize: Replace filename with appropriate file icon.
