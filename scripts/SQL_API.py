@@ -41,9 +41,9 @@ class call_method(webapp2.RequestHandler):
       
 	  ### Table Functions ###
       if func == "CreateTable":
-        out += str(sqlimpl.CreateTable(name))
+        out += str(sqlimpl.CreateTable(name, 'page1'))
       elif func == "RemoveTable":
-        out += str(sqlimpl.RemoveTable(name))
+        out += str(sqlimpl.RemoveTable(name, 'page1'))
       elif func == "PrintTable":
         out += str(sqlimpl.PrintTable(name))
       ### Entity Functions ###
@@ -68,9 +68,9 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.AddEntityWithValues(name, dict))
       ### Attribute Functions ###
       elif func == "AddAttribute":
-        out += str(sqlimpl.AddAttribute(name, attribute, "VARCHAR(100)"))
+        out += str(sqlimpl.AddAttribute(name, 'page1', attribute, 'VARCHAR(100)', 'red_hooded_motherfucker'))
       elif func == "RemoveAttribute":
-        out += str(sqlimpl.RemoveAttribute(name, attribute))
+        out += str(sqlimpl.RemoveAttribute(name, 'page1', attribute))
       ### Value Functions ###
       elif func == "SetValue":
         out += str(sqlimpl.SetValue(name, id, attribute, value))

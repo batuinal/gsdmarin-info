@@ -20,292 +20,339 @@ import logging
 
 class sqllib:
 
-    ### Scaffolding ###
+		### Scaffolding ###
 	
 	def ConnectToDB(self):
-	  try:
-		if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
-		  logging.info("I should be running on the cloud right now 1<br>")
-		  db = MySQLdb.connect(host='127.0.0.1-+', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
-		  logging.info("I should be running on the cloud right now 2<br>")
-		else:
-		  logging.info("I should be running on a normal computer right now 1")
-		  db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
-		  logging.info("I should be running on a normal computer right now 2")
-	  except:
-		logging.info("Can't connect to database")
-	  return db
+		try:
+			if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+				logging.info("I should be running on the cloud right now 1<br>")
+				db = MySQLdb.connect(host='127.0.0.1-+', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				logging.info("I should be running on the cloud right now 2<br>")
+			else:
+				logging.info("I should be running on a normal computer right now 1")
+				db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				logging.info("I should be running on a normal computer right now 2")
+		except:
+			logging.info("Can't connect to database")
+		return db
 
-    ### Table Functions ###	  
+		### Table Functions ###	  
 	
-	def CreateTable(self, name):
-	  logging.info("We found it boss!"); 
-	  sql = 'CREATE TABLE `gsdmarin`.`%s` ( `ID` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (`ID`));' % name
-	  db = self.ConnectToDB()
+	def CreateTable(self, name, page):
+		sql1 = "CREATE TABLE `gsdmarin`.`%s` ( `ID` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (`ID`));" % name
+		sql2 = "INSERT INTO `gsdmarin`.`MASTER` (`TABLE`,`PAGE`) VALUES ('%s','%s')" % (name, page)
 
-	  logging.info('Creating.. Table Name: %s' % (name))
-	  
-	  cursor = db.cursor()
-	  try:
-		cursor.execute(sql)
-	  except:
-		logging.info("Something went wrong nigga")
-		return 0;
+		db = self.ConnectToDB()
+		db.autocommit(False) # start transaction
+
+		logging.info('Creating.. Table Name: %s' % (name))
 		
-	  logging.info('Creation complete...')
-	  logging.info('SQL:\n' + sql)
-	  
-	  cursor.close()
-	  db.close()
-	  return 1
+		cursor = db.cursor()
+		try:
+			cursor.execute(sql1)
+			cursor.execute(sql2)
+			db.commit()
+		except:
+			logging.info("Something went wrong nigga")
+			db.rollback()
+			self.RemoveTable(name, page)
+			return 0;
+		
+		logging.info('Creation complete...')
+		logging.info('SQL1:\n' + sql1)
+		logging.info('SQL2:\n' + sql2)
+		
+		cursor.close()
+		db.close()
+		return 1
 
 	def PrintTable(self, name):
-	  sql = "SELECT * FROM `gsdmarin`.`%s`" % name
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  try:
-		cursor.execute(sql)
-	  except:
-		logging.info('sictik:' + sql)
-		return 0
-	  
-	  num_fields = len(cursor.description)
-	  field_names = [i[0] for i in cursor.description]
-	  
-	  res = []
-	  res.append(str(field_names))  
-	  for row in cursor.fetchall():
-		res.append(', '.join(str(e) for e in row) )
-	  
-	  stringRepresentation = '\n'.join(res) 
-	  logging.info('String representation of the queried table:\n' + stringRepresentation)
-	  
-	  cursor.close()
-	  db.close()
-	  return stringRepresentation
-		  
-	def RemoveTable(self, name):
-	  sql = "DROP TABLE `gsdmarin`.`%s`;" % name
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  try:
-		cursor.execute(sql)
-	  except:
-		logging.info('sictik:' + sql)
-		return 0
-	  cursor.close()
-	  db.close()
-	  return 1
+		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		
+		num_fields = len(cursor.description)
+		field_names = [i[0] for i in cursor.description]
+		
+		res = []
+		res.append(str(field_names))  
+		for row in cursor.fetchall():
+			res.append(', '.join(str(e) for e in row) )
+		
+		stringRepresentation = '\n'.join(res) 
+		logging.info('String representation of the queried table:\n' + stringRepresentation)
+		
+		cursor.close()
+		db.close()
+		return stringRepresentation
+			
+	def RemoveTable(self, name, page):
+		sql1 = "DELETE FROM `gsdmarin`.`MASTER` WHERE `TABLE` = '%s' AND `PAGE` = '%s';" % (name, page) #deletes from META automatically because they're connected via foreign key relationship
+		sql2 = "DROP TABLE `gsdmarin`.`%s`;" % name
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		try:
+			cursor.execute(sql1)
+			db.commit()
+			cursor.execute(sql2)
+		except:
+			logging.info('sictik:\n' + sql1 + "\n" + sql2)
+			return 0
 
-    ### Entity Functions ###
+		cursor.close()
+		db.close()
+		return 1
+
+		### Entity Functions ###
 	
 	def ListEntities(self, name):
-	  sql = "SELECT * FROM `gsdmarin`.`%s`" % name
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  try:
-		cursor.execute(sql)
-	  except:
-		logging.info('sictik:' + sql)
-		return 0
-	  
-	  num_fields = len(cursor.description)
-	  field_names = [i[0] for i in cursor.description]
-	  entities = []
-	  for f in field_names:
-		entities.append([f])
-	  
-	  for row in cursor.fetchall():
-		i=0
-		for ele in row:
-		  entities[i].append(ele)
-		  i += 1
-	  
-	  print entities
-	  return entities
-	  
-	def RemoveEntity(self, name, id):
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  sql = "DELETE FROM `gsdmarin`.`%s` WHERE ID = %s;" % (name, id)
-	  
-	  try:
-		cursor.execute(sql)
-		db.commit()
-	  except:
-		print "sictik ki ne sictikkk"
-		print sql
-		return 0
+		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
+		db = self.ConnectToDB()
+		cursor = db.cursor()
 		
-	  return 1  	  
-	  
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		
+		num_fields = len(cursor.description)
+		field_names = [i[0] for i in cursor.description]
+		entities = []
+		for f in field_names:
+			entities.append([f])
+		
+		for row in cursor.fetchall():
+			i=0
+			for ele in row:
+				entities[i].append(ele)
+				i += 1
+		
+		print entities
+		return entities
+		
+	def RemoveEntity(self, name, id):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		sql = "DELETE FROM `gsdmarin`.`%s` WHERE ID = %s;" % (name, id)
+		
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		return 1  	  
+		
 	def AddEntity(self, name):
-	  sql = "SELECT * FROM `gsdmarin`.`%s` LIMIT 1" % name
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  try:
-		cursor.execute(sql)
-	  except:
-		logging.info('sictik:' + sql)
-		return 0
-	  
-	  nulls = "null"
-	  num_fields = len(cursor.description)-1
-	  while num_fields > 0:
-		num_fields-=1
-		nulls += ',null'
-	  sql = "INSERT INTO `gsdmarin`.`%s` VALUES(%s);" % (name, nulls)
-	  
-	  try:
-		cursor.execute(sql)
-		db.commit()
-	  except:
-		logging.info('sictik:' + sql)
-		return 0
-	  
-	  cursor.close()
-	  db.close()
-	  return cursor.lastrowid
+		sql = "SELECT * FROM `gsdmarin`.`%s` LIMIT 1" % name
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		
+		nulls = "null"
+		num_fields = len(cursor.description)-1
+		while num_fields > 0:
+			num_fields-=1
+			nulls += ',null'
+			sql = "INSERT INTO `gsdmarin`.`%s` VALUES(%s);" % (name, nulls)
+		
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		
+		cursor.close()
+		db.close()
+		return cursor.lastrowid
 
 	def AddEntityWithValues(self, name, dict):
-	  db = self.ConnectToDB()
-	  db.autocommit(False) # start transaction
-	  cursor = db.cursor()
-	  try:
-		for row in range(1,len(dict[0])):  
-		  sql = []
-		  sql.append("INSERT INTO `gsdmarin`.`%s` (" % name)
-		  for col in range(0,len(dict)-1):
-			sql.append("`%s`," % dict[col][0])
-		  sql.append("`%s`)" % dict[len(dict)-1][0])
-		  sql.append("VALUES (")    
-		  for col in range(0,len(dict) - 1):
-			sql.append("'%s'," % dict[col][row])
-		  sql.append("'%s' );" % dict[len(dict) - 1][row])
-		  print "----\n%s\n----" % ' '.join(sql)
-		  cursor.execute(' '.join(sql))
-		db.commit()
-	  except:
-		db.rollback()
-		print "make sure that the column names are exactly the same as the column names in the real table"
-		return 0
+		db = self.ConnectToDB()
+		db.autocommit(False) # start transaction
+		cursor = db.cursor()
+		try:
+			for row in range(1,len(dict[0])):  
+				sql = []
+				sql.append("INSERT INTO `gsdmarin`.`%s` (" % name)
+				for col in range(0,len(dict)-1):
+					sql.append("`%s`," % dict[col][0])
+				sql.append("`%s`)" % dict[len(dict)-1][0])
+				sql.append("VALUES (")    
+				for col in range(0,len(dict) - 1):
+					sql.append("'%s'," % dict[col][row])
+				sql.append("'%s' );" % dict[len(dict) - 1][row])
+				print "----\n%s\n----" % ' '.join(sql)
+				cursor.execute(' '.join(sql))
+			db.commit()
+		except:
+			db.rollback()
+			print "make sure that the column names are exactly the same as the column names in the real table"
+			return 0
 
-	  cursor.close()
-	  db.close()
-	  return cursor.lastrowid
+		cursor.close()
+		db.close()
+		return cursor.lastrowid
 
 	### Attribute Functions ###
 	
-	def AddAttribute(self, name, attribute, type):
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  sql = "ALTER TABLE `gsdmarin`.`%s` ADD COLUMN `%s` %s NULL ;" % (name,attribute, type)
-	  print sql
-	  
-	  try:
-		cursor.execute(sql)
-		db.commit()
-	  except:
-		print "sictik ki ne sictikkk"
-		return 0
+	def AddAttribute(self, name, page, attribute, type_, class_):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+
+		# obtain the id.
+		sql = "SELECT `ID` FROM `gsdmarin`.`MASTER` WHERE `TABLE` = '%s' AND `PAGE` = '%s';" % (name, page)
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0  
+		id_ = -1	
+		for row in cursor.fetchall():
+			id_ = row[0]
+		if id_ == -1:
+			print "clouln't get the id of the page-table pair. Probably table don't exist in MASTER"
+			return 0
 		
-	  return 1
+		sql1 = "ALTER TABLE `gsdmarin`.`%s` ADD COLUMN `%s` %s NULL ;" % (name,attribute, type_)
+		sql2 = "INSERT INTO `gsdmarin`.`META` (`ID`, `COLUMN_NAME`, `CLASS`) VALUES (%s, '%s', '%s');" % (id_, attribute, class_)
+		print sql1
+		print sql2
 
-	def RemoveAttribute(self, name, attribute):
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  sql = "ALTER TABLE `gsdmarin`.`%s` DROP COLUMN `%s`;" % (name, attribute)
-
-	  try:
-		cursor.execute(sql)
-		db.commit()
-	  except:
-		print "sictik ki ne sictikkk"
-		print sql
-		return 0
+		try:
+			cursor.execute(sql1)
+			db.commit()
+			cursor.execute(sql2)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			return 0
 		
-	  return 1
+		return 1
 
-    ### Value Functions ###
+	def RemoveAttribute(self, name, page, attribute):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		# obtain the id.
+		sql = "SELECT `ID` FROM `gsdmarin`.`MASTER` WHERE `TABLE` = '%s' AND `PAGE` = '%s';" % (name, page)
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0  
+		id_ = -1	
+		for row in cursor.fetchall():
+			id_ = row[0]
+		if id_ == -1:
+			print "clouln't get the id of the page-table pair. Probably table don't exist in MASTER"
+			return 0
+
+		sql1 = "ALTER TABLE `gsdmarin`.`%s` DROP COLUMN `%s`;" % (name, attribute)
+		sql2 = "DELETE FROM `gsdmarin`.`META` WHERE `ID` = '%s' AND `COLUMN_NAME` = '%s';" % (id_, attribute)
+
+		try:
+			cursor.execute(sql1)
+			db.commit()
+			cursor.execute(sql2)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql1
+			print sql2
+			return 0
+		
+		return 1
+
+		### Value Functions ###
 	def GetValue(self, table, id, attribute):
-	  sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  
-	  try:
-	    cursor.execute(sql)
-	  except:
-	    logging.info('sictik:' + sql)
-	    return 0  
-	  
-	  for row in cursor.fetchall():
-	    res = row[0]
-	  
-	  cursor.close()
-	  db.close()
-	  return res
-	  
+		sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0  
+		
+		for row in cursor.fetchall():
+			res = row[0]
+		
+		cursor.close()
+		db.close()
+		return res
+		
 	def SetValue(self, table, id, attribute, value):
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID`='%s';" % (table,attribute,value,id)
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID`='%s';" % (table,attribute,value,id)
 
-	  try:
-	    cursor.execute(sql)
-	    db.commit()
-	  except:
-	    print "sictik ki ne sictikkk"
-	    print sql
-	    return 0
-	  
-	  cursor.close()
-	  db.close()  
-	  return 1 
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		cursor.close()
+		db.close()  
+		return 1 
 
 	def SetAllEntities(self, table, attribute, value):
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID` > '0';" % (table, attribute, value)
-	  try:
-	    cursor.execute(sql)
-	    db.commit()
-	  except:
-	    print "sictik ki ne sictikkk"
-	    print sql
-	    return 0
-	  
-	  cursor.close()
-	  db.close()  
-	  return 1 
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		sql = "UPDATE `gsdmarin`.`%s` SET `%s`='%s' WHERE `ID` > '0';" % (table, attribute, value)
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		cursor.close()
+		db.close()  
+		return 1 
 
 	def SetAllAttributes(self, table, id, dict):
-	  sql = "UPDATE `gsdmarin`.`%s`" % table
-	  sql = [sql]
-	  sql.append("SET")
-	  middle = []
-	  for i in range(0,len(dict)):
-	    middle.append("`%s` = '%s'" % (dict[i][0],dict[i][1]))
-	  sql.append(', '.join(middle))
-	  sql.append("WHERE ID = %s;" % id)
-	  
-	  sql = ' '.join(sql)
-	  print sql
-	  db = self.ConnectToDB()
-	  cursor = db.cursor()
-	  try:
-	    cursor.execute(sql)
-	    db.commit()
-	  except:
-	    print "sictik ki ne sictikkk"
-	    print sql
-	    return 0
-	  
-	  cursor.close()
-	  db.close()  
-	  return 1
+		sql = "UPDATE `gsdmarin`.`%s`" % table
+		sql = [sql]
+		sql.append("SET")
+		middle = []
+		for i in range(0,len(dict)):
+			middle.append("`%s` = '%s'" % (dict[i][0],dict[i][1]))
+		sql.append(', '.join(middle))
+		sql.append("WHERE ID = %s;" % id)
+		
+		sql = ' '.join(sql)
+		print sql
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		cursor.close()
+		db.close()  
+		return 1

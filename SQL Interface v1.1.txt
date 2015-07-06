@@ -21,10 +21,10 @@
 
 ===== Metatable Assumptions =====
 
---> There is a "metatable" associated with each table.
-* The metatable is always named <table_name>_META.
-  - Example: "Table1"s metatable is named Table1_META.
-* Metatable has two columns:
+--> There is a "metatable" that contains meta information about each table in each page.
+* The metatable is named META.
+* Metatable has 3 columns:
+  - id (foreign key that corresponds to the id entry in MASTER)
   - Column Name (String)
   - Class (String)
 * Metatable is a dictionary of each "column name" to a "class".
