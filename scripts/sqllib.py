@@ -27,7 +27,10 @@ class sqllib:
 		try:
 			if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
 				logging.info("I should be running on the cloud right now 1<br>")
-				db = MySQLdb.connect(host='127.0.0.1-+', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				#AYHUN BIRDE BUNU DENEDIM ANCAK BU DA CALISMADI...
+				#Burayi bir inceler misin lutfen...https://cloud.google.com/appengine/docs/python/cloud-sql/
+				db = MySQLdb.connect(unix_socket='/cloudsql/gsdmarin-info:database', db='gsdmarin', user='ruifu', passwd='1234')
+				#db = MySQLdb.connect(host='127.0.0.1-+', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
 				logging.info("I should be running on the cloud right now 2<br>")
 			else:
 				logging.info("I should be running on a normal computer right now 1")
