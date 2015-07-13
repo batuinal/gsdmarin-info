@@ -34,19 +34,21 @@
 
 ===== Database =====
 
---> File Management [Batu & Sinan]
+--> File Management [Ruifu]
 * Integrate the JavaScript CloudSQL file upload module.
   - Module instance is linked to a specific table in database.
 
---> Create Table Interface [Sinan]
-* Write a database equivalent for each attribute class.
-  - Example: "Coordinate" --> "varchar(18)"
-* Add the SQL table creation functions.
-* Add "remove_table" functionality.
-  - Write into same file, probably?
-* Convert create_table.html into a module.
-* Customize CSS for create_table.html
-* Customize CSS for events.html
+--> View Table Interface
+* Write Python Module that generates the DataTable HTML. 
+
+--> Modify Table Interface
+* Add 'remove table' functionality.
+* Insert/Remove Row/Column functionality.
+* Edit Cell/Row functionality.
+
+--> JavaScript Attribute Classes
+* Write function that applies custom CSS to each class.
+  - Has to be highly modularized.
 
 --> Integrate DataTables Plugin
 * datatables.net

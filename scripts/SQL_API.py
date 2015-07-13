@@ -25,6 +25,7 @@ class call_method(webapp2.RequestHandler):
   def post(self):
     try:
       func = self.request.get('func')
+      page = self.request.get('page')
       name = self.request.get('name')
       attribute = self.request.get('attribute')
       id = self.request.get('id')
@@ -32,6 +33,7 @@ class call_method(webapp2.RequestHandler):
 
       self.response.out.write('Method to Call: %s <br>' % (func))
       self.response.out.write('Name of Table:  %s <br>' % (name))
+      self.response.out.write('Page Name:      %s <br>' % (page))
       self.response.out.write('Attribute:      %s <br>' % (attribute))
       self.response.out.write('ID:             %s <br>' % (id))
       self.response.out.write('Value:          %s <br>' % (value))
@@ -41,9 +43,9 @@ class call_method(webapp2.RequestHandler):
       
 	  ### Table Functions ###
       if func == "CreateTable":
-        out += str(sqlimpl.CreateTable(name, 'page1'))
+        out += str(sqlimpl.CreateTable(name, page))
       elif func == "RemoveTable":
-        out += str(sqlimpl.RemoveTable(name, 'page1'))
+        out += str(sqlimpl.RemoveTable(name, page))
       elif func == "PrintTable":
         out += str(sqlimpl.PrintTable(name))
       ### Entity Functions ###
@@ -68,9 +70,9 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.AddEntityWithValues(name, dict))
       ### Attribute Functions ###
       elif func == "AddAttribute":
-        out += str(sqlimpl.AddAttribute(name, 'page1', attribute, 'VARCHAR(100)', 'red_hooded_motherfucker'))
+        out += str(sqlimpl.AddAttribute(name, page, attribute, 'VARCHAR(100)', 'red_hooded_motherfucker'))
       elif func == "RemoveAttribute":
-        out += str(sqlimpl.RemoveAttribute(name, 'page1', attribute))
+        out += str(sqlimpl.RemoveAttribute(name, page, attribute))
       ### Value Functions ###
       elif func == "SetValue":
         out += str(sqlimpl.SetValue(name, id, attribute, value))

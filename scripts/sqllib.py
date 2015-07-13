@@ -23,6 +23,7 @@ class sqllib:
 		### Scaffolding ###
 	
 	def ConnectToDB(self):
+		db = None
 		try:
 			if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
 				logging.info("I should be running on the cloud right now 1<br>")

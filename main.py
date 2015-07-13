@@ -18,14 +18,14 @@ import scripts.login
 import scripts.error404
 import scripts.images
 import scripts.SQL_API
-import scripts.create_table
+import scripts.edit_tables
 		
 app = webapp2.WSGIApplication([
     ('/', scripts.login.LoginPage),	
 	('/upload', scripts.upload.FileUpload),
 	('/upload_file', scripts.upload.Upload),
 	('/SQL_API', scripts.SQL_API.call_method),
-	('/create_table', scripts.create_table.create_table),
+	('/edit_tables', scripts.edit_tables.edit_tables),
 	#('/images', scripts.images.ImageUpload),
 	#('/images_upload', scripts.images.Upload),
 	('/parse/([^/]+)?', scripts.upload.Parse),

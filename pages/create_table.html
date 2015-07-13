@@ -40,11 +40,12 @@
 	
 		<h1 class="tile-area-title">Create Table Interface</h1>
 		
-		<form class="grid margin40" id="create_table_interface" method="POST" action="/create_table">	
+		<form class="grid margin40" id="create_table_interface" method="POST" action="/edit_tables">	
 			<input id="pageid" type="hidden" name="pageid" value="#">
+			<input type="hidden" name="reqtype" value="create">
 			
 			<div class="row cells3">
-				<h3 class="cell" id="form_title">Table Name:</label>
+				<h3 class="cell" id="form_title">Create Table:</label>
 			</div>
 			
 			<div class="row cells9">
@@ -63,7 +64,7 @@
 			</div>
 		
 		</form>
-		
+
 		<script>
 			insert_option('attributes_list',['text', 'num', 'bool', 'char', 'ship', 'date', 'time', 'link', 'loc', 'coord', 'file'],['Text (default)', 'Number', 'Yes/No', 'Letter', 'Ship', 'Date', 'Time', 'Hyperlink', 'Location', 'Coordinate', 'File Upload'])				
 			$(function(){	
