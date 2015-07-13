@@ -23,16 +23,16 @@ class sqllib:
 		### Scaffolding ###
 	
 	def ConnectToDB(self):
-		db = None
+		
 		try:
 			if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+				#Eger code deployedsa buradayim
 				logging.info("I should be running on the cloud right now 1<br>")
-				#AYHUN BIRDE BUNU DENEDIM ANCAK BU DA CALISMADI...
-				#Burayi bir inceler misin lutfen...https://cloud.google.com/appengine/docs/python/cloud-sql/
-				db = MySQLdb.connect(unix_socket='/cloudsql/gsdmarin-info:database', db='gsdmarin', user='ruifu', passwd='1234')
-				#db = MySQLdb.connect(host='127.0.0.1-+', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				#Documentation @ https://cloud.google.com/appengine/docs/python/cloud-sql/
+				db = MySQLdb.connect(unix_socket='/cloudsql/gsdmarin-info:database', db='gsdmarin', user='root')
 				logging.info("I should be running on the cloud right now 2<br>")
 			else:
+				#LOCAL - Ancak gercek sql'e connected
 				logging.info("I should be running on a normal computer right now 1")
 				db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
 				logging.info("I should be running on a normal computer right now 2")
@@ -45,7 +45,7 @@ class sqllib:
 	def CreateTable(self, name, page):
 		sql1 = "CREATE TABLE `gsdmarin`.`%s` ( `ID` INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (`ID`));" % name
 		sql2 = "INSERT INTO `gsdmarin`.`MASTER` (`TABLE`,`PAGE`) VALUES ('%s','%s')" % (name, page)
-
+		
 		db = self.ConnectToDB()
 		db.autocommit(False) # start transaction
 
