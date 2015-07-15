@@ -117,9 +117,21 @@ class sqllib:
 		### Entity Functions ###
 	
 	def ListEntities(self, name):
-		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
 		db = self.ConnectToDB()
 		cursor = db.cursor()
+		
+		sql = "SELECT `ID` FROM `gsdmarin`.`MASTER` WHERE `TABLE` = '%s';" % name
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+
+		for row in cursor.fetchall():
+			for r in row:
+				id_ = r
+
+		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
 		
 		try:
 			cursor.execute(sql)
@@ -130,8 +142,12 @@ class sqllib:
 		num_fields = len(cursor.description)
 		field_names = [i[0] for i in cursor.description]
 		entities = []
+		i=0
 		for f in field_names:
-			entities.append([f])
+			entities.append([f])			
+			entities[i].append(self.GetMetaValue(id_,f,db))
+			i = i + 1
+
 		
 		for row in cursor.fetchall():
 			i=0
@@ -139,9 +155,38 @@ class sqllib:
 				entities[i].append(ele)
 				i += 1
 		
-		print entities
+		cursor.close()
+		db.close()
 		return entities
+	
+	def GetEntity(self, name, attribute, value):
+		print "geldik" + name + attribute + str(value) 
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+
+		sql = "SELECT * FROM `gsdmarin`.`%s` WHERE `%s` = '%s';" % (name, attribute, value)
 		
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		first = 1;
+		res = []
+		for row in cursor.fetchall():
+			if first == 1:				
+				for c in row:
+					print "c:" + str(c)
+					res.append([c])
+				first = 0
+			else:
+				i=0
+				for c in row:
+					res[i].append(c)
+					i = i + 1
+		cursor.close()
+		db.close()
+		return res
 	def RemoveEntity(self, name, id):
 		db = self.ConnectToDB()
 		cursor = db.cursor()
@@ -284,6 +329,18 @@ class sqllib:
 		return 1
 
 		### Value Functions ###
+	def GetMetaValue(self, id_, col_name,db):
+		cursor = db.cursor()
+		sql = "SELECT `CLASS` FROM `gsdmarin`.`META` WHERE `ID` = '%s' AND `COLUMN_NAME` = '%s';" % (id_, col_name)
+		try:
+			cursor.execute(sql)
+		except:
+			logging.info('sictik:' + sql)
+			return 0
+		for row in cursor.fetchall():
+			return row[0]
+		return -1
+
 	def GetValue(self, table, id, attribute):
 		sql = "SELECT `%s` FROM `gsdmarin`.`%s` WHERE ID = '%s';" % (attribute, table, id)
 		db = self.ConnectToDB()
