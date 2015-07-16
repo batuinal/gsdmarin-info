@@ -87,8 +87,10 @@ class call_method(webapp2.RequestHandler):
         dict.append(['day'])
         dict[1].append('21')
         out += str(sqlimpl.SetAllAttributes(name, id, dict))
-      elif func == "GetEntity":
-        sqlimpl.GetEntity(name, attribute, value)
+      elif func == "GetEntityByID":
+        sqlimpl.GetEntityByID(name, attribute, id)
+      elif func == "GetEntitiesByAttr":
+        sqlimpl.GetEntitiesByAttr(name, attribute, value)
       else:
         out = "-- Error: Method " + func + " not found." + "\n"        
       self.response.out.write(out)

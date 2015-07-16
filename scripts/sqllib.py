@@ -159,7 +159,21 @@ class sqllib:
 		db.close()
 		return entities
 	
-	def GetEntityByID
+	def GetEntityByID(self, name, id):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		
+		sql = "SELECT * FROM `gsdmarin`.`%s` WHERE ID = %s;" % (name, id)
+		
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		return 1  	
 	
 	def GetEntitiesByAttr(self, name, attribute, value):
 		print "geldik" + name + attribute + str(value) 
