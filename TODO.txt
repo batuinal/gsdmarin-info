@@ -39,6 +39,7 @@
   - Module instance is linked to a specific table in database.
 
 --> View Table Interface
+* Modify submenu links to generate POST requests to "view_table".
 * Write Python Module that generates the DataTable HTML. 
 
 --> Modify Table Interface

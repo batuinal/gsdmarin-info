@@ -15,6 +15,7 @@
     <script src="js/metro.js"></script>
 	
 	<div id="scaffolding"></div>
+	<div id="request"></div>
 
 	</head>
 <body>
@@ -27,13 +28,13 @@
         <div class="tile-group double">
             <span class="tile-group-title">General</span>
             <div class="tile-container">
-                <a href="/pages/events.html" class="tile-large bg-indigo fg-white" data-role="tile">
+                <button class="tile-large bg-indigo fg-white" data-role="tile" type="button" onclick="request('GET','/view_table',['pageid'],['Events'])">
 					<div class="aspect_wide">
 						<div class="tile-content">
 						</div>
 						<span class="tile-label">Events &amp; Followup</span>
 					</div>
-				</a>
+				</button>
 
                 <a href="#" class="tile-large bg-indigo fg-white" data-role="tile">
 					<div class="aspect_wide">
@@ -131,6 +132,7 @@
 		$(function(){ 
 			$("#navtab").load("modules/navtab.html");
 			$("#topbar").load("modules/topbar.html");
+			$("#request").load("modules/request.html");
 			$("#scaffolding").load("modules/scaffolding.html");
 		})
 	;</script> 

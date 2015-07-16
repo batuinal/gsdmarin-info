@@ -1,0 +1,16 @@
+===== Changes to Existing Functionality =====
+
+--> ListAllEntities() // previously called ListEntities()
+* Access META to grab the attribute class for every line.
+* (Current functionality is here.)
+* Attach this array to the end of the list of entities.
+* Return the combined list.
+
+===== New Querying Functions =====
+
+--> GetEntity(name, id)
+* Returns the entity with ID "id" from the table "name".
+
+--> GrabEntities(name, attr, value)
+* Queries the table named "name" for all entities whose "attr" = "value".
+* Returns the matching list of entities.

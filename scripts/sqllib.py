@@ -116,7 +116,7 @@ class sqllib:
 
 		### Entity Functions ###
 	
-	def ListEntities(self, name):
+	def ListAllEntities(self, name):
 		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
 		db = self.ConnectToDB()
 		cursor = db.cursor()
@@ -335,7 +335,7 @@ class sqllib:
 		db.close()  
 		return 1 
 
-	def SetAllAttributes(self, table, id, dict):
+	def SetAttributes(self, table, id, dict):
 		sql = "UPDATE `gsdmarin`.`%s`" % table
 		sql = [sql]
 		sql.append("SET")
