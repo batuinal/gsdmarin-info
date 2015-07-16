@@ -50,18 +50,20 @@ class view_table(webapp2.RequestHandler):
 		self.response.out.write(out)
 		
 		# We don't have this function yet.
-		tables = []
-		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)
+		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)\
 		
-		for table in tables:
-			out = '<table id="' + table + '" class="display" cellspacing="0" width="100%">'
-			self.response.out.write(out)
-			
-			#listout = sqlimpl.ListAllEntities(table) [UNCOMMENT]
-			#entities = listout[0]
-			#classes = listout[1]
-			
-			# Parse out the table.
+		if (len(tables) == 3):
+			for table in tables[2]:
+				out = "<div> Table: " + table + "</div><br>"
+				self.response.out.write(out)
+				#out = '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">'
+				#self.response.out.write(out)
+				
+				#listout = sqlimpl.ListAllEntities(table) [UNCOMMENT]
+				#entities = listout[0]
+				#classes = listout[1]
+				
+				# Parse out the table.
 		
 		
 		

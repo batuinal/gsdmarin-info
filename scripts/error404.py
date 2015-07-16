@@ -7,5 +7,6 @@ import webapp2
 
 class NotFoundHandler(webapp2.RequestHandler):
 	def get(self):
-		self.error(404)
-		self.response.write('<head><title>Page Not Found</title></head> \n <body><h1>Error 404 - Page Not Found.</h1></body>')
+		self.response.write('<head><title>Page Not Found</title></head> \n <body><h1>Error 404 - Requested page does not exist.</h1></body>')
+	def post(self):
+		self.response.write('<head><title>Page Not Found</title></head> \n <body><h1>Error 404 - Requested page does not exist.</h1></body>')

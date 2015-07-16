@@ -40,7 +40,10 @@
 
 --> View Table Interface
 * Modify submenu links to generate POST requests to "view_table".
+  - Keep modifying!
 * Write Python Module that generates the DataTable HTML. 
+  - Scaffolding complete, start the parser.
+  - Create a dummy table with some values in it? (@Batu)
 
 --> Modify Table Interface
 * Add 'remove table' functionality.
@@ -53,3 +56,11 @@
 
 --> Integrate DataTables Plugin
 * datatables.net
+
+===== SQL Interface =====
+
+--> Robustness
+* Must accept and handle unexpected input.
+* How to differentiate table_id from entity_id?
+  - Suggestion: EID / TID
+

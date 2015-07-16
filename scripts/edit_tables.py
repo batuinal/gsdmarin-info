@@ -73,7 +73,8 @@ class edit_tables(webapp2.RequestHandler):
 			else:
 				out = "-- Error: Unknown request type (" + reqtype + ")."
 			
-			self.redirect("/pages/events.html")
+			url = "/view_table?pageid=" + pageid
+			self.redirect(url)
 		#except:
 			#logging.error('-- Error: Exception thrown during execution.')
 			#self.response.out.write('-- Error: Exception thrown during execution.')
