@@ -8,9 +8,9 @@
 
 ===== New Querying Functions =====
 
---> GetEntity(name, id)
+--> GetEntityByID(name, id)
 * Returns the entity with ID "id" from the table "name".
 
---> GrabEntities(name, attr, value)
+--> GetEntitiesByAttr(name, attr, value)
 * Queries the table named "name" for all entities whose "attr" = "value".
 * Returns the matching list of entities.
