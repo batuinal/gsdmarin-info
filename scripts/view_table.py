@@ -28,8 +28,10 @@ class view_table(webapp2.RequestHandler):
 
 	def get(self):
 
+		sqlimpl = sqllib();
+	
 		page = self.request.get('pageid')
-
+		
 		# Header Creation
 		out = '<head>\n'
 		out += '<title>' + page + ' Page</title>\n'
@@ -49,14 +51,15 @@ class view_table(webapp2.RequestHandler):
 		
 		# We don't have this function yet.
 		tables = []
-		tables = GrabEntities("MASTER","Page ID",page)
+		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)
 		
 		for table in tables:
 			out = '<table id="' + table + '" class="display" cellspacing="0" width="100%">'
 			self.response.out.write(out)
 			
-			#entities = ListAllEntities(table) [UNCOMMENT]
-			classes = entities[-1]
+			#listout = sqlimpl.ListAllEntities(table) [UNCOMMENT]
+			#entities = listout[0]
+			#classes = listout[1]
 			
 			# Parse out the table.
 		

@@ -23,7 +23,7 @@ from sqllib import sqllib
 
 class call_method(webapp2.RequestHandler):
   def post(self):
-    try:
+    #try:
       func = self.request.get('func')
       page = self.request.get('page')
       name = self.request.get('name')
@@ -53,8 +53,8 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.RemoveEntity(name, id))
       elif func == "AddEntity":
         out += str(sqlimpl.AddEntity(name))
-      elif func == "ListEntities":
-        out += str(sqlimpl.ListEntities(name))
+      elif func == "ListAllEntities":
+        out += str(sqlimpl.ListAllEntities(name))
       elif func == 'AddEntityWithValues':
         self.response.out.write('Dictionary for AddEntityWithValues is given by hand')
         dict = []
@@ -80,7 +80,7 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.GetValue(name, id, attribute))
       elif func == "SetAllEntities":
         out += str(sqlimpl.SetAllEntities(name, attribute, value))
-      elif func == "SetAllAttributes":
+      elif func == "SetAttributes":
         dict = []
         dict.append(['pay'])
         dict[0].append('11')
@@ -94,7 +94,7 @@ class call_method(webapp2.RequestHandler):
       else:
         out = "-- Error: Method " + func + " not found." + "\n"        
       self.response.out.write(out)
-    except:
-      logging.error('-- Error: Exception thrown during execution.')
-      self.response.out.write('-- Error: Exception thrown during execution.')
+    #except:
+      #logging.error('-- Error: Exception thrown during execution.')
+      #self.response.out.write('-- Error: Exception thrown during execution.')
  

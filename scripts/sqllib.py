@@ -23,7 +23,6 @@ class sqllib:
 		### Scaffolding ###
 	
 	def ConnectToDB(self):
-		
 		try:
 			if (os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
 				#Eger code deployedsa buradayim
@@ -116,7 +115,6 @@ class sqllib:
 
 		### Entity Functions ###
 	def ListAllEntities(self, name):
-		sql = "SELECT * FROM `gsdmarin`.`%s`" % name
 		db = self.ConnectToDB()
 		cursor = db.cursor()
 		
@@ -126,7 +124,7 @@ class sqllib:
 		except:
 			logging.info('sictik:' + sql)
 			return 0
-
+		
 		for row in cursor.fetchall():
 			for r in row:
 				id_ = r
@@ -346,7 +344,7 @@ class sqllib:
 		
 		return 1
 
-		### Value Functions ###
+	### Value Functions ###
 	def GetMetaValue(self, id_, col_name,db):
 		cursor = db.cursor()
 		sql = "SELECT `CLASS` FROM `gsdmarin`.`META` WHERE `ID` = '%s' AND `COLUMN_NAME` = '%s';" % (id_, col_name)
