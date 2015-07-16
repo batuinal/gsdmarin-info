@@ -14,3 +14,5 @@
 --> GetEntitiesByAttr(name, attr, value)
 * Queries the table named "name" for all entities whose "attr" = "value".
 * Returns the matching list of entities.
+
+===== // =====
