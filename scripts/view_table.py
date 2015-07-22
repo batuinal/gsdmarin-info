@@ -1,4 +1,4 @@
-import MySQLdb
+﻿import MySQLdb
 import urllib
 import jinja2
 import os
@@ -36,10 +36,11 @@ class view_table(webapp2.RequestHandler):
 		out = '<head>\n'
 		out += '<title>' + page + ' Page</title>\n'
 		out += '<div id="pageid" value="' + page + '"></div>\n'
-		out += '<link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">'
+		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/media/css/jquery.dataTables.css">'
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
-		out += '<script src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
-		out += '<script src="js/testtable.js"></script>\n'
+		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
+		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
+		out += '<script src="pages/js/testtable.js"></script>\n'
 		out += '<div id="request"></div>\n'
 		out += '</head>\n'
 		self.response.out.write(out)
@@ -54,16 +55,52 @@ class view_table(webapp2.RequestHandler):
 		
 		if (len(tables) == 3):
 			for table in tables[2]:
-				out = "<div> Table: " + table + "</div><br>"
+				out = "<h3> Table: " + table + "</h3><br>\n"
 				self.response.out.write(out)
-				#out = '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">'
-				#self.response.out.write(out)
 				
-				#listout = sqlimpl.ListAllEntities(table) [UNCOMMENT]
-				#entities = listout[0]
-				#classes = listout[1]
+				out = '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">\n'
+				self.response.out.write(out)
 				
-				# Parse out the table.
+				# Database Query
+				listout = sqlimpl.ListAllEntities(table)
+				
+				# Header Parsing
+				skip = 1;
+				out = '<thead>\n'
+				out += '<tr>\n'
+				for elt in listout:
+					if (skip):
+						skip = 0
+					else:
+						out += '<th>' + elt[0] + '</th>\n'
+				
+				out += '</tr>\n'
+				out += '<thead>\n'
+				self.response.out.write(out)
+				
+				
+				# Body Parsing
+				out = '<tbody>\n'
+				for n in range(2, len(listout[0])):
+					out += '<tr>\n'
+					skip = 1;
+					for elt in listout:
+						if (skip):
+							skip = 0
+						else:
+							out += '<td>' + str(elt[n]) + '</td>\n'
+					out += '</tr>\n'
+				
+				out += '</tbody>\n'
+				self.response.out.write(out)
+				
+					
+				
+				# Attribute Class Javascripts
+				# <INSERT HERE>
+				
+				out = '</table>\n'
+				self.response.out.write(out)
 		
 		
 		
