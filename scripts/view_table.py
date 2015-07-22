@@ -102,17 +102,20 @@ class view_table(webapp2.RequestHandler):
 				out = '</table>\n'
 				self.response.out.write(out)
 		
+			# Body Scaffolding
+			out = '<button type="button" onclick="request(' + "'GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])" + '">Create New Table</button>\n'
+			out += '<script>\n'
+			out += '$(function(){\n'
+			out += '$("#request").load("pages/modules/request.html");\n'
+			out += '});\n'
+			out += '</script>\n'
+			out += '</body>\n'
+			self.response.out.write(out)
+		else:
+			self.redirect('/notfound')
 		
 		
-		# Body Scaffolding
-		out = '<button type="button" onclick="request(' + "'GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])" + '">Create New Table</button>\n'
-		out += '<script>\n'
-		out += '$(function(){\n'
-		out += '$("#request").load("pages/modules/request.html");\n'
-		out += '});\n'
-		out += '</script>\n'
-		out += '</body>\n'
-		self.response.out.write(out)
+
 		
 		
 		

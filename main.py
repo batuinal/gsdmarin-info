@@ -31,6 +31,7 @@ app = webapp2.WSGIApplication([
 	#('/images', scripts.images.ImageUpload),
 	#('/images_upload', scripts.images.Upload),
 	('/parse/([^/]+)?', scripts.upload.Parse),
+	('/notfound', scripts.error404.NotFoundHandler),
 	('/*', scripts.error404.NotFoundHandler)
 ], debug=True)
 
