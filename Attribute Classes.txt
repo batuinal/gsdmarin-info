@@ -10,12 +10,12 @@
 * Action: N/A
 * Customize: N/A
 
---> Yes/No
+--> Yes/No [done]
 * Type: BOOLEAN
 * Action: N/A
 * Customize: Green/Yellow background.
 
---> Letter
+--> Letter [done]
 * Type: CHARACTER(1)
 * Action: N/A
 * Customize: Red/Orange/Yellow background for letters A/B/C.

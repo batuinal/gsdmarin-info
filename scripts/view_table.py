@@ -40,7 +40,8 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
-		out += '<script src="pages/js/testtable.js"></script>\n'
+		out += '<script src="pages/js/viewtable.js"></script>\n'
+		out += '<script src="pages/js/jsac.js"></script>\n'
 		out += '<div id="request"></div>\n'
 		out += '</head>\n'
 		self.response.out.write(out)
@@ -58,7 +59,8 @@ class view_table(webapp2.RequestHandler):
 				out = "<h3> Table: " + table + "</h3><br>\n"
 				self.response.out.write(out)
 				
-				out = '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">\n'
+				out = '<div id="table-container" width="80%" padding="80px">\n'
+				out += '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">\n'
 				self.response.out.write(out)
 				
 				# Database Query
@@ -88,18 +90,14 @@ class view_table(webapp2.RequestHandler):
 						if (skip):
 							skip = 0
 						else:
-							out += '<td>' + str(elt[n]) + '</td>\n'
+							out += '<td class="jsac_' + elt[1] + '">' + str(elt[n]) + '</td>\n'
 					out += '</tr>\n'
 				
 				out += '</tbody>\n'
 				self.response.out.write(out)
 				
-					
-				
-				# Attribute Class Javascripts
-				# <INSERT HERE>
-				
 				out = '</table>\n'
+				out += '</div>\n'
 				self.response.out.write(out)
 		
 			# Body Scaffolding
