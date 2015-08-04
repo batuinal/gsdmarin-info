@@ -42,6 +42,15 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
 		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
+		
+		out += '<script src="https://addthisevent.com/libs/1.6.0/ate.min.js"></script>\n'
+		out += '<script> addthisevent.settings({license    : "00000000000000000000",'
+		out += 'mouse      : false, css : true,'
+		out += 'google     : {show:true, text:"Google <em>(online)</em>"},'
+		out += 'outlookcom : {show:true, text:"Outlook.com <em>(online)</em>"},'
+		out += 'appleical  : {show:true, text:"Apple Calendar"},'
+		out += 'facebook   : {show:true, text:"Facebook Event"}, });</script>'
+
 		out += '<div id="request"></div>\n'
 		out += '</head>\n'
 		self.response.out.write(out)
@@ -49,6 +58,14 @@ class view_table(webapp2.RequestHandler):
 		# Body Scaffolding
 		out = '<body>\n'
 		out += '<h1>' + page + ' Page</h1>\n'
+		out += ' <div title="Add to Calendar" class="addthisevent" data-track="_gaq.push([' + "'_trackEvent','AddThisEvent','click','ate-calendar'" + '"])"> '
+		out += 'Add to Calendar <span class="start">08/18/2015 09:00 AM</span>'
+		out +=	'<span class="end">08/18/2015 11:00 AM</span>'
+		out +=	'<span class="timezone">Europe/Istanbul</span>'
+		out +=	'<span class="title">Summary of the event</span>'
+		out +=	'<span class="description">Description of the event</span>'
+		out +=	'<span class="location">Location of the event</span>'
+		out +=	'<span class="date_format">MM/DD/YYYY</span> </div>'
 		self.response.out.write(out)
 		
 		# We don't have this function yet.

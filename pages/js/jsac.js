@@ -22,7 +22,7 @@ $(function() {
 			if (elts[i].innerHTML == "a" || elts[i].innerHTML == "A")
 				elts[i].style.backgroundColor = "#ff0000";
 			else if (elts[i].innerHTML == "b" || elts[i].innerHTML == "B")
-				elts[i].style.backgroundColor = "#ff7f00";
+				elts[i].style.backgroundColor = "#FF4500";
 			else if (elts[i].innerHTML == "c" || elts[i].innerHTML == "C")
 				elts[i].style.backgroundColor = "#ffff00";
 			else
@@ -31,11 +31,24 @@ $(function() {
 	}
 	
 	function jsac_apply_ship(elts){
+		for (var i = 0; i <elts.length; ++i){
+			var cur = elts[i].innerHTML.toUpperCase();
+			if (cur == "CANO")
+				elts[i].style.backgroundColor = "#FF4500";
+			else if (cur == "DODO")
+				elts[i].style.backgroundColor = "#00FFFF";
+			else if (cur == "HAKO")
+				elts[i].style.backgroundColor = "#7FFF00";
+			else if (cur == "ZEYNO")
+				elts[i].style.backgroundColor = "#FFD700";
+			else
+				elts[i].style.backgroundColor = "#ffffff";	
 
+		}
 	}
 	
 	function jsac_apply_date(elts){
-
+		
 	}
 	
 	function jsac_apply_time(elts){

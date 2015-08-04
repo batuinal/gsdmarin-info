@@ -33,7 +33,8 @@ class sqllib:
 			else:
 				#LOCAL - Ancak gercek sql'e connected
 				logging.info("I should be running on a normal computer right now 1")
-				db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				#db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				db = MySQLdb.connect(host='173.194.82.159', port=3306, user='root', charset='utf8')
 				logging.info("I should be running on a normal computer right now 2")
 		except:
 			logging.info("Can't connect to database")
