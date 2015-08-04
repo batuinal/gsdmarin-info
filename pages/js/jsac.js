@@ -47,15 +47,15 @@ $(function() {
 		}
 	}
 	
-	//The date format should be DD/MM/YY
+	//The date format should be DD/MM/YY	
 	function jsac_apply_date(elts){
 		for (var i = 0; i <elts.length; i++){
 			var cur = elts[i].innerHTML;
 			if (cur.length != 8){ alert("Please check the Dates Entered"); break;}
 			if ((cur[2] && cur[5]) != "/") { alert("Please check the Dates Entered"); break;}
-			for (var j = 0; j <elts.length; j++){
+			for (var j = 0; j < elts.length; j++){
 				if (j == 2 || j == 5) continue;
-				if (isNaN(cur[j]) { alert("Please check the Dates Entered"); break;}
+				if (isNaN(cur[j])) { alert("Please check the Dates Entered"); break;}
 			}
 		}
 	}

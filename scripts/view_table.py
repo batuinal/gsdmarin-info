@@ -37,11 +37,9 @@ class view_table(webapp2.RequestHandler):
 		out += '<title>' + page + ' Page</title>\n'
 		out += '<div id="pageid" value="' + page + '"></div>\n'
 		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/media/css/jquery.dataTables.css">'
-		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/editor/css/dataTables.editor.min.css">'
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
-		out += '<script src="pages/DataTables-1.10.7/editor/js/dataTables.editor.js"></script>\n'
 		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
 		
