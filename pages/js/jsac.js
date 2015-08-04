@@ -31,7 +31,7 @@ $(function() {
 	}
 	
 	function jsac_apply_ship(elts){
-		for (var i = 0; i <elts.length; ++i){
+		for (var i = 0; i <elts.length; i++){
 			var cur = elts[i].innerHTML.toUpperCase();
 			if (cur == "CANO")
 				elts[i].style.backgroundColor = "#FF4500";
@@ -47,24 +47,54 @@ $(function() {
 		}
 	}
 	
+	//The date format should be DD/MM/YY
 	function jsac_apply_date(elts){
-		
+		for (var i = 0; i <elts.length; i++){
+			var cur = elts[i].innerHTML;
+			if (cur.length != 8){ alert("Please check the Dates Entered"); break;}
+			if ((cur[2] && cur[5]) != "/") { alert("Please check the Dates Entered"); break;}
+			for (var j = 0; j <elts.length; j++){
+				if (j == 2 || j == 5) continue;
+				if (isNaN(cur[j]) { alert("Please check the Dates Entered"); break;}
+			}
+		}
 	}
 	
+	//Same as above not implemented
 	function jsac_apply_time(elts){
 
 	}
 	
-	function jsac_apply_link(elts){
 
+	function jsac_apply_link(elts){
+		for (var i = 0; i <elts.length; i++){
+			var html = elts[i].innerHTML;
+			var corr = "http"
+			var i = 0;
+			for (; i < 4; i++){
+				if (corr[i] != html[i])	{ break;}
+			}
+			if (i != 4){
+				elts[i].href = ("https://" + elts[i].innerHTML);
+			}
+			else{
+				elts[i].href = elts[i].innerHTML;
+			}
+		}
 	}
 	
 	function jsac_apply_loc(elts){
 
+		for (var i = 0; i <elts.length; i++){
+			elts[i].onclick = request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);
+		}
 	}
 	
 	function jsac_apply_coord(elts){
 
+		for (var i = 0; i <elts.length; i++){
+			elts[i].onclick = request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);
+		}
 	}
 	
 	function jsac_apply_file(elts){
