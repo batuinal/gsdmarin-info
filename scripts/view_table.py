@@ -37,9 +37,11 @@ class view_table(webapp2.RequestHandler):
 		out += '<title>' + page + ' Page</title>\n'
 		out += '<div id="pageid" value="' + page + '"></div>\n'
 		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/media/css/jquery.dataTables.css">'
+		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/editor/css/dataTables.editor.min.css">'
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
+		out += '<script src="pages/DataTables-1.10.7/editor/js/dataTables.editor.js"></script>\n'
 		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
 		
@@ -76,23 +78,28 @@ class view_table(webapp2.RequestHandler):
 				out = "<h3> Table: " + table + "</h3><br>\n"
 				self.response.out.write(out)
 				
-				out = '<div id="table-container" width="80%" padding="80px">\n'
-				out += '<table id="' + str(table) + '" class="display" cellspacing="0" width="100%">\n'
+				out = '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
+				out += '<table id="' + table + '" class="display compact row-border hover" cellspacing="0" width="100%">\n'
 				self.response.out.write(out)
 				
 				# Database Query
 				listout = sqlimpl.ListAllEntities(table)
 				
-				# Header Parsing
+				# Scaffold Parsing
+				cols = []
+				classes = []
 				skip = 1;
-				out = '<thead>\n'
-				out += '<tr>\n'
 				for elt in listout:
 					if (skip):
 						skip = 0
 					else:
-						out += '<th>' + elt[0] + '</th>\n'
-				
+						cols.append(elt[0])
+						
+				# Header Parsing
+				out = '<thead>\n'
+				out += '<tr>\n'
+				for col in cols:
+					out += '<th>' + col + '</th>\n'
 				out += '</tr>\n'
 				out += '<thead>\n'
 				self.response.out.write(out)
@@ -116,7 +123,15 @@ class view_table(webapp2.RequestHandler):
 				out = '</table>\n'
 				out += '</div>\n'
 				self.response.out.write(out)
-		
+				
+				# Initialize DataTables on Table
+				out = '<script>\n'
+				out += '$(function() {\n'
+				out += 'var table = $("#' + str(table) + '").dataTable()\n'
+				out += '});\n'
+				out += '</script>\n'
+				self.response.out.write(out)
+				
 			# Body Scaffolding
 			out = '<button type="button" onclick="request(' + "'GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])" + '">Create New Table</button>\n'
 			out += '<script>\n'

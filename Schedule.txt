@@ -1,0 +1,49 @@
+===== Table Database =====
+
+--> Attribute Classes [Batu, 8/3]
+
+--> Add/Remove Row [Batu & Sinan, 8/4]
+
+--> Remove Table [Batu & Sinan, 8/4]
+
+--> Add/Remove Column [Batu & Sinan, 8/4]
+
+--> Fine-Tuning
+* View Table CSS
+
+--> Upload File
+* Simple link to front page upload interface.
+
+===== Front Page =====
+
+--> External Link Interface [Sinan, 8/6]
+
+--> Image Gallery Interface [Batu & Sinan, 8/7]
+
+--> Document Interface
+* Upload / Remove files. [Batu & Sinan, 8/8]
+
+--> Calendar Interface
+
+--> Miscelaneous Modules [Sinan, "Whenever the fuck I want"]
+* Weather Widget
+* Geolocate
+
+===== Page Generation =====
+
+--> Page Database
+* INDEX table
+* Page Name, Group Name, Button Name, Page ID, Image Name, etc.
+
+--> Page Edit Interface
+* Add/Remove Buttons
+* Add/Remove Pages?
+
+===== Admin Panel =====
+
+--> Admin Panel
+
+===== Security =====
+
+--> Login Page
+* Persistent ID system.
