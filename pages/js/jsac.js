@@ -71,14 +71,16 @@ $(function() {
 			var html = elts[i].innerHTML;
 			var corr = "http"
 			var i = 0;
+			a.setAttribute("href", "somelink url");
 			for (; i < 4; i++){
 				if (corr[i] != html[i])	{ break;}
 			}
 			if (i != 4){
-				elts[i].href = ("https://" + elts[i].innerHTML);
+				var to_add = ("https://" + elts[i].innerHTML);
+				elts[i].setAttribute("href", to_add);
 			}
 			else{
-				elts[i].href = elts[i].innerHTML;
+				elts[i].setAttribute("href", elts[i].innerHTML);
 			}
 		}
 	}
