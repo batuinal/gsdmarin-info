@@ -74,6 +74,7 @@ class view_table(webapp2.RequestHandler):
 		if (len(tables) == 3):
 			for table in tables[2]:
 				out = "<h3> Table: " + table + "</h3><br>\n"
+				out += '<button id="delete_row_' + table +'">Delete Row</button>\n'
 				self.response.out.write(out)
 				
 				out = '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
@@ -124,10 +125,19 @@ class view_table(webapp2.RequestHandler):
 				
 				# Initialize DataTables on Table
 				out = '<script>\n'
-				out += '$(function() {\n'
-				out += 'var table = $("#' + str(table) + '").dataTable()\n'
+				out += '$(document).ready(function() {\n'
+				out += 'var table = $("#' + str(table) + '").dataTable();\n'
+
+				# Row Selection and Deletion
+				out += '$("#' + str(table) + ' tbody").on( "click", "tr", function () {\n'
+				out += 'if ( $(this).hasClass("selected") ) {$(this).removeClass("selected"); }\n'
+				out += 'else { table.$("tr.selected").removeClass("selected"); $(this).addClass("selected"); }  } );\n'
+				out += '$("#delete_row_' + str(table) + '").click( function () { table.row(".selected").remove().draw( false );} ); \n'
+
 				out += '});\n'
 				out += '</script>\n'
+				
+				
 				self.response.out.write(out)
 				
 			# Body Scaffolding

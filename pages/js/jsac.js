@@ -71,7 +71,6 @@ $(function() {
 			var html = elts[i].innerHTML;
 			var corr = "http"
 			var i = 0;
-			a.setAttribute("href", "somelink url");
 			for (; i < 4; i++){
 				if (corr[i] != html[i])	{ break;}
 			}
