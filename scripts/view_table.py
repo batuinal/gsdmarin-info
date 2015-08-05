@@ -68,8 +68,7 @@ class view_table(webapp2.RequestHandler):
 		out +=	'<span class="location">Location of the event</span>'
 		out +=	'<span class="date_format">MM/DD/YYYY</span> </div>'
 		self.response.out.write(out)
-		
-		# We don't have this function yet.
+
 		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)\
 		
 		if (len(tables) == 3):
@@ -96,16 +95,16 @@ class view_table(webapp2.RequestHandler):
 						cols.append(elt[0])
 				
 				# Column Selection Code		
-				out += '<div>" Show/Hide: "\n'
+				out = '<div id="show_hide"><br/>Show/Hide: \n'
 				count = 0
 				for col in cols:
 					if (col != cols[-1]):
-						out += '<a class="toggle-vis" data-column="' + str(count) +'">' + str(col) + '</a> - \n'
+						out += '<a class="' + str(table) + '_toggle-vis" data-column="' + str(count) +'">' + str(col).upper() + '</a> - \n'
 					else:
-						out += '<a class="toggle-vis" data-column="' + str(count) +'">' + str(col) + '</a></div> \n'
+						out += '<a class="' + str(table) + '_toggle-vis" data-column="' + str(count) +'">' + str(col).upper() + '</a></div> \n'
 					count += 1
 				
-				out = '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
+				out += '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
 				out += '<table id="' + table + '" class="display compact row-border hover" cellspacing="0" width="100%">\n'
 				self.response.out.write(out)
 						
@@ -145,7 +144,7 @@ class view_table(webapp2.RequestHandler):
 				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false});\n'
 
 				#Dynamically Adjust Table Cols
-				out += '$("a.toggle-vis").on( "click", function (e) { e.preventDefault();\n'
+				out += '$("a.' + str(table) + '_toggle-vis").on( "click", function (e) { e.preventDefault();\n'
 				out += 'var column = table.column( $(this).attr("data-column") );\n'
 				out += 'column.visible( ! column.visible() );} );\n'
 
