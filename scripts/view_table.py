@@ -108,7 +108,7 @@ class view_table(webapp2.RequestHandler):
 				# Body Parsing
 				out = '<tbody>\n'
 				for n in range(2, len(listout[0])):
-					out += '<tr id="row' + str(n-2) + '">\n'
+					out += '<tr id="' + listout[0][n] + '">\n'
 					skip = 1;
 					for elt in listout:
 						if (skip):
