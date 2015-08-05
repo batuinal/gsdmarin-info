@@ -9,9 +9,11 @@ handlers:
  
 - url: /pages
   static_dir: pages
- 
+  http_headers:
+    Access-Control-Allow-Origin: http://gsdmarin.net
 - url: /.*
   script: main.app
+  login: required
 
 # [END handlers]
 

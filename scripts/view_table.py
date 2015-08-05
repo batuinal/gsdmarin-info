@@ -141,7 +141,20 @@ class view_table(webapp2.RequestHandler):
 				# Initialize DataTables on Table
 				out = '<script>\n'
 				out += '$(document).ready(function() {\n'
-				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false});\n'
+				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false, initComplete: function () {\n'
+				out += 'this.api().columns().every( function () { \n'
+				out += 'var column = this;'
+				tricky_string = "<select><option value=''></option></select>"
+				out += 'var select = $("' + tricky_string + '")\n'
+				out += '.appendTo( $(column.footer()).empty() )\n'
+				out += '   .on( "change", function () {\n'
+				out += '        var val = $.fn.dataTable.util.escapeRegex($(this).val());\n'
+				out += 'column\n' + '.search( val ? "^"+val+"$" : "", true, false )\n'
+				out += '.draw();} );column.data().unique().sort().each( function ( d, j ) {\n'
+				option_value = "<option value='"
+				tricky0 = "'>"
+				out += '   select.append( "' + option_value + '"' + d + tricky0 + d+ '"</option>" )\n'
+				out += '} ); } );}         });\n'
 
 				#Dynamically Adjust Table Cols
 				out += '$("a.' + str(table) + '_toggle-vis").on( "click", function (e) { e.preventDefault();\n'
@@ -181,10 +194,3 @@ class view_table(webapp2.RequestHandler):
 			self.response.out.write(out)
 		else:
 			self.redirect('/notfound')
-		
-		
-
-		
-		
-		
-
