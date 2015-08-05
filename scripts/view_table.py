@@ -126,13 +126,15 @@ class view_table(webapp2.RequestHandler):
 				# Initialize DataTables on Table
 				out = '<script>\n'
 				out += '$(document).ready(function() {\n'
-				out += 'var table = $("#' + str(table) + '").dataTable();\n'
+				out += 'var table = $("#' + str(table) + '").DataTable();\n'
 
 				# Row Selection and Deletion
 				out += '$("#' + str(table) + ' tbody").on( "click", "tr", function () {\n'
-				out += 'if ( $(this).hasClass("selected") ) {$(this).removeClass("selected"); }\n'
-				out += 'else { table.$("tr.selected").removeClass("selected"); $(this).addClass("selected"); }  } );\n'
-				out += '$("#delete_row_' + str(table) + '").click( function () { table.row(".selected").remove().draw( false );} ); \n'
+				#out += 'if ( $(this).hasClass("selected") ) {$(this).removeClass("selected"); }\n'
+				#out += 'else { table.$("tr.selected").removeClass("selected"); $(this).addClass("selected"); }\n'
+				out += '$(this).toggleClass("selected");\n'
+				out += '  } );\n'
+				out += '$("#delete_row_' + str(table) + '").click( function () { table.rows(".selected").remove().draw( false );} ); \n'
 
 				out += '});\n'
 				out += '</script>\n'
