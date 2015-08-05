@@ -11256,7 +11256,7 @@ input[type="submit"].link:active {
 
 .tile-group.three .tile-large,
 .tile-group.triple .tile-large {
-  width: calc(66.67% - 10px);
+  width: calc(66.66% - 10px);
 }
 
 .tile-group.three .tile-big,

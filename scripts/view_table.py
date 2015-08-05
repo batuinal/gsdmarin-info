@@ -42,6 +42,7 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
 		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
+		out += '<script src="pages/js/edit_mode.js"></script>\n'
 		
 		out += '<script src="https://addthisevent.com/libs/1.6.0/ate.min.js"></script>\n'
 		out += '<script> addthisevent.settings({license    : "00000000000000000000",'
@@ -73,7 +74,8 @@ class view_table(webapp2.RequestHandler):
 		
 		if (len(tables) == 3):
 			for table in tables[2]:
-				out = "<h3> Table: " + table + "</h3><br>\n"
+				out = '<h3> Table: ' + table + '</h3><br>\n'
+				out += '<button id="edit_table" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Table</button>'
 				self.response.out.write(out)
 				
 				out = '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
@@ -106,13 +108,14 @@ class view_table(webapp2.RequestHandler):
 				# Body Parsing
 				out = '<tbody>\n'
 				for n in range(2, len(listout[0])):
-					out += '<tr>\n'
+					out += '<tr id="row' + str(n-2) + '">\n'
 					skip = 1;
 					for elt in listout:
 						if (skip):
 							skip = 0
 						else:
-							out += '<td class="jsac_' + elt[1] + '">' + str(elt[n]) + '</td>\n'
+							name = str(elt[0]) + str(n-2)
+							out += '<td class="jsac_' + elt[1] + '" id="' + name + '">' + str(elt[n]) + '</td>\n'
 					out += '</tr>\n'
 				
 				out += '</tbody>\n'
