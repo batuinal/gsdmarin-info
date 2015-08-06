@@ -35,7 +35,7 @@ class sqllib:
 				logging.info("I should be running on a normal computer right now 31")
 				#db = MySQLdb.connect(unix_socket='/cloudsql/gsdmarin-info:database', db='gsdmarin', user='root')
 
-				db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='ruifu', passwd='1234')
+				db = MySQLdb.connect(host='173.194.82.159', port=3306, db='gsdmarin', user='batu', passwd='1234')
 
 				logging.info("I should be running on a normal computer right now 2")
 		except:

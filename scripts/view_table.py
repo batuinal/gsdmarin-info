@@ -115,6 +115,16 @@ class view_table(webapp2.RequestHandler):
 					out += '<th>' + col + '</th>\n'
 				out += '</tr>\n'
 				out += '<thead>\n'
+				out += '<tfoot>\n'
+				out += '<tr>\n'
+				for col in cols:
+					out += '<th rowspan="1" colspan = "1">\n'
+					out += '<select>\n'
+					out += '<option value></option>\n'
+					out += '</select>\n'
+					out += '</th>\n'
+				out += '</tr>\n'
+				out += '</tfoot>\n'
 				self.response.out.write(out)
 				
 				
@@ -151,9 +161,9 @@ class view_table(webapp2.RequestHandler):
 				out += '        var val = $.fn.dataTable.util.escapeRegex($(this).val());\n'
 				out += 'column\n' + '.search( val ? "^"+val+"$" : "", true, false )\n'
 				out += '.draw();} );column.data().unique().sort().each( function ( d, j ) {\n'
-				option_value = "<option value='"
-				tricky0 = "'>"
-				out += '   select.append( "' + option_value + '"' + d + tricky0 + d+ '"</option>" )\n'
+
+				s = "select.append('<option value=" + '"' + "'+d+'" + '"' + ">'+d+'</option>' )"
+				out += s
 				out += '} ); } );}         });\n'
 
 				#Dynamically Adjust Table Cols
