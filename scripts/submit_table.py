@@ -24,8 +24,7 @@ from tuplelib import pair
 
 # This Python File uses Tabs for Alignment
 
-class view_table(webapp2.RequestHandler):
+class submit_table(webapp2.RequestHandler):
 
 	def post(self):
-	
-	
+		self.redirect("/pages/index.html")
