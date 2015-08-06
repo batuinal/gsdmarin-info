@@ -40,7 +40,6 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
-		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
 		out += '<script src="pages/js/edit_mode.js"></script>\n'
 		
@@ -75,7 +74,7 @@ class view_table(webapp2.RequestHandler):
 			for table in tables[2]:
 
 				out = '<h3> Table: ' + table + '</h3><br>\n'
-				out += '<button id="edit_row_' + table + '" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Row</button>'
+				out += '<button id="edit_row_' + table + '" onclick="edit_mode(' + "'#" + table + "')" + '">Edit Row</button>'
 				out += '<button id="delete_row_' + table +'">Delete Row</button>\n'
 				out += '<button id="add_row_' + table +'">Add Row</button>\n'
 
@@ -148,12 +147,10 @@ class view_table(webapp2.RequestHandler):
 				out += '</div>\n'
 				self.response.out.write(out)
 				
-				# Initialize DataTables on Table also initialize col search
+				# Initialize DataTables on Table
 				out = '<script>\n'
 				out += '$(document).ready(function() {\n'
-				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false,'
-				out += '"columnDefs": [ {"searchable": false,"orderable": false,"targets": 0} ],"order": [[ 1, "asc" ]],\n'
-				out += 'initComplete: function () {\n'
+				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false, initComplete: function () {\n'
 				out += 'this.api().columns().every( function () { \n'
 				out += 'var column = this;'
 				tricky_string = "<select><option value=''></option></select>"
@@ -163,15 +160,10 @@ class view_table(webapp2.RequestHandler):
 				out += '        var val = $.fn.dataTable.util.escapeRegex($(this).val());\n'
 				out += 'column\n' + '.search( val ? "^"+val+"$" : "", true, false )\n'
 				out += '.draw();} );column.data().unique().sort().each( function ( d, j ) {\n'
+
 				s = "select.append('<option value=" + '"' + "'+d+'" + '"' + ">'+d+'</option>' )"
 				out += s
-				out += '}); }); }  });\n'
-
-				#Add index col
-				out += 'table.on( "order.dt search.dt", function () {\n'
-				out += 'table.column(0, {search:"applied", order:"applied"}).nodes().each( function (cell, i) {\n'
-				out +=  'cell.innerHTML = i+1\n'
-				out += ' } );} ).draw();\n'
+				out += '} ); } );}         });\n'
 
 				#Dynamically Adjust Table Cols
 				out += '$("a.' + str(table) + '_toggle-vis").on( "click", function (e) { e.preventDefault();\n'
@@ -184,8 +176,9 @@ class view_table(webapp2.RequestHandler):
 				out += '  } );\n'
 				out += '$("#delete_row_' + str(table) + '").click( function () { table.rows(".selected").remove().draw( false );} ); \n'
 
-				# Add Row
 
+				
+				# Add Row
 				out += '$("#add_row_' + str(table) + '").on( "click", function () {\n'
 				out += 'table.row.add( [\n'
 				for col in cols:
