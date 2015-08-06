@@ -20,6 +20,7 @@ import scripts.images
 import scripts.SQL_API
 import scripts.edit_tables
 import scripts.view_table
+import scripts.submit_table
 		
 app = webapp2.WSGIApplication([
     ('/', scripts.login.LoginPage),	
@@ -28,6 +29,7 @@ app = webapp2.WSGIApplication([
 	('/SQL_API', scripts.SQL_API.call_method),
 	('/edit_tables', scripts.edit_tables.edit_tables),
 	('/view_table', scripts.view_table.view_table),
+	('/submit_table', scripts.submit_table.submit_table),
 	#('/images', scripts.images.ImageUpload),
 	#('/images_upload', scripts.images.Upload),
 	('/parse/([^/]+)?', scripts.upload.Parse),

@@ -40,7 +40,6 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
-		out += '<script src="pages/js/viewtable.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
 		out += '<script src="pages/js/edit_mode.js"></script>\n'
 		
@@ -75,7 +74,7 @@ class view_table(webapp2.RequestHandler):
 			for table in tables[2]:
 
 				out = '<h3> Table: ' + table + '</h3><br>\n'
-				out += '<button id="edit_table" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Table</button>'
+				out += '<button id="edit_row_' + table + '" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Table</button>'
 				out += '<button id="delete_row_' + table +'">Delete Row</button>\n'
 				out += '<button id="add_row_' + table +'">Add Row</button>\n'
 
@@ -176,9 +175,10 @@ class view_table(webapp2.RequestHandler):
 				out += '$(this).toggleClass("selected");\n'
 				out += '  } );\n'
 				out += '$("#delete_row_' + str(table) + '").click( function () { table.rows(".selected").remove().draw( false );} ); \n'
+				out += '$("#edit_row_' + str(table) + '").click( edit_mode () );\n'
 
+				
 				# Add Row
-
 				out += '$("#add_row_' + str(table) + '").on( "click", function () {\n'
 				out += 'table.row.add( [\n'
 				for col in cols:

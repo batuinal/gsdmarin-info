@@ -26,15 +26,17 @@ class call_method(webapp2.RequestHandler):
     #try:
       func = self.request.get('func')
       page = self.request.get('page')
+      jsac = self.request.get('jsac')
       name = self.request.get('name')
-      attribute = self.request.get('attribute')
+      attr = self.request.get('attr')
       id = self.request.get('id')
       value = self.request.get('value')
 
       self.response.out.write('Method to Call: %s <br>' % (func))
       self.response.out.write('Name of Table:  %s <br>' % (name))
       self.response.out.write('Page Name:      %s <br>' % (page))
-      self.response.out.write('Attribute:      %s <br>' % (attribute))
+      self.response.out.write('Attribute:      %s <br>' % (attr))
+      self.response.out.write('Attr Class:     %s <br>' % (jsac))
       self.response.out.write('ID:             %s <br>' % (id))
       self.response.out.write('Value:          %s <br>' % (value))
       
@@ -70,16 +72,16 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.AddEntityWithValues(name, dict))
       ### Attribute Functions ###
       elif func == "AddAttribute":
-        out += str(sqlimpl.AddAttribute(name, page, attribute, 'VARCHAR(100)', 'red_hooded_motherfucker'))
+        out += str(sqlimpl.AddAttribute(name, page, attr, 'VARCHAR(100)', jsac))
       elif func == "RemoveAttribute":
-        out += str(sqlimpl.RemoveAttribute(name, page, attribute))
+        out += str(sqlimpl.RemoveAttribute(name, page, attr))
       ### Value Functions ###
       elif func == "SetValue":
-        out += str(sqlimpl.SetValue(name, id, attribute, value))
+        out += str(sqlimpl.SetValue(name, id, attr, value))
       elif func == "GetValue":
-        out += str(sqlimpl.GetValue(name, id, attribute))
+        out += str(sqlimpl.GetValue(name, id, attr))
       elif func == "SetAllEntities":
-        out += str(sqlimpl.SetAllEntities(name, attribute, value))
+        out += str(sqlimpl.SetAllEntities(name, attr, value))
       elif func == "SetAttributes":
         dict = []
         dict.append(['pay'])
@@ -88,9 +90,9 @@ class call_method(webapp2.RequestHandler):
         dict[1].append('21')
         out += str(sqlimpl.SetAllAttributes(name, id, dict))
       elif func == "GetEntityByID":
-        sqlimpl.GetEntityByID(name, attribute, id)
+        sqlimpl.GetEntityByID(name, attr, id)
       elif func == "GetEntitiesByAttr":
-        sqlimpl.GetEntitiesByAttr(name, attribute, value)
+        sqlimpl.GetEntitiesByAttr(name, attr, value)
       else:
         out = "-- Error: Method " + func + " not found." + "\n"        
       self.response.out.write(out)
