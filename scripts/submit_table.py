@@ -27,4 +27,20 @@ from tuplelib import pair
 class submit_table(webapp2.RequestHandler):
 
 	def post(self):
-		self.redirect("/pages/index.html")
+	
+		args = self.request.arguments()
+		self.response.out.write(args)
+		self.response.out.write("\n\n\n")
+		
+		for arg in args:
+			self.response.out.write(arg)
+			self.response.out.write(": ")
+			self.response.out.write(self.request.get(arg))
+			self.response.out.write("\n")
+		
+	
+	
+	
+	
+	
+	

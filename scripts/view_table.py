@@ -58,7 +58,7 @@ class view_table(webapp2.RequestHandler):
 		# Body Scaffolding
 		out = '<body>\n'
 		out += '<h1>' + page + ' Page</h1>\n'
-		out += ' <div title="Add to Calendar" class="addthisevent" data-track="_gaq.push([' + "'_trackEvent','AddThisEvent','click','ate-calendar'" + '"])"> '
+		out += ' <div title="Add to Calendar" class="addthisevent" data-track="_gaq.push([' + "'_trackEvent','AddThisEvent','click','ate-calendar'" + '])"> '
 		out += 'Add to Calendar <span class="start">08/18/2015 09:00 AM</span>'
 		out +=	'<span class="end">08/18/2015 11:00 AM</span>'
 		out +=	'<span class="timezone">Europe/Istanbul</span>'
@@ -73,11 +73,11 @@ class view_table(webapp2.RequestHandler):
 		if (len(tables) == 3):
 			for table in tables[2]:
 
-				out = '<h3> Table: ' + table + '</h3><br>\n'
-				out += '<button id="edit_row_' + table + '" onclick="edit_mode(' + "'#" + table + "')" + '">Edit Row</button>'
-				out += '<button id="delete_row_' + table +'">Delete Row</button>\n'
-				out += '<button id="add_row_' + table +'">Add Row</button>\n'
-
+				out = '<h3> Table: ' + table + ' </h3><br>\n'
+				out += '<div id="buttons_' + table + '">\n'
+				out += '<button id="edit_mode_' + table + '">Edit Table</button>'
+				out += '</div>\n'
+				
 				self.response.out.write(out)
 
 				# Database Query
@@ -102,6 +102,13 @@ class view_table(webapp2.RequestHandler):
 					else:
 						out += '<a class="' + str(table) + '_toggle-vis" data-column="' + str(count) +'">' + str(col).upper() + '</a></div> \n'
 					count += 1
+					
+				# Column Object Conversion
+				out += '<script>\n'
+				out += 'cols_' + table + ' = [];\n'
+				for col in cols:
+					out += 'cols_' + table + '.push("' + str(col) + '"); '
+				out += '\n</script>\n'
 				
 				out += '<div id="table-container" width="800px" padding="40px" margins="40px">\n'
 				out += '<table id="' + table + '" class="display compact row-border hover" cellspacing="0" width="100%">\n'
@@ -136,7 +143,7 @@ class view_table(webapp2.RequestHandler):
 						if (skip):
 							skip = 0
 						else:
-							name = str(elt[0]) + str(n-2)
+							name = str(n-2) + "_" + str(elt[0])
 							out += '<td class="jsac_' + elt[1] + '" id="' + name + '">' + str(elt[n]) + '</td>\n'
 					out += '</tr>\n'
 				
@@ -153,8 +160,7 @@ class view_table(webapp2.RequestHandler):
 				out += 'var table = $("#' + str(table) + '").DataTable({"scrollY": "200px", "paging": false, initComplete: function () {\n'
 				out += 'this.api().columns().every( function () { \n'
 				out += 'var column = this;'
-				tricky_string = "<select><option value=''></option></select>"
-				out += 'var select = $("' + tricky_string + '")\n'
+				out += 'var select = $("' + "<select><option value=''></option></select>" + '")\n'
 				out += '.appendTo( $(column.footer()).empty() )\n'
 				out += '   .on( "change", function () {\n'
 				out += '        var val = $.fn.dataTable.util.escapeRegex($(this).val());\n'
@@ -170,27 +176,15 @@ class view_table(webapp2.RequestHandler):
 				out += 'var column = table.column( $(this).attr("data-column") );\n'
 				out += 'column.visible( ! column.visible() );} );\n'
 
-				# Row Selection and Deletion
+				# Row Selection
 				out += '$("#' + str(table) + ' tbody").on( "click", "tr", function () {\n'
 				out += '$(this).toggleClass("selected");\n'
 				out += '  } );\n'
-				out += '$("#delete_row_' + str(table) + '").click( function () { table.rows(".selected").remove().draw( false );} ); \n'
-
-
 				
-				# Add Row
-				out += '$("#add_row_' + str(table) + '").on( "click", function () {\n'
-				out += 'table.row.add( [\n'
-				for col in cols:
-					if (col != cols[-1]):
-						out += '"0",\n'
-					else:
-						out += '"0"]).draw();\n'
-				out += ' } );\n'
-				out += ' } );\n'
+				# Table Edit Mode
+				out += '$("#edit_mode_' + str(table) + '").on("click", function () { edit_mode("' + str(table) + '", table, ' + 'cols_' + table + '); } );\n'
+				out += '});\n'
 				out += '</script>\n'
-				
-				
 				self.response.out.write(out)
 				
 			# Body Scaffolding
