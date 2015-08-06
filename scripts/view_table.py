@@ -75,7 +75,7 @@ class view_table(webapp2.RequestHandler):
 			for table in tables[2]:
 
 				out = '<h3> Table: ' + table + '</h3><br>\n'
-				out += '<button id="edit_table" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Table</button>'
+				out += '<button id="edit_row_' + table + '" onclick="edit_mode(' + "'#" + str(table) + "',1)" + '">Edit Row</button>'
 				out += '<button id="delete_row_' + table +'">Delete Row</button>\n'
 				out += '<button id="add_row_' + table +'">Add Row</button>\n'
 
