@@ -1,49 +1,71 @@
 ===== Table Database =====
 
---> Attribute Classes [Batu, 8/3]
+--> Excel Upload / Parsing [8/14] 
+* Create the frontend for Excel file import. (buttons) [8/8]
+* Figure out how to parse input Excel files.
+* Decide on a uniform Excel file format for upload.
+* Successfully import a properly formatted Excel file.
 
---> Add/Remove Row [Batu & Sinan, 8/4]
+--> Bugfix Wars [8/10 except PAGES]
+* Table names must accept space character (" ").
+* Make "edit_mode" ignore inlined elements by using .text() function.
+* Convert JSAC code into JQuery functions.
+* Differentiate empty pages from non-existent pages using "PAGES" table.
 
---> Remove Table [Batu & Sinan, 8/4]
+--> JSAC & SQL Interaction [8/11]
+* WAIT on relevant bugfixes! (WAIT)
+* Make JSAC create inlined HTML elements instead of modifying <td>. 
+* Modify the SQL data types to properly work with JSAC.
 
---> Add/Remove Column [Batu & Sinan, 8/4]
+--> Page Generation [8/14]
+* INDEX table (Page Name, Group Name, Button Name, Page ID, etc.)
+* Grab submenu / table pages from it.
+* Unify Submenu / Table generation algorithms.
 
---> Fine-Tuning
-* View Table CSS
+--> Beautification
+* Front Page
+* View Table Page
+* Create Table Page (?)
+  - Will probably get converted anyway?
 
---> Upload File
-* Simple link to front page upload interface.
-
-===== Front Page =====
-
---> External Link Interface [Sinan, 8/6]
-
---> Image Gallery Interface [Batu & Sinan, 8/7]
-
---> Document Interface
-* Upload / Remove files. [Batu & Sinan, 8/8]
-
---> Calendar Interface
-
---> Miscelaneous Modules [Sinan, "Whenever the fuck I want"]
+--> Miscellaneous Modules [Sinan, "Whenever the fuck I want"]
 * Weather Widget
 * Geolocate
 
-===== Page Generation =====
+--> File Upload Interface
+* Figure out the JavaScript behind file uploads.
 
---> Page Database
-* INDEX table
-* Page Name, Group Name, Button Name, Page ID, Image Name, etc.
+===== Secondary Tasks =====
+
+--> Add/Remove Column (?)
+* Discuss the necessity and implementation methods.
+
+--> Document Interface
+* Upload / Remove files.
+
+--> External Link Interface
+
+--> Image Gallery Interface
+
+--> Calendar Interface
 
 --> Page Edit Interface
 * Add/Remove Buttons
 * Add/Remove Pages?
 
-===== Admin Panel =====
-
 --> Admin Panel
 
-===== Security =====
+--> Report Generation
+* Fully discuss the interface with Hakan
+* Plan the necessary database functionality with Ayhun
+* Create the interface
 
---> Login Page
-* Persistent ID system.
+===== Laterals =====
+
+--> Create Table Rehash
+* Convert this to a pop-up that sends a POST request before refreshing.
+  - Can we integrate DataTables for this job as well?
+
+--> view_table.py Reformatting
+* Modularize html / js elements into their own files.
+* Move .js modules from "modules" into "js".

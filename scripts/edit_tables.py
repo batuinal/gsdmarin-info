@@ -45,7 +45,7 @@ class edit_tables(webapp2.RequestHandler):
 			resp = []
 			
 			if (reqtype == "remove"):
-				sqllib.RemoveTable(tname,pageid)
+				sqlimpl.RemoveTable(tname,pageid)
 			elif (reqtype == "create"):				
 				for n in range(0, 99):
 					select = self.request.get('select_' + str(n),"INVALID")
