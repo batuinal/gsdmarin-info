@@ -33,6 +33,7 @@ function edit_mode(tname, tobj, cols){
 		
 		$("#submit_" + tname).click( function () {
 			var data = $("#" + tname + " input").serialize();
+			data += "&" + $.param({ 'table': tname });
 			$.post("/submit_table",data, function (response) {
 				console.log(response);
 			});
