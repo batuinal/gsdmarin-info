@@ -42,6 +42,7 @@ class view_table(webapp2.RequestHandler):
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
 		out += '<script src="pages/js/jsac.js"></script>\n'
 		out += '<script src="pages/js/edit_mode.js"></script>\n'
+		out += '<script src="pages/modules/getParam.js"></script>\n'
 		
 		out += '<script src="https://addthisevent.com/libs/1.6.0/ate.min.js"></script>\n'
 		out += '<script> addthisevent.settings({license    : "00000000000000000000",'
@@ -182,10 +183,11 @@ class view_table(webapp2.RequestHandler):
 				out += '  } );\n'
 				
 				# Table Edit Mode
-				out += '$("#edit_mode_' + str(table) + '").on("click", function () { edit_mode("' + str(table) + '", table, ' + 'cols_' + table + '); } );\n'
+				out += '$("#edit_mode_' + str(table) + '").on("click", function () { edit_mode("' + str(table) + '", table, ' + 'cols_' + table + '); });\n'
 
 				# Table Removal
-				out += '$("#remove_table_' + str(table) + '").on("click", request("POST","/edit_tables",["reqtype", "pageid", "table_name"],["remove",document.getElementById("pageid").getAttribute("value"),"' + str(table) + '"]) );'
+				out += 'var param = getParam("pageid");\n'
+				out += '$("#remove_table_' + str(table) + '").on("click", function () { request("POST","/edit_tables",["reqtype", "pageid", "table_name"],["remove",param,"' + str(table) + '"]); });\n'
 								
 				out += '});\n'
 				out += '</script>\n'
