@@ -220,7 +220,21 @@ class sqllib:
 			print sql
 			return 0
 		
-		return 1  	  
+		return 1
+
+	def RemoveAllEntities(self, name):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		sql = "TRUNCATE TABLE `gsdmarin`.`%s`;" % (name)
+		try:
+			cursor.execute(sql)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql
+			return 0
+		
+		return 1  		 	  
 		
 	def AddEntity(self, name):
 		sql = "SELECT * FROM `gsdmarin`.`%s` LIMIT 1" % name

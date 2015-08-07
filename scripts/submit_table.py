@@ -27,20 +27,31 @@ from tuplelib import pair
 class submit_table(webapp2.RequestHandler):
 
 	def post(self):
-	
+
+		name_table = self.request.get('table')
 		args = self.request.arguments()
-		self.response.out.write(args)
-		self.response.out.write("\n\n\n")
-		
+
+		row_dict = {}
 		for arg in args:
-			self.response.out.write(arg)
-			self.response.out.write(": ")
-			self.response.out.write(self.request.get(arg))
-			self.response.out.write("\n")
+			row_col = arg.split('_')
+			if row_dict.has_key(int(row_col[0])):
+				row_dict[int(row_col[0])].append(pair(row_col[1], self.request.get(arg)))
+			else:
+				row_dict[int(row_col[0])] = []
+				row_dict[int(row_col[0])].append(pair(row_col[1], self.request.get(arg)))
+
+		sqlimpl = sqllib();
+		sqlimpl.RemoveAllEntities(name_table)
+
+		for key in row_dict:
+			r_id = sqlimpl.AddEntity(name_table)
+			sqlimpl.SetAttributes(name_table, r_id, row_dict[key])
+
+		#Debugging..
+		#self.response.out.write(row_dict)
+		#for x in range(-2,4):
+		#	logging.info("ROW NUMBER IS: " + str(x))
+		#	for y in range(0,4):
+		#		logging.info(row_dict[x][y].first)
+		#		logging.info(row_dict[x][y].second)
 		
-	
-	
-	
-	
-	
-	
