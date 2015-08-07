@@ -9,6 +9,7 @@ function edit_mode(tname, tobj, cols){
 		});
 
 		$("#edit_mode_" + tname).hide();
+		$("#remove_table_" + tname).hide();
 		
 		$("#buttons_" + tname).append('<button id="cancel_' + tname +'">Cancel Edit</button>\n');
 		$("#buttons_" + tname).append('<button id="add_row_' + tname +'">Add Row</button>\n');
@@ -32,7 +33,7 @@ function edit_mode(tname, tobj, cols){
 		});
 		
 		$("#submit_" + tname).click( function () {
-			$("#buttons_" + tname).hide();
+			$("#submit_" + tname).click( function () {} );
 			
 			var data = $("#" + tname + " input").serializeArray();
 			data.push({ name: 'table', value: tname });

@@ -68,7 +68,7 @@ class view_table(webapp2.RequestHandler):
 		out +=	'<span class="date_format">MM/DD/YYYY</span> </div>'
 		self.response.out.write(out)
 
-		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)\
+		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)
 		
 		if (len(tables) == 3):
 			for table in tables[2]:
@@ -76,6 +76,7 @@ class view_table(webapp2.RequestHandler):
 				out = '<h3> Table: ' + table + ' </h3><br>\n'
 				out += '<div id="buttons_' + table + '">\n'
 				out += '<button id="edit_mode_' + table + '">Edit Table</button>'
+				out += '<button id="remove_table_' + table + '">Remove Table</button>'
 				out += '</div>\n'
 				
 				self.response.out.write(out)
@@ -182,6 +183,10 @@ class view_table(webapp2.RequestHandler):
 				
 				# Table Edit Mode
 				out += '$("#edit_mode_' + str(table) + '").on("click", function () { edit_mode("' + str(table) + '", table, ' + 'cols_' + table + '); } );\n'
+
+				# Table Removal
+				out += '$("#remove_table_' + str(table) + '").on("click", request("POST","/edit_tables",["reqtype", "pageid", "table_name"],["remove",document.getElementById("pageid").getAttribute("value"),"' + str(table) + '"]) );'
+								
 				out += '});\n'
 				out += '</script>\n'
 				self.response.out.write(out)
