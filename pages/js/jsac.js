@@ -47,22 +47,39 @@ $(function() {
 		}
 	}
 	
-	//The date format should be DD/MM/YY	
+	//The date format should be YY/MM/DD	
 	function jsac_apply_date(elts){
 		for (var i = 0; i <elts.length; i++){
 			var cur = elts[i].innerHTML;
+			/*
 			if (cur.length != 8){ alert("Please check the Dates Entered"); break;}
 			if ((cur[2] && cur[5]) != "/") { alert("Please check the Dates Entered"); break;}
 			for (var j = 0; j < elts.length; j++){
 				if (j == 2 || j == 5) continue;
 				if (isNaN(cur[j])) { alert("Please check the Dates Entered"); break;}
 			}
+			*/
 		}
 	}
 	
 	//Same as above not implemented
 	function jsac_apply_time(elts){
-
+		for (var i = 0; i <elts.length; i++){
+			var cur = elts[i].innerHTML;
+			
+			/*
+			if (cur == "0:00:00" or !cur.length){
+				var timeNow = new Date();
+		  		var hours   = timeNow.getHours();
+		 		var minutes = timeNow.getMinutes();
+		  		var seconds = timeNow.getSeconds();
+		  		var timeString = "" + hours;
+  				timeString  += ((minutes < 10) ? ":0" : ":") + minutes;
+  				timeString  += ((seconds < 10) ? ":0" : ":") + seconds;
+		  		elts[i].innerHTML = timeString;
+		  	}
+		 }
+		 */
 	}
 	
 
