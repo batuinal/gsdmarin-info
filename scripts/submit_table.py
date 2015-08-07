@@ -33,7 +33,9 @@ class submit_table(webapp2.RequestHandler):
 
 		row_dict = {}
 		for arg in args:
+			logging.info("HERE IS THE ARG")
 			logging.info(arg)
+			"""
 			if arg == 'table':
 				continue
 			else:
@@ -43,7 +45,7 @@ class submit_table(webapp2.RequestHandler):
 				else:
 					row_dict[row_col[0]] = []
 					row_dict[row_col[0]].append(pair(row_col[1], self.request.get(arg)))
-					
+			"""		
 		sqlimpl = sqllib();
 		sqlimpl.RemoveAllEntities(name_table)
 		logging.info("NAME_TABLE IS: " + name_table)
