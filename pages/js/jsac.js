@@ -8,9 +8,9 @@ $(function() {
 	
 	function jsac_apply_bool(elts){
 		for (var i = 0; i < elts.length; i++) {
-			if (elts[i].innerHTML == "Yes")
+			if (elts[i].innerHTML == "Y")
 				elts[i].style.backgroundColor = "#00ff00";
-			else if (elts[i].innerHTML == "No")
+			else if (elts[i].innerHTML == "N")
 				elts[i].style.backgroundColor = "#ffff00";
 			else
 				elts[i].style.backgroundColor = "#ffffff";
@@ -87,14 +87,14 @@ $(function() {
 	function jsac_apply_loc(elts){
 
 		for (var i = 0; i <elts.length; i++){
-			elts[i].onclick = request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);
+			elts[i].setAttribute("onclick","request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);");
 		}
 	}
 	
 	function jsac_apply_coord(elts){
 
 		for (var i = 0; i <elts.length; i++){
-			elts[i].onclick = request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);
+			elts[i].setAttribute("onclick","request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);");
 		}
 	}
 	
