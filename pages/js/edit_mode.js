@@ -35,7 +35,7 @@ function edit_mode(tname, tobj, cols){
 			$("#buttons_" + tname).hide();
 			
 			var data = $("#" + tname + " input").serializeArray();
-			data.push({ 'table': tname });
+			data.push({ name: 'table', value: tname });
 			$.post("/submit_table",data, function (response) {
 				console.log(response);
 			});
