@@ -133,7 +133,6 @@ class view_table(webapp2.RequestHandler):
 				out += '</tfoot>\n'
 				self.response.out.write(out)
 				
-				
 				# Body Parsing
 				out = '<tbody>\n'
 				for n in range(2, len(listout[0])):

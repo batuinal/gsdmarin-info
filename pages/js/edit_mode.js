@@ -32,11 +32,15 @@ function edit_mode(tname, tobj, cols){
 		});
 		
 		$("#submit_" + tname).click( function () {
-			var data = $("#" + tname + " input").serialize();
-			data += "&" + $.param({ 'table': tname });
+			$("#buttons_" + tname).hide();
+			
+			var data = $("#" + tname + " input").serializeArray();
+			data.push({ 'table': tname });
 			$.post("/submit_table",data, function (response) {
 				console.log(response);
 			});
+			
+			request('GET','/view_table',['pageid'],[document.getElementById('pageid').getAttribute('value')]);
 		});
 		
 	});
