@@ -33,15 +33,20 @@ class submit_table(webapp2.RequestHandler):
 
 		row_dict = {}
 		for arg in args:
-			row_col = arg.split('_')
-			if row_dict.has_key(int(row_col[0])):
-				row_dict[int(row_col[0])].append(pair(row_col[1], self.request.get(arg)))
+			logging.info(arg)
+			if arg == 'table':
+				continue
 			else:
-				row_dict[int(row_col[0])] = []
-				row_dict[int(row_col[0])].append(pair(row_col[1], self.request.get(arg)))
-
+				row_col = arg.split('_')
+				if row_col[0] in row_dict.keys():
+					row_dict[row_col[0]].append(pair(row_col[1], self.request.get(arg)))
+				else:
+					row_dict[row_col[0]] = []
+					row_dict[row_col[0]].append(pair(row_col[1], self.request.get(arg)))
+					
 		sqlimpl = sqllib();
 		sqlimpl.RemoveAllEntities(name_table)
+		logging.info("NAME_TABLE IS: " + name_table)
 
 		for key in row_dict:
 			r_id = sqlimpl.AddEntity(name_table)

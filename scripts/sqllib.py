@@ -17,6 +17,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 import webapp2
 import logging
+from tuplelib import pair 
 
 class sqllib:
 
@@ -269,7 +270,7 @@ class sqllib:
 		db.autocommit(False) # start transaction
 		cursor = db.cursor()
 		try:
-			for row in range(1,len(dict[0])):  
+			for row in range(1,len(dict[0])):
 				sql = []
 				sql.append("INSERT INTO `gsdmarin`.`%s` (" % name)
 				for col in range(0,len(dict)-1):
@@ -431,7 +432,7 @@ class sqllib:
 		sql.append("SET")
 		middle = []
 		for i in range(0,len(dict)):
-			middle.append("`%s` = '%s'" % (dict[i][0],dict[i][1]))
+			middle.append("`%s` = '%s'" % (dict[i].first,dict[i].second))
 		sql.append(', '.join(middle))
 		sql.append("WHERE ID = %s;" % id)
 		
