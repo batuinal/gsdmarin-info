@@ -28,7 +28,7 @@ class attrlib:
 		elif (attr == "num"):
 			return "SMALLINT"
 		elif (attr == "bool"):
-			return "BOOLEAN"
+			return "VARCHAR(7)"
 		elif (attr == "char"):
 			return "CHARACTER(1)"
 		elif (attr == "ship"):
