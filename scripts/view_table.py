@@ -76,6 +76,7 @@ class view_table(webapp2.RequestHandler):
 
 				out = '<h3> Table: ' + table + ' </h3><br>\n'
 				out += '<div id="buttons_' + table + '">\n'
+				out += '<button id="import_data_' + table + '">Import Data</button>'
 				out += '<button id="edit_mode_' + table + '">Edit Table</button>'
 				out += '<button id="remove_table_' + table + '">Remove Table</button>'
 				out += '</div>\n'

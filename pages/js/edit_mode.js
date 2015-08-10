@@ -8,6 +8,7 @@ function edit_mode(tname, tobj, cols){
 				$(this).html('<input type="text" id="' + name + '" name = "' + name + '" value="' + $(this).html() + '" />');
 		});
 
+		$("#import_data_" + tname.hide();
 		$("#edit_mode_" + tname).hide();
 		$("#remove_table_" + tname).hide();
 		
