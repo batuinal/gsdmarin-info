@@ -7,44 +7,48 @@ $(function() {
 	function jsac_apply_num(elts){}
 	
 	function jsac_apply_bool(elts){
-		for (var i = 0; i < elts.length; i++) {
-			if (elts[i].innerHTML == "Y")
-				elts[i].style.backgroundColor = "#00ff00";
-			else if (elts[i].innerHTML == "N")
-				elts[i].style.backgroundColor = "#ffff00";
-			else
-				elts[i].style.backgroundColor = "#ffffff";
-		}
+		elts.each( function() {
+			text = $(this).html().toUpperCase();
+			css = "#ffffff";
+			if ($(this).html() == "Y")
+				css = "#00ff00";
+			else if ($(this).html() == "N")
+				css = "#ffff00";
+
+			$(this).css("background-color", css);
+		});
 	}
 	
 	function jsac_apply_char(elts){
-		for (var i = 0; i < elts.length; i++) {
-			if (elts[i].innerHTML == "a" || elts[i].innerHTML == "A")
-				elts[i].style.backgroundColor = "#ff0000";
-			else if (elts[i].innerHTML == "b" || elts[i].innerHTML == "B")
-				elts[i].style.backgroundColor = "#FF4500";
-			else if (elts[i].innerHTML == "c" || elts[i].innerHTML == "C")
-				elts[i].style.backgroundColor = "#ffff00";
-			else
-				elts[i].style.backgroundColor = "#ffffff";	
-		}
+		elts.each( function() {
+			text = $(this).html().toUpperCase();
+			css = "#ffffff";
+			if (text == "A")
+				css = "#ff0000";
+			else if (text == "B")
+				css = "#ff4500";
+			else if (text == "C")
+				css = "#ffff00";
+			
+			$(this).css("background-color", css);
+		});
 	}
 	
 	function jsac_apply_ship(elts){
-		for (var i = 0; i <elts.length; i++){
-			var cur = elts[i].innerHTML.toUpperCase();
-			if (cur == "CANO")
-				elts[i].style.backgroundColor = "#FF4500";
-			else if (cur == "DODO")
-				elts[i].style.backgroundColor = "#00FFFF";
-			else if (cur == "HAKO")
-				elts[i].style.backgroundColor = "#7FFF00";
-			else if (cur == "ZEYNO")
-				elts[i].style.backgroundColor = "#FFD700";
-			else
-				elts[i].style.backgroundColor = "#ffffff";	
-
-		}
+		elts.each( function() {
+			var text = $(this).html().toUpperCase();
+			var css = "#ffffff";
+			if (text == "CANO")
+				css = "#ff4500";
+			else if (text == "DODO")
+				css = "#00ffff";
+			else if (text == "HAKO")
+				css = "#7fff00";
+			else if (text == "ZEYNO")
+				css = "#ffd700";
+			
+			$(this).css("background-color", css);
+		});
 	}
 	
 	//The date format should be YY/MM/DD	
@@ -85,35 +89,31 @@ $(function() {
 	
 
 	function jsac_apply_link(elts){
-		for (var i = 0; i <elts.length; i++){
-			var html = elts[i].innerHTML;
+		elts.each(function() {
+			var html = $(this).html;
 			var corr = "http"
 			var i = 0;
 			for (; i < 4; i++){
 				if (corr[i] != html[i])	{ break;}
 			}
-			if (i != 4){
-				var to_add = ("https://" + elts[i].innerHTML);
-				elts[i].setAttribute("href", to_add);
-			}
-			else{
-				elts[i].setAttribute("href", elts[i].innerHTML);
-			}
-		}
+			var new_html = html;
+			if (i != 4)
+				new_html = "https://" + new_html;
+			
+			$(this).html(new_html);
+		});
 	}
 	
 	function jsac_apply_loc(elts){
-
-		for (var i = 0; i <elts.length; i++){
-			elts[i].setAttribute("onclick","request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);");
-		}
+		elts.each( function() {
+			$(this).click("request('POST','https://www.google.com/maps',['q']," + $(this).html() + ");");
+		});
 	}
 	
 	function jsac_apply_coord(elts){
-
-		for (var i = 0; i <elts.length; i++){
-			elts[i].setAttribute("onclick","request('POST','https://www.google.com/maps',['q'],[elts[i].innerHTML]);");
-		}
+		elts.each( function() {
+			$(this).click("request('POST','https://www.google.com/maps',['q']," + $(this).html() + ");");
+		});
 	}
 	
 	function jsac_apply_file(elts){

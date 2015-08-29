@@ -4,8 +4,7 @@ function edit_mode(tname, tobj, cols){
 	$(function() {
 		$("#" + tname + " td").each( function(){
 			var name = $(this).attr("id");
-			if($(this).html() == $(this).text())
-				$(this).html('<input type="text" id="' + name + '" name = "' + name + '" value="' + $(this).html() + '" />');
+			$(this).html('<input type="text" id="' + name + '" name = "' + name + '" value="' + $(this).html() + '" />');
 		});
 
 		$("#import_data_" + tname).hide();
@@ -30,19 +29,19 @@ function edit_mode(tname, tobj, cols){
 			});
 		
 		$("#cancel_" + tname).click( function () {
-			request('GET','/view_table',['pageid'],[document.getElementById('pageid').getAttribute('value')]);
+			request('GET','/view_table',['pageid'],[getParam("pageid")]);
 		});
 		
 		$("#submit_" + tname).click( function () {
-			$("#submit_" + tname).click( function () {} );
+			
+			tname_real = tname.replace("_"," ");
 			
 			var data = $("#" + tname + " input").serializeArray();
-			data.push({ name: 'table', value: tname });
-			$.post("/submit_table",data, function (response) {
-				console.log(response);
-			});
+			data.push({ name: 'table', value: tname_real });
+			//$.post("/submit_table",data, function () {
+			//	request('GET','/view_table',['pageid'],[getParam("pageid")]);
+			//});
 			
-			request('GET','/view_table',['pageid'],[document.getElementById('pageid').getAttribute('value')]);
 		});
 		
 	});
