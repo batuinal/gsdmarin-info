@@ -78,8 +78,9 @@ $(function() {
   				timeString  += ((seconds < 10) ? ":0" : ":") + seconds;
 		  		elts[i].innerHTML = timeString;
 		  	}
+			*/
 		 }
-		 */
+		 
 	}
 	
 

@@ -35,8 +35,7 @@ class view_table(webapp2.RequestHandler):
 		# Header Creation
 		out = '<head>\n'
 		out += '<title>' + page + ' Page</title>\n'
-		out += '<div id="pageid" value="' + page + '"></div>\n'
-		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/media/css/jquery.dataTables.css">'
+		out += '<link rel="stylesheet" type="text/css" href="pages/DataTables-1.10.7/media/css/jquery.dataTables.css">\n'
 		out += '<script src="pages/js/jquery-2.1.3.min.js"></script>\n'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.js"></script>'
 		out += '<script src="pages/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>\n'
@@ -50,7 +49,10 @@ class view_table(webapp2.RequestHandler):
 		out += 'google     : {show:true, text:"Google <em>(online)</em>"},'
 		out += 'outlookcom : {show:true, text:"Outlook.com <em>(online)</em>"},'
 		out += 'appleical  : {show:true, text:"Apple Calendar"},'
-		out += 'facebook   : {show:true, text:"Facebook Event"}, });</script>'
+		out += 'facebook   : {show:true, text:"Facebook Event"}, });'
+		out += '</script>\n'
+		
+		out += '<script src="pages/scaffolding/view_table/init.js"></script>\n'
 
 		out += '<div id="request"></div>\n'
 		out += '</head>\n'
@@ -59,14 +61,15 @@ class view_table(webapp2.RequestHandler):
 		# Body Scaffolding
 		out = '<body>\n'
 		out += '<h1>' + page + ' Page</h1>\n'
-		out += ' <div title="Add to Calendar" class="addthisevent" data-track="_gaq.push([' + "'_trackEvent','AddThisEvent','click','ate-calendar'" + '])"> '
+		out += '<div id="scaf_begin"></div>\n'
+		"""out += ' <div title="Add to Calendar" class="addthisevent" data-track="_gaq.push([' + "'_trackEvent','AddThisEvent','click','ate-calendar'" + '])"> '
 		out += 'Add to Calendar <span class="start">08/18/2015 09:00 AM</span>'
 		out +=	'<span class="end">08/18/2015 11:00 AM</span>'
 		out +=	'<span class="timezone">Europe/Istanbul</span>'
 		out +=	'<span class="title">Summary of the event</span>'
 		out +=	'<span class="description">Description of the event</span>'
 		out +=	'<span class="location">Location of the event</span>'
-		out +=	'<span class="date_format">MM/DD/YYYY</span> </div>'
+		out +=	'<span class="date_format">MM/DD/YYYY</span> </div>'"""
 		self.response.out.write(out)
 
 		tables = sqlimpl.GetEntitiesByAttr("MASTER","PAGE",page)
@@ -194,14 +197,13 @@ class view_table(webapp2.RequestHandler):
 				out += '</script>\n'
 				self.response.out.write(out)
 				
-			# Body Scaffolding
-			out = '<button type="button" onclick="request(' + "'GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])" + '">Create New Table</button>\n'
-			out += '<script>\n'
-			out += '$(function(){\n'
-			out += '$("#request").load("pages/modules/request.html");\n'
-			out += '});\n'
-			out += '</script>\n'
-			out += '</body>\n'
-			self.response.out.write(out)
-		else:
-			self.redirect('/notfound')
+		# End Scaffolding
+		out = '<button type="button" onclick="request(' + "'GET','/pages/create_table.html',['pageid'],[document.getElementById('pageid').getAttribute('value')])" + '">Create New Table</button>\n'
+		out += '<script>\n'
+		out += '$(function(){\n'
+		out += '$("#request").load("pages/modules/request.html");\n'
+		out += '$("#scaf_begin").load("pages/scaffolding/view_table/scaf_begin.html");\n'
+		out += '});\n'
+		out += '</script>\n'
+		out += '</body>\n'
+		self.response.out.write(out)
