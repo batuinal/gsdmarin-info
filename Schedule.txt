@@ -7,7 +7,7 @@
 * Successfully import a properly formatted Excel file.
 
 --> Bugfix Wars [8/10 except PAGES]
-* Table names must accept space character (" ").
+* Attribute names must accept space character (" ").
 * Differentiate empty pages from non-existent pages using "PAGES" table.
 
 --> JSAC & SQL Interaction [8/11]

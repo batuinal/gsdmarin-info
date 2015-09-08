@@ -117,6 +117,43 @@ class sqllib:
 		db.close()
 		return 1
 
+		### Page Functions ###
+	def AddPage(self, name, type):
+		db = self.ConnectToDB()
+		db.autocommit(False) # start transaction
+		cursor = db.cursor()
+		try:
+			sql = "INSERT INTO `gsdmarin`.`PAGES` (`Name`,`Type`) VALUES ('" + name + "','" + type + "');"
+			cursor.execute(sql)
+			db.commit()
+		except:
+			db.rollback()
+			print "make sure that the column names are exactly the same as the column names in the real table"
+			return 0
+
+		cursor.close()
+		db.close()
+		return cursor.lastrowid
+		
+	def RemovePage(self, name):
+		db = self.ConnectToDB()
+		cursor = db.cursor()
+		sql1 = "DELETE FROM `gsdmarin`.`PAGES` WHERE 'Name' = '%s';" % name
+		sql2 = "DELETE FROM `gsdmarin`.`MASTER` WHERE 'PAGE' = '%s';" % name
+		try:
+			cursor.execute(sql1)
+			db.commit()
+			cursor.execute(sql2)
+			db.commit()
+		except:
+			print "sictik ki ne sictikkk"
+			print sql1
+			print sql2
+			return 0
+		
+		return 1  		 	  
+		
+		
 		### Entity Functions ###
 	def ListAllEntities(self, name):
 		db = self.ConnectToDB()
@@ -178,7 +215,6 @@ class sqllib:
 		return 1  	
 	
 	def GetEntitiesByAttr(self, name, attribute, value):
-		print "geldik" + name + attribute + str(value) 
 		db = self.ConnectToDB()
 		cursor = db.cursor()
 

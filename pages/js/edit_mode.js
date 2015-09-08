@@ -38,9 +38,9 @@ function edit_mode(tname, tobj, cols){
 			
 			var data = $("#" + tname + " input").serializeArray();
 			data.push({ name: 'table', value: tname_real });
-			//$.post("/submit_table",data, function () {
-			//	request('GET','/view_table',['pageid'],[getParam("pageid")]);
-			//});
+			$.post("/submit_table",data, function () {
+				request('GET','/view_table',['pageid'],[getParam("pageid")]);
+			});
 			
 		});
 		

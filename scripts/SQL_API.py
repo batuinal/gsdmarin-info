@@ -42,7 +42,7 @@ class call_method(webapp2.RequestHandler):
       
       sqlimpl = sqllib();
       out = "-- Output: "
-      
+
 	  ### Table Functions ###
       if func == "CreateTable":
         out += str(sqlimpl.CreateTable(name, page))
@@ -50,6 +50,11 @@ class call_method(webapp2.RequestHandler):
         out += str(sqlimpl.RemoveTable(name, page))
       elif func == "PrintTable":
         out += str(sqlimpl.PrintTable(name))
+      ### Page Functions ###
+      elif func == "AddPage":
+        out += str(sqlimpl.AddPage(attr,jsac))
+      elif func == "RemovePage":
+        out += str(sqlimpl.RemovePage(attr))	  
       ### Entity Functions ###
       elif func == "RemoveEntity":
         out += str(sqlimpl.RemoveEntity(name, id))

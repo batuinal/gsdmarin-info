@@ -1,0 +1,24 @@
+===== Assumptions =====
+
+--> "PAGES" contains a list of valid pages.
+* Each page has a type (submenu, table, admin, other). 
+* Can add / remove pages, or change their "type".
+
+--> "MASTER" maps page names to table names.
+* Page names can be a shared key between PAGES and MASTER.
+
+===== Wanted Functions =====
+
+// Assume we have a table named PAGES, which holds a list of page names and page types.
+
+--> CreatePage(name, type)
+* Adds "name" to PAGES, with type "type".
+
+--> RemovePage(name)
+* Removes "name" from PAGES.
+
+--> EditPage(type)
+* Changes page type to "type".
+
+--> QueryPage(name, type)
+* Checks if PAGES contains the (name,type) pair.
